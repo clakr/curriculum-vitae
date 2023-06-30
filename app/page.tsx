@@ -2,7 +2,7 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-export async function prismaExample() {
+async function prismaExample() {
   const users = await prisma.user.findMany();
   return users;
 }
