@@ -1,7 +1,8 @@
 import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient();
+export const revalidate = 5;
 
+const prisma = new PrismaClient();
 async function prismaExample() {
   const users = await prisma.user.findMany();
   return users;
