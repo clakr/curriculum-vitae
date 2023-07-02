@@ -11,7 +11,7 @@ datasource db {
 }
 
 model BasicInformation {
-  id          Int    @id @default(autoincrement())
+  id          String @id @default(cuid())
   firstName   String
   middleName  String
   lastName    String
@@ -19,4 +19,9 @@ model BasicInformation {
   address     String
   email       String
   phoneNumber String
+}
+
+model About {
+  id   String @id @default(cuid())
+  desc String
 }
