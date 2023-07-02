@@ -1,3 +1,4 @@
+import Aside from "./Aside";
 import Education from "./Education";
 import Experience from "./Experience";
 import Header from "./Header";
@@ -10,6 +11,7 @@ export default async function Home() {
   return (
     <>
       <Header />
+      <Aside />
       <main>
         <Education />
         <Experience />
