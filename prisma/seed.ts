@@ -66,20 +66,38 @@ async function main() {
     ],
   });
 
+  await prisma.organization.create({
+    data: {
+      name: "Systems Plus Computer College",
+      location: "CAC, PH",
+      durationFrom: getDate(2006, "june"),
+      durationTo: getDate(2018, "march"),
+      Education: {
+        create: {
+          awards: "Graduated with High Honors & Best in Programming",
+        },
+      },
+    },
+  });
+
+  await prisma.organization.create({
+    data: {
+      name: "FEU - Institute of Technology",
+      location: "MNL, PH",
+      durationFrom: getDate(2018, "august"),
+      durationTo: getDate(2023, "february"),
+      Education: {
+        create: {
+          degree: "B.S. Information Technology - Web and Mobile Application",
+          thesis:
+            "Fit-E: An LMS for Wellness and Recreation Program with Student Health Tracking and Recommender",
+        },
+      },
+    },
+  });
+
   await prisma.organization.createMany({
     data: [
-      {
-        name: "Systems Plus Computer College",
-        location: "CAC, PH",
-        durationFrom: getDate(2006, "june"),
-        durationTo: getDate(2018, "march"),
-      },
-      {
-        name: "FEU - Institute of Technology",
-        location: "MNL, PH",
-        durationFrom: getDate(2018, "august"),
-        durationTo: getDate(2023, "february"),
-      },
       {
         name: "Aguora IT Solutions & Technology",
         location: "QZT, PH",

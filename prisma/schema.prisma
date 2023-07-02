@@ -27,11 +27,21 @@ model About {
 }
 
 model Organization {
-  id           String    @id @default(cuid())
+  id           String     @id @default(cuid())
   name         String
   location     String
   position     String?
   mode         String?
   durationFrom DateTime
   durationTo   DateTime?
+  Education    Education?
+}
+
+model Education {
+  id             String       @id @default(cuid())
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  organizationId String       @unique
+  degree         String?
+  thesis         String?
+  awards         String?
 }
