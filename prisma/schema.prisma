@@ -27,7 +27,7 @@ model About {
 }
 
 model Organization {
-  id           String      @id @default(cuid())
+  id           String       @id @default(cuid())
   name         String
   location     String
   position     String?
@@ -36,6 +36,7 @@ model Organization {
   durationTo   DateTime?
   Education    Education?
   Experience   Experience?
+  Leadership   Leadership[]
 }
 
 model Education {
@@ -52,4 +53,27 @@ model Experience {
   organization     Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
   organizationId   String       @unique
   responsibilities String[]
+}
+
+model Leadership {
+  id               String       @id @default(cuid())
+  organization     Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  organizationId   String
+  course           String
+  project          String
+  positions        String[]
+  responsibilities String[]
+}
+
+enum MiscellaneousType {
+  TECHNICAL
+  TOOL
+  LANGUAGE
+  INTEREST
+}
+
+model Miscellaneous {
+  id   String            @id @default(cuid())
+  type MiscellaneousType
+  list String[]
 }

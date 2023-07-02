@@ -39,6 +39,7 @@ async function main() {
   await prisma.basicInformation.deleteMany();
   await prisma.about.deleteMany();
   await prisma.organization.deleteMany();
+  await prisma.miscellaneous.deleteMany();
 
   await prisma.basicInformation.create({
     data: {
@@ -93,6 +94,37 @@ async function main() {
             "Fit-E: An LMS for Wellness and Recreation Program with Student Health Tracking and Recommender",
         },
       },
+      Leadership: {
+        createMany: {
+          data: [
+            {
+              course: "Capstone Project",
+              project:
+                "Fit-E: An LMS for Wellness and Recreation Program with Student Health Tracking and Recommender",
+              positions: [
+                "Lead Frontend & Backend Developer",
+                "UI/UX Designer",
+                "Project Documentation",
+              ],
+              responsibilities: [
+                "Analyzed project objectives to be feasible given the constrained timeframe",
+                "Coordinated with the beneficiary in integrating sensitive information to the system",
+                "Engineered Frontend & Backend in parallel to the UI design mockup",
+                "Reviewed documentation in alignment with the project description and objectives",
+              ],
+            },
+            {
+              course: "eCommerce with Digital Marketing",
+              project:
+                "Pet Adoption Management System with Integration of MERN Stack and REST API",
+              positions: [
+                "Lead Frontend & Backend Developer",
+                "UI/UX Designer",
+              ],
+            },
+          ],
+        },
+      },
     },
   });
 
@@ -118,6 +150,49 @@ async function main() {
         },
       },
     },
+  });
+
+  await prisma.miscellaneous.createMany({
+    data: [
+      {
+        type: "TECHNICAL",
+        list: [
+          "HTML",
+          "CSS",
+          "Sass",
+          "Tailwind",
+          "Bootstrap",
+          "JavaScript",
+          "jQuery",
+          "TypeScript",
+          "React",
+          "NextJS",
+          "Astro",
+          "PHP",
+          "Laravel",
+          "SQL",
+          "REST API",
+        ],
+      },
+
+      {
+        type: "TOOL",
+        list: ["Git", "Visual Studio Code", "Figma", "Adobe XD"],
+      },
+      {
+        type: "LANGUAGE",
+        list: ["Filipino", "English"],
+      },
+      {
+        type: "INTEREST",
+        list: [
+          "Modern Technologies",
+          "Web Frameworks",
+          "PC and Console Gaming",
+          "Basketball",
+        ],
+      },
+    ],
   });
 }
 

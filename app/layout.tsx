@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} [&>header]:p-4 [&>header]:border [&>*>section]:p-4 [&>*>section]:border `}
+        className={`${inter.className} [&>header]:p-6 [&>header]:border [&>*>section]:p-6 [&>*>section]:border [&>*>section>article:not(:first-child)]:mt-3 `}
       >
         {children}
       </body>
