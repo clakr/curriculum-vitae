@@ -25,3 +25,13 @@ model About {
   id   String @id @default(cuid())
   desc String
 }
+
+model Organization {
+  id           String    @id @default(cuid())
+  name         String
+  location     String
+  position     String?
+  mode         String?
+  durationFrom DateTime
+  durationTo   DateTime?
+}
