@@ -1,6 +1,6 @@
 import prisma from "@/utils/prisma";
 
-export default async function Aside() {
+async function getData() {
   const me = await prisma.basicInformation.findFirst({
     select: {
       address: true,
@@ -8,11 +8,18 @@ export default async function Aside() {
       phoneNumber: true,
     },
   });
-  const about = await prisma.about.findMany();
+  const abouts = await prisma.about.findMany();
+
+  return { me, abouts };
+}
+
+export default async function Aside() {
+  const { me, abouts } = await getData();
 
   return (
-    <aside>
-      {JSON.stringify(me, null, 2)} {JSON.stringify(about, null, 2)}
+    <aside className="hidden laptop:block">
+      <article>{JSON.stringify(me, null, 2)}</article>
+      <article>{JSON.stringify(abouts, null, 2)}</article>
     </aside>
   );
 }
