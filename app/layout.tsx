@@ -24,9 +24,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body
-        className={`${inter.className} bg-neutral-50 text-neutral-950 [&>*>article:not(:first-child)]:mt-3 [&>*>section>article:not(:first-child)]:mt-3 [&>*>section]:border [&>*>section]:p-6 [&>aside]:border [&>aside]:p-6`}
-      >
+      <body className={`${inter.className} bg-neutral-50 text-neutral-950`}>
         {children}
       </body>
     </html>
