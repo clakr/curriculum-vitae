@@ -1,15 +1,26 @@
 import prisma from "@/utils/prisma";
+import Section from "./Section";
+
+function formatList(list: string[]) {
+  return new Intl.ListFormat("en", {
+    style: "long",
+    type: "conjunction",
+  }).format(list);
+}
 
 export default async function Miscellaneous() {
   const miscellaneouses = await prisma.miscellaneous.findMany();
 
   return (
-    <section>
-      {miscellaneouses.map((miscellaneous) => (
-        <article key={miscellaneous.id}>
-          {JSON.stringify(miscellaneous, null, 2)}
-        </article>
-      ))}
-    </section>
+    <Section>
+      <dl className="[&>dd:not(:last-child)]:mb-2 [&>dt]:font-semibold">
+        {miscellaneouses.map((miscellaneous) => (
+          <>
+            <dt>{miscellaneous.type}</dt>
+            <dd>{formatList(miscellaneous.list)}</dd>
+          </>
+        ))}
+      </dl>
+    </Section>
   );
 }

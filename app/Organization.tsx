@@ -21,11 +21,18 @@ export default function Organization({
   location,
   durationFrom,
   durationTo,
+  position,
+  mode,
 }: Organization) {
   return (
-    <div className="flex flex-wrap items-baseline gap-x-4 [&>*]:whitespace-nowrap">
+    <div className="flex flex-wrap items-baseline gap-x-2 [&>*]:whitespace-nowrap [&>*]:leading-[1.375rem]">
+      {position ? (
+        <strong className="text-lg font-extrabold">{position}, </strong>
+      ) : null}
       <h4 className="text-lg font-bold">{name}</h4>
-      <span className="text-sm font-extrabold">{location}</span>
+      <span className="text-sm font-extrabold">
+        {location} {mode ? `| ${mode}` : null}
+      </span>
       <span className="mb-2 w-full text-sm font-medium">
         {formatDate({ durationFrom, durationTo })}
       </span>
