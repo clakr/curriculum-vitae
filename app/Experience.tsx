@@ -19,7 +19,7 @@ export default async function Experience() {
       {experiences.map((experience) => (
         <article key={experience.id}>
           <Organization {...experience.organization} />
-          <ul className="list-inside list-disc">
+          <ul>
             {experience.responsibilities.map((responsibility, index) => (
               <li key={index}>{responsibility}</li>
             ))}

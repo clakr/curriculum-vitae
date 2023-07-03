@@ -6,4 +6,9 @@
   address {
     font-style: normal;
   }
+
+  ul {
+    list-style: disc;
+    list-style-position: inside;
+  }
 }
