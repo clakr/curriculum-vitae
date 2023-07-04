@@ -21,7 +21,7 @@ export default function Header({ info, aboutData }: Props) {
         isExpanded ? "" : ""
       )}
     >
-      <article className="z-10 px-4 pt-4">
+      <article className="z-10 px-4 pt-4 tablet:px-6 tablet:pt-6">
         <h1 className="text-3xl font-bold leading-7">
           {formatToFullName(info)}
         </h1>
@@ -29,7 +29,7 @@ export default function Header({ info, aboutData }: Props) {
       </article>
       <div
         className={cx(
-          "mt-4 flex flex-col gap-y-4 px-4 transition-transform",
+          "mt-4 flex flex-col gap-y-4 px-4 transition-transform tablet:px-6",
           isExpanded
             ? "visible relative translate-y-0"
             : "invisible absolute -translate-y-4"

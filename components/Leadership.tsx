@@ -1,6 +1,6 @@
 import prisma from "@/utils/prisma";
 import Organization from "./Organization";
-import Section from "./Section";
+import Section from "./main/Section";
 
 export default async function Leadership() {
   const leaderships = await prisma.leadership.findMany({

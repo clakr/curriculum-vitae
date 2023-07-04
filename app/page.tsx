@@ -22,9 +22,9 @@ export default async function Home() {
   return (
     <>
       <Header info={info} aboutData={about} />
-      <Author info={info} />
-      <Aside />
-      <main>
+      <Aside info={info} aboutData={about} />
+      <main className="">
+        <Author info={info} />
         <Education />
         <Experience />
         <Leadership />

@@ -1,5 +1,5 @@
 import prisma from "@/utils/prisma";
-import Section from "./Section";
+import Section from "./main/Section";
 
 function formatList(list: string[]) {
   return new Intl.ListFormat("en", {

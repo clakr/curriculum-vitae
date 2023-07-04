@@ -1,25 +1,28 @@
-import prisma from "@/utils/prisma";
+import { About, BasicInformation } from "@prisma/client";
+import { HTMLAttributes } from "react";
 
-async function getData() {
-  const me = await prisma.basicInformation.findFirst({
-    select: {
-      address: true,
-      email: true,
-      phoneNumber: true,
-    },
-  });
-  const abouts = await prisma.about.findMany();
+type Props = HTMLAttributes<HTMLElement> & {
+  info: BasicInformation | null;
+  aboutData: About[] | null;
+};
 
-  return { me, abouts };
-}
-
-export default async function Aside() {
-  const { me, abouts } = await getData();
-
+export default async function Aside({ info, aboutData }: Props) {
   return (
-    <aside className="hidden laptop:block">
-      <article>{JSON.stringify(me, null, 2)}</article>
-      <article>{JSON.stringify(abouts, null, 2)}</article>
+    <aside className="order-1 hidden border-l border-neutral-300 bg-neutral-100 px-6 pt-8 laptop:block">
+      <div className="fixed mr-6 flex flex-col gap-y-4">
+        <section className="flex flex-col gap-y-1.5 [&>address]:text-sm">
+          <h3 className="mb-0.5 font-medium">Contact</h3>
+          <address>{info?.address}</address>
+          <address>{info?.email}</address>
+          <address>{info?.phoneNumber}</address>
+        </section>
+        <section className="flex flex-col gap-y-1.5 [&>p]:text-sm">
+          <h3 className="mb-0.5 font-medium">About</h3>
+          {aboutData?.map((about) => (
+            <p key={about.id}>{about.desc}</p>
+          ))}
+        </section>
+      </div>
     </aside>
   );
 }

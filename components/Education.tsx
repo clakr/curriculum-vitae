@@ -1,5 +1,5 @@
 import prisma from "@/utils/prisma";
-import Section from "./Section";
+import Section from "./main/Section";
 import Organization from "./Organization";
 
 export default async function Education() {

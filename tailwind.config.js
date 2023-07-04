@@ -9,6 +9,7 @@ module.exports = {
     screens: {
       tablet: "768px",
       laptop: "1024px",
+      laptopLarge: "1280px",
       desktop: "1440px",
     },
     extend: {
