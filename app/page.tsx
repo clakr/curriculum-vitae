@@ -5,6 +5,7 @@ import Experience from "@/components/Experience";
 import Header from "@/components/Header";
 import Leadership from "@/components/Leadership";
 import Miscellaneous from "@/components/Miscellaneous";
+import Author from "@/components/Author";
 
 export const revalidate = 60;
 
@@ -21,6 +22,7 @@ export default async function Home() {
   return (
     <>
       <Header info={info} aboutData={about} />
+      <Author info={info} />
       <Aside />
       <main>
         <Education />

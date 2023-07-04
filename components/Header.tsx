@@ -1,5 +1,6 @@
 "use client";
 
+import { formatToFullName } from "@/utils/formatToFullName";
 import { About, BasicInformation } from "@prisma/client";
 import { cx } from "cva";
 import { HTMLAttributes, useState } from "react";
@@ -9,12 +10,6 @@ type Props = HTMLAttributes<HTMLElement> & {
   info: BasicInformation | null;
   aboutData: About[] | null;
 };
-
-function formatToFullName(info: BasicInformation | null) {
-  return `${info?.firstName} ${info?.middleName.slice(0, 1)}. ${
-    info?.lastName
-  }`;
-}
 
 export default function Header({ info, aboutData }: Props) {
   const [isExpanded, setIsExpanded] = useState(false);
