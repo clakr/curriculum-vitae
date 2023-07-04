@@ -22,7 +22,7 @@ export default function Header({ info, aboutData }: Props) {
   return (
     <header
       className={cx(
-        "relative border-b border-b-neutral-200 bg-neutral-100 laptop:hidden",
+        "relative border-b border-b-neutral-300 bg-neutral-100 laptop:hidden",
         isExpanded ? "" : ""
       )}
     >

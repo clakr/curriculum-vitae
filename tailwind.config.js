@@ -11,7 +11,11 @@ module.exports = {
       laptop: "1024px",
       desktop: "1440px",
     },
-    extend: {},
+    extend: {
+      backgroundImage: {
+        noise: "url(/noise.png)",
+      },
+    },
   },
   plugins: [],
 };
