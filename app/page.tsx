@@ -1,10 +1,10 @@
 import prisma from "@/utils/prisma";
-import Aside from "./Aside";
-import Education from "./Education";
-import Experience from "./Experience";
-import Header from "./Header";
-import Leadership from "./Leadership";
-import Miscellaneous from "./Miscellaneous";
+import Aside from "@/components/Aside";
+import Education from "@/components/Education";
+import Experience from "@/components/Experience";
+import Header from "@/components/Header";
+import Leadership from "@/components/Leadership";
+import Miscellaneous from "@/components/Miscellaneous";
 
 export const revalidate = 60;
 
