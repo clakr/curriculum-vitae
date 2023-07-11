@@ -25,15 +25,15 @@ export default function Organization({
   mode,
 }: Organization) {
   return (
-    <div className="flex flex-wrap items-baseline gap-x-2 [&>*]:whitespace-nowrap [&>*]:leading-[1.375rem]">
+    <div className="flex flex-wrap items-baseline gap-x-2 [&>*]:whitespace-nowrap [&>*]:leading-[1.375rem] [&>span]:text-neutral-950/60">
       {position ? (
-        <strong className="text-lg font-extrabold">{position}, </strong>
+        <strong className="text-lg font-black">{position}, </strong>
       ) : null}
       <h4 className="text-lg font-bold">{name}</h4>
-      <span className="text-sm font-extrabold">
+      <span className="text-sm font-bold ">
         {location} {mode ? `| ${mode}` : null}
       </span>
-      <span className="mb-2 w-full text-sm font-medium">
+      <span className="mb-4 w-full text-sm font-bold ">
         {formatDate({ durationFrom, durationTo })}
       </span>
     </div>

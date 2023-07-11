@@ -27,51 +27,57 @@ export default async function Leadership() {
 
   return (
     <Section heading="Leadership">
-      {uniqueOrganizations.map((organization) => (
-        <article key={organization.id}>
-          <Organization {...organization} />
-          {leaderships
-            .filter(
-              (leadership) => leadership.organizationId === organization.id
-            )
-            .map((leadership) => (
-              <article
-                className="[&:not(:last-of-type)]:mb-4 [&>dl]:mb-2 [&>figure]:mb-2"
-                key={leadership.id}
-              >
-                <h5 className="font-bold">{leadership.course}</h5>
-                <dl className="[&>dt]:font-semibold">
-                  <dt>Project</dt>
-                  <dd>{leadership.project}</dd>
-                </dl>
-                <figure>
-                  <figcaption className="font-semibold">
-                    Other Positions
-                  </figcaption>
-                  <ul>
-                    {leadership.positions.map((position, index) => (
-                      <li key={index}>{position}</li>
-                    ))}
-                  </ul>
-                </figure>
-                {leadership.responsibilities.length ? (
+      {new Array(2)
+        .fill(uniqueOrganizations)
+        .flat()
+        .map((organization) => (
+          <article
+            className="ml-4 [&:not(:last-of-type)]:mb-12"
+            key={organization.id}
+          >
+            <Organization {...organization} />
+            {leaderships
+              .filter(
+                (leadership) => leadership.organizationId === organization.id
+              )
+              .map((leadership) => (
+                <article
+                  className="[&:not(:last-of-type)]:mb-6 [&>*]:text-sm [&>dl]:mb-2 [&>figure:not(:last-of-type)]:mb-2"
+                  key={leadership.id}
+                >
+                  <h5 className="mb-1 font-bold">{leadership.course}</h5>
+                  <dl className="[&>dt]:font-semibold">
+                    <dt>Project</dt>
+                    <dd>{leadership.project}</dd>
+                  </dl>
                   <figure>
                     <figcaption className="font-semibold">
-                      Responsibilities
+                      Other Positions
                     </figcaption>
-                    <ul>
-                      {leadership.responsibilities.map(
-                        (responsibility, index) => (
-                          <li key={index}>{responsibility}</li>
-                        )
-                      )}
+                    <ul className="list-inside list-disc leading-6">
+                      {leadership.positions.map((position, index) => (
+                        <li key={index}>{position}</li>
+                      ))}
                     </ul>
                   </figure>
-                ) : null}
-              </article>
-            ))}
-        </article>
-      ))}
+                  {leadership.responsibilities.length ? (
+                    <figure>
+                      <figcaption className="font-semibold">
+                        Responsibilities
+                      </figcaption>
+                      <ul className="list-inside list-disc leading-6">
+                        {leadership.responsibilities.map(
+                          (responsibility, index) => (
+                            <li key={index}>{responsibility}</li>
+                          )
+                        )}
+                      </ul>
+                    </figure>
+                  ) : null}
+                </article>
+              ))}
+          </article>
+        ))}
     </Section>
   );
 }

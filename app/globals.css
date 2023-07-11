@@ -3,15 +3,6 @@
 @tailwind utilities;
 
 @layer base {
-  address {
-    font-style: normal;
-  }
-
-  ul {
-    list-style: disc;
-    list-style-position: inside;
-  }
-
   @media screen and (min-width: 768px) {
     :root {
       font-size: 18px;

@@ -13,7 +13,7 @@ export default async function Miscellaneous() {
 
   return (
     <Section>
-      <dl className="[&>dd:not(:last-child)]:mb-2 [&>dt]:font-semibold">
+      <dl className="[&>dd:not(:last-child)]:mb-4 [&>dd]:ml-4 [&>dd]:text-sm [&>dt]:font-semibold">
         {miscellaneouses.map((miscellaneous) => (
           <>
             <dt>{miscellaneous.type}</dt>

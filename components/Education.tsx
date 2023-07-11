@@ -17,9 +17,12 @@ export default async function Education() {
   return (
     <Section heading="Education">
       {educations.map((education) => (
-        <article className="[&:not(:last-of-type)]:mb-4" key={education.id}>
+        <article
+          className="ml-4 [&:not(:last-of-type)]:mb-8"
+          key={education.id}
+        >
           <Organization {...education.organization} />
-          <dl className="[&>dd:not(:last-child)]:mb-2 [&>dt]:font-semibold">
+          <dl className="[&>*]:text-sm [&>dd:not(:last-child)]:mb-2 [&>dt]:font-bold">
             {education.degree ? (
               <>
                 <dt>Degree</dt>

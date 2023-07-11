@@ -36,13 +36,13 @@ export default function Header({ info, aboutData }: Props) {
         )}
       >
         <article className="flex flex-col gap-y-1.5 [&>address]:text-sm">
-          <h3 className="mb-0.5 text-lg font-medium">Contact</h3>
+          <h3 className="mb-0.5 text-lg font-bold">Contact</h3>
           <address>{info?.address}</address>
           <address>{info?.email}</address>
           <address>{info?.phoneNumber}</address>
         </article>
         <article className="flex flex-col gap-y-1.5 [&>p]:text-sm">
-          <h3 className="mb-0.5 text-lg font-medium">About</h3>
+          <h3 className="mb-0.5 text-lg font-bold">About</h3>
           {aboutData?.map((about) => (
             <p key={about.id}>{about.desc}</p>
           ))}
