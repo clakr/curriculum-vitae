@@ -8,7 +8,7 @@ type Props = HTMLAttributes<HTMLElement> & {
 
 export default function Author({ info }: Props) {
   return (
-    <address className="hidden px-4 pt-4 laptop:block laptop:px-8 laptop:pt-8">
+    <address className="hidden px-4 pt-4 not-italic laptop:block laptop:px-8 laptop:pt-8">
       <h1 className="text-4xl font-extrabold">{formatToFullName(info)}</h1>
       <h2 className="text-3xl font-bold">{info?.position}</h2>
     </address>

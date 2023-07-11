@@ -13,7 +13,7 @@ export default async function Miscellaneous() {
 
   return (
     <Section>
-      <dl className="[&>dd:not(:last-child)]:mb-4 [&>dd]:ml-4 [&>dd]:text-sm [&>dt]:font-semibold">
+      <dl className="tablet:grid tablet:grid-cols-[25%_1fr] tablet:gap-x-4 [&>dd:not(:last-child)]:mb-4 [&>dd]:ml-4 [&>dd]:text-sm [&>dt]:font-bold">
         {miscellaneouses.map((miscellaneous) => (
           <>
             <dt>{miscellaneous.type}</dt>

@@ -27,57 +27,54 @@ export default async function Leadership() {
 
   return (
     <Section heading="Leadership">
-      {new Array(2)
-        .fill(uniqueOrganizations)
-        .flat()
-        .map((organization) => (
-          <article
-            className="ml-4 [&:not(:last-of-type)]:mb-12"
-            key={organization.id}
-          >
-            <Organization {...organization} />
-            {leaderships
-              .filter(
-                (leadership) => leadership.organizationId === organization.id
-              )
-              .map((leadership) => (
-                <article
-                  className="[&:not(:last-of-type)]:mb-6 [&>*]:text-sm [&>dl]:mb-2 [&>figure:not(:last-of-type)]:mb-2"
-                  key={leadership.id}
-                >
-                  <h5 className="mb-1 font-bold">{leadership.course}</h5>
-                  <dl className="[&>dt]:font-semibold">
-                    <dt>Project</dt>
-                    <dd>{leadership.project}</dd>
-                  </dl>
+      {uniqueOrganizations.map((organization) => (
+        <article
+          className="ml-4 [&:not(:last-of-type)]:mb-12"
+          key={organization.id}
+        >
+          <Organization {...organization} />
+          {leaderships
+            .filter(
+              (leadership) => leadership.organizationId === organization.id
+            )
+            .map((leadership) => (
+              <article
+                className="[&:not(:last-of-type)]:mb-6 [&>*:not(h5)]:text-sm [&>dl]:mb-4 [&>figure:not(:last-of-type)]:mb-4"
+                key={leadership.id}
+              >
+                <h5 className="mb-1 font-bold">{leadership.course}</h5>
+                <dl className="[&>dd]:ml-5 [&>dd]:leading-6 [&>dt]:mb-1 [&>dt]:font-bold">
+                  <dt>Research Title</dt>
+                  <dd>{leadership.project}</dd>
+                </dl>
+                <figure>
+                  <figcaption className="mb-1 font-bold">
+                    Other Positions
+                  </figcaption>
+                  <ul className="list-inside list-disc leading-6">
+                    {leadership.positions.map((position, index) => (
+                      <li key={index}>{position}</li>
+                    ))}
+                  </ul>
+                </figure>
+                {leadership.responsibilities.length ? (
                   <figure>
-                    <figcaption className="font-semibold">
-                      Other Positions
+                    <figcaption className="mb-1 font-bold">
+                      Responsibilities
                     </figcaption>
                     <ul className="list-inside list-disc leading-6">
-                      {leadership.positions.map((position, index) => (
-                        <li key={index}>{position}</li>
-                      ))}
+                      {leadership.responsibilities.map(
+                        (responsibility, index) => (
+                          <li key={index}>{responsibility}</li>
+                        )
+                      )}
                     </ul>
                   </figure>
-                  {leadership.responsibilities.length ? (
-                    <figure>
-                      <figcaption className="font-semibold">
-                        Responsibilities
-                      </figcaption>
-                      <ul className="list-inside list-disc leading-6">
-                        {leadership.responsibilities.map(
-                          (responsibility, index) => (
-                            <li key={index}>{responsibility}</li>
-                          )
-                        )}
-                      </ul>
-                    </figure>
-                  ) : null}
-                </article>
-              ))}
-          </article>
-        ))}
+                ) : null}
+              </article>
+            ))}
+        </article>
+      ))}
     </Section>
   );
 }
