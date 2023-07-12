@@ -43,12 +43,12 @@ export default async function Leadership() {
                 key={leadership.id}
               >
                 <h5 className="mb-1 font-bold">{leadership.course}</h5>
-                <dl className="[&>dd]:ml-5 [&>dd]:leading-6 [&>dt]:mb-1 [&>dt]:font-bold [&>dt]:text-neutral-950/75">
+                <dl className="[&>dd]:ml-5 [&>dd]:leading-6 [&>dt]:mb-1 [&>dt]:font-bold [&>dt]:text-neutral-950/75 dark:[&>dt]:text-neutral-200/75">
                   <dt>Research Title</dt>
                   <dd>{leadership.project}</dd>
                 </dl>
                 <figure>
-                  <figcaption className="mb-1 font-bold text-neutral-950/75">
+                  <figcaption className="mb-1 font-bold text-neutral-950/75 dark:text-neutral-200/75">
                     Other Positions
                   </figcaption>
                   <ul className="list-inside list-disc leading-6">
@@ -59,7 +59,7 @@ export default async function Leadership() {
                 </figure>
                 {leadership.responsibilities.length ? (
                   <figure>
-                    <figcaption className="mb-1 font-bold text-neutral-950/75">
+                    <figcaption className="mb-1 font-bold text-neutral-950/75 dark:text-neutral-200/75">
                       Responsibilities
                     </figcaption>
                     <ul className="list-inside list-disc leading-6">

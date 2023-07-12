@@ -22,7 +22,7 @@ export default async function Education() {
           key={education.id}
         >
           <Organization {...education.organization} />
-          <dl className="tablet:grid tablet:grid-cols-[25%_1fr] tablet:gap-x-4 [&>*]:text-sm [&>dd:not(:last-child)]:mb-2 [&>dt]:font-bold [&>dt]:text-neutral-950/75">
+          <dl className="tablet:grid tablet:grid-cols-[25%_1fr] tablet:gap-x-4 [&>*]:text-sm [&>dd:not(:last-child)]:mb-2 [&>dt]:font-bold [&>dt]:text-neutral-950/75 dark:[&>dt]:text-neutral-200/75">
             {education.degree ? (
               <>
                 <dt>Degree</dt>

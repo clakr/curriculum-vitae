@@ -8,7 +8,7 @@ type Props = HTMLAttributes<HTMLElement> & {
 
 export default async function Aside({ info, aboutData }: Props) {
   return (
-    <aside className="order-1 hidden border-l border-neutral-300 bg-neutral-100 px-6 pt-8 laptop:block">
+    <aside className="order-1 hidden border-l border-l-neutral-300 bg-neutral-100 px-6 pt-8 dark:border-l-neutral-600 dark:bg-neutral-900 laptop:block">
       <div className="fixed mr-6 flex flex-col gap-y-4">
         <section className="flex flex-col gap-y-2 [&>address]:text-sm [&>address]:not-italic">
           <h3 className="mb-1 font-bold">Contact</h3>
