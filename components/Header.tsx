@@ -35,7 +35,7 @@ export default function Header({ info, aboutData }: Props) {
             : "invisible absolute -translate-y-4"
         )}
       >
-        <article className="flex flex-col gap-y-2 [&>address]:text-sm">
+        <article className="flex flex-col gap-y-2 [&>address]:text-sm [&>address]:not-italic">
           <h3 className="mb-1 text-lg font-bold">Contact</h3>
           <address>{info?.address}</address>
           <address>{info?.email}</address>
