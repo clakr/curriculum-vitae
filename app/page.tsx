@@ -6,6 +6,7 @@ import Header from "@/components/Header";
 import Leadership from "@/components/Leadership";
 import Miscellaneous from "@/components/Miscellaneous";
 import Author from "@/components/Author";
+import ThemeSwitch from "@/components/ThemeSwitch";
 
 export const revalidate = 60;
 
@@ -23,7 +24,8 @@ export default async function Home() {
     <>
       <Header info={info} aboutData={about} />
       <Aside info={info} aboutData={about} />
-      <main className="">
+      <main>
+        <ThemeSwitch />
         <Author info={info} />
         <Education />
         <Experience />
