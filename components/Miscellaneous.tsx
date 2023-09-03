@@ -1,5 +1,6 @@
 import prisma from "@/utils/prisma";
 import Section from "./main/Section";
+import { Fragment } from "react";
 
 function formatList(list: string[]) {
   return new Intl.ListFormat("en", {
@@ -15,10 +16,10 @@ export default async function Miscellaneous() {
     <Section>
       <dl className="tablet:grid tablet:grid-cols-[25%_1fr] tablet:gap-x-4 [&>dd:not(:last-child)]:mb-4 [&>dd]:ml-4 [&>dd]:text-sm [&>dt]:font-bold">
         {miscellaneouses.map((miscellaneous) => (
-          <>
+          <Fragment key={miscellaneous.id}>
             <dt>{miscellaneous.type}</dt>
             <dd>{formatList(miscellaneous.list)}</dd>
-          </>
+          </Fragment>
         ))}
       </dl>
     </Section>

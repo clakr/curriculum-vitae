@@ -7,13 +7,14 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    screens: {
-      tablet: "768px",
-      laptop: "1024px",
-      laptopLarge: "1280px",
-      desktop: "1440px",
-    },
     extend: {
+      screens: {
+        mobileLarge: "475px",
+        tablet: "768px",
+        laptop: "1024px",
+        laptopLarge: "1280px",
+        desktop: "1440px",
+      },
       backgroundImage: {
         noise: "url(/noise.png)",
       },

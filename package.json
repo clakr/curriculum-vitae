@@ -10,13 +10,15 @@
   },
   "dependencies": {
     "@prisma/client": "^4.16.1",
+    "@radix-ui/react-dialog": "^1.0.4",
     "cva": "npm:class-variance-authority@^0.6.1",
     "next": "13.4.7",
     "next-themes": "^0.2.1",
     "prisma": "^4.16.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-icons": "^4.10.1"
+    "react-icons": "^4.10.1",
+    "tailwind-merge": "^1.14.0"
   },
   "devDependencies": {
     "@types/node": "^20.3.2",

@@ -6,6 +6,7 @@ import Header from "@/components/Header";
 import Leadership from "@/components/Leadership";
 import Miscellaneous from "@/components/Miscellaneous";
 import Author from "@/components/Author";
+import CommandMenu from "@/components/CommandMenu";
 
 export const revalidate = 60;
 
@@ -30,6 +31,7 @@ export default async function Home() {
         <Leadership />
         <Miscellaneous />
       </main>
+      <CommandMenu />
     </>
   );
 }
