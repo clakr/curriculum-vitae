@@ -18,6 +18,26 @@ module.exports = {
       backgroundImage: {
         noise: "url(/noise.png)",
       },
+      keyframes: {
+        overlayShow: {
+          from: { opacity: 0 },
+          to: { opacity: 1 },
+        },
+        contentShow: {
+          from: {
+            opacity: 0,
+            transform: "translate(-50%, 47.5%) scale(0.95)",
+          },
+          to: {
+            opacity: 1,
+            transform: "transform: translate(-50%, -50%) scale(1)",
+          },
+        },
+      },
+      animation: {
+        overlay: "overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1)",
+        modal: "contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1)",
+      },
     },
   },
   plugins: [],
