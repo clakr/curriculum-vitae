@@ -16,6 +16,7 @@ import {
   FaSun,
   FaMoon,
   FaGithub,
+  FaDesktop,
 } from "react-icons/fa6";
 import { IconType } from "react-icons";
 import { cx } from "cva";
@@ -73,7 +74,16 @@ export default function CommandMenu() {
             </Dialog.Close>
           </header>
           <div className="flex flex-col border-b border-neutral-200 p-3 dark:border-neutral-800">
-            <h3 className="pb-2 text-xs font-semibold opacity-50">Theme</h3>
+            <h3 className="flex items-center gap-x-1.5 pb-2 text-xs font-semibold opacity-50">
+              Theme
+              {theme === "light" ? (
+                <FaSun />
+              ) : theme === "dark" ? (
+                <FaMoon />
+              ) : (
+                <FaDesktop />
+              )}
+            </h3>
             <RadioGroup.Root
               className="flex flex-col gap-y-2"
               defaultValue={theme}
