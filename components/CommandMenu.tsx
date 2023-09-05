@@ -64,13 +64,7 @@ export default function CommandMenu() {
   }, []);
 
   return (
-    <Modal open={isOpen} onOpenChange={setIsOpen}>
-      <header className="grid grid-cols-2 border-b border-neutral-200 dark:border-neutral-800">
-        <Modal.Title>Command Menu</Modal.Title>
-        <Modal.Close>
-          <FaXmark />
-        </Modal.Close>
-      </header>
+    <Modal title="Command Menu" open={isOpen} onOpenChange={setIsOpen}>
       <div className="flex flex-col border-b border-neutral-200 p-3 dark:border-neutral-800">
         <h3 className="flex items-center gap-x-1.5 pb-2 text-xs font-semibold opacity-50">
           Theme
