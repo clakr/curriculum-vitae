@@ -1,21 +1,22 @@
 "use client";
 
 import * as RadioGroup from "@radix-ui/react-radio-group";
+import * as Accordion from "@radix-ui/react-accordion";
 import {
   ButtonHTMLAttributes,
   DetailedHTMLProps,
+  forwardRef,
   useEffect,
   useState,
 } from "react";
 import { useTheme } from "next-themes";
 import {
-  FaXmark,
   FaFilePdf,
-  FaInfo,
   FaSun,
   FaMoon,
   FaGithub,
   FaDesktop,
+  FaS,
 } from "react-icons/fa6";
 import { IconType } from "react-icons";
 import { cx } from "cva";
@@ -30,10 +31,6 @@ type Button = {
 };
 
 const buttons: Button[] = [
-  {
-    icon: FaInfo,
-    label: "Project Information",
-  },
   {
     icon: FaFilePdf,
     label: "Export to PDF",
@@ -101,6 +98,21 @@ export default function CommandMenu() {
         <h3 className="px-3 pb-2 text-xs font-semibold opacity-50">
           Other Actions
         </h3>
+        <Accordion.Root type="single">
+          <Accordion.Item value="item-1">
+            {/* <Accordion.Header asChild>
+              <Accordion.Trigger asChild>
+                <Button icon={FaSun}>qwe</Button>
+              </Accordion.Trigger>
+            </Accordion.Header> */}
+            <Accordion.Header asChild>
+              <Accordion.Trigger asChild>
+                <Button icon={FaSun}>qwe</Button>
+              </Accordion.Trigger>
+            </Accordion.Header>
+            <Accordion.Content>asd</Accordion.Content>
+          </Accordion.Item>
+        </Accordion.Root>
         {buttons.map(({ icon, label, ...rest }, index) => (
           <Button key={index} icon={icon} {...rest}>
             {label}
@@ -111,24 +123,18 @@ export default function CommandMenu() {
   );
 }
 
-function Button({
-  children,
-  icon,
-  className,
-  ...rest
-}: DetailedHTMLProps<
-  ButtonHTMLAttributes<HTMLButtonElement>,
-  HTMLButtonElement
-> & { icon: IconType }) {
+const Button = forwardRef<
+  HTMLButtonElement,
+  JSX.IntrinsicElements["button"] & { icon: IconType }
+>(({ icon, children, className, ...rest }, forwardedRef) => {
   const Icon = icon;
-
   return (
     <button
       className={twMerge(
         cx(
-          "grid h-8 grid-cols-[20px_auto] items-center gap-x-2 px-3 text-start hover:bg-neutral-200 focus:bg-neutral-200 disabled:cursor-not-allowed disabled:opacity-50 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800",
-          className
-        )
+          "grid h-8 w-full grid-cols-[20px_auto] items-center gap-x-2 px-3 text-start hover:bg-neutral-200 focus:bg-neutral-200 disabled:cursor-not-allowed disabled:opacity-50 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800"
+        ),
+        className
       )}
       {...rest}
     >
@@ -136,4 +142,6 @@ function Button({
       {children}
     </button>
   );
-}
+});
+
+Button.displayName = "Button";
