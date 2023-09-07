@@ -7,6 +7,7 @@ import Leadership from "@/components/Leadership";
 import Miscellaneous from "@/components/Miscellaneous";
 import Author from "@/components/Author";
 import CommandMenu from "@/components/CommandMenu";
+import getAllData from "@/utils/getCVData";
 
 export const revalidate = 60;
 
@@ -19,6 +20,7 @@ async function getData() {
 
 export default async function Home() {
   const { info, about } = await getData();
+  const { ...data } = await getAllData();
 
   return (
     <>
@@ -31,7 +33,7 @@ export default async function Home() {
         <Leadership />
         <Miscellaneous />
       </main>
-      <CommandMenu />
+      <CommandMenu {...data} />
     </>
   );
 }

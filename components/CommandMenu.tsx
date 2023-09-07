@@ -12,6 +12,7 @@ import {
   FaDesktop,
   FaInfo,
   FaChevronDown,
+  FaSpinner,
 } from "react-icons/fa6";
 import { IconType } from "react-icons";
 import { cx } from "cva";
@@ -20,10 +21,12 @@ import capitalizeFirstLetter from "@/utils/capitalizeFirstLetter";
 import Modal from "./Modal";
 import * as NextLink from "next/link";
 import { Url } from "next/dist/shared/lib/router/router";
+import getAllData from "@/utils/getCVData";
 
 type Button = {
   icon: IconType;
   label: string;
+  identifier: string;
   disabled?: boolean;
 };
 
@@ -31,18 +34,44 @@ const buttons: Button[] = [
   {
     icon: FaFilePdf,
     label: "Export to PDF",
-    disabled: true,
+    identifier: "export-to-pdf",
   },
   {
     icon: FaGithub,
     label: "Sign in with GitHub",
+    identifier: "sign-in",
     disabled: true,
   },
 ];
 
-export default function CommandMenu() {
+export default function CommandMenu(
+  data: Awaited<ReturnType<typeof getAllData>>
+) {
   const [isOpen, setIsOpen] = useState(false);
   const { theme, setTheme, themes } = useTheme();
+
+  // useEffect(() => {
+  //   const [exportToPdf] = buttons;
+  //   exportToPdf.onClick = async () => {
+  //     const blob = await (
+  //       await fetch("https://pdfgen.app/api/generate?templateId=2b18184", {
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           api_key: process.env.NEXT_PUBLIC_PDFGEN_API_KEY || "",
+  //         },
+  //         method: "POST",
+  //         body: JSON.stringify({ data }),
+  //       })
+  //     ).blob();
+
+  //     const a = document.createElement("a");
+  //     document.body.appendChild(a);
+  //     a.style.display = "none";
+  //     a.href = URL.createObjectURL(blob);
+  //     a.download = `${data.info?.lastName}_CV.pdf`;
+  //     a.click();
+  //   };
+  // }, [data]);
 
   useEffect(() => {
     const keydown = (event: KeyboardEvent) => {
@@ -140,7 +169,7 @@ export default function CommandMenu() {
           </Accordion.Item>
         </Accordion.Root>
         {buttons.map(({ icon, label, ...rest }, index) => (
-          <Button key={index} leftIcon={icon} {...rest}>
+          <Button key={index} leftIcon={icon} data={data} {...rest}>
             {label}
           </Button>
         ))}
@@ -151,12 +180,62 @@ export default function CommandMenu() {
 
 const Button = forwardRef<
   HTMLButtonElement,
-  JSX.IntrinsicElements["button"] & { leftIcon: IconType; rightIcon?: IconType }
+  JSX.IntrinsicElements["button"] & {
+    leftIcon: IconType;
+    rightIcon?: IconType;
+    identifier?: string;
+    data?: Awaited<ReturnType<typeof getAllData>>;
+  }
 >(
   (
-    { leftIcon: LeftIcon, rightIcon: RightIcon, children, className, ...rest },
+    {
+      leftIcon: LeftIcon,
+      rightIcon: RightIcon,
+      identifier,
+      data,
+      children,
+      className,
+      disabled,
+      ...rest
+    },
     forwardedRef
   ) => {
+    const [isLoading, setIsLoading] = useState(false);
+    let onClick = undefined;
+
+    switch (identifier) {
+      case "export-to-pdf":
+        onClick = async () => {
+          setIsLoading(true);
+          const blob = await (
+            await fetch("https://pdfgen.app/api/generate?templateId=2b18184", {
+              headers: {
+                "Content-Type": "application/json",
+                api_key: process.env.NEXT_PUBLIC_PDFGEN_API_KEY || "",
+              },
+              method: "POST",
+              body: JSON.stringify({ data }),
+            })
+          ).blob();
+
+          const a = document.createElement("a");
+          document.body.appendChild(a);
+          a.style.display = "none";
+          a.href = URL.createObjectURL(blob);
+          a.download = `${data?.info?.lastName}_CV.pdf`;
+          a.click();
+          setIsLoading(false);
+        };
+        break;
+
+      case "sign-in":
+        onClick = async () => {};
+        break;
+
+      default:
+        break;
+    }
+
     return (
       <button
         className={twMerge(
@@ -165,9 +244,15 @@ const Button = forwardRef<
           ),
           className
         )}
+        onClick={onClick}
+        disabled={disabled || isLoading}
         {...rest}
       >
-        <LeftIcon className="justify-self-center" />
+        {isLoading ? (
+          <FaSpinner className="animate-spin justify-self-center" />
+        ) : (
+          <LeftIcon className="justify-self-center" />
+        )}
         {children}
         {RightIcon ? (
           <RightIcon className="justify-self-center text-[.5rem] transition-transform duration-300 ease-[cubic-bezier(0.87,_0,_0.13,_1)] group-data-[state=open]:rotate-180" />
