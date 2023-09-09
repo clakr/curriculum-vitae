@@ -22,12 +22,13 @@ import Modal from "./Modal";
 import * as NextLink from "next/link";
 import { Url } from "next/dist/shared/lib/router/router";
 import getAllData from "@/utils/getCVData";
+import { signIn, signOut, useSession } from "next-auth/react";
+import { useSearchParams } from "next/navigation";
 
 type Button = {
   icon: IconType;
   label: string;
   identifier: string;
-  disabled?: boolean;
 };
 
 const buttons: Button[] = [
@@ -40,7 +41,6 @@ const buttons: Button[] = [
     icon: FaGithub,
     label: "Sign in with GitHub",
     identifier: "sign-in",
-    disabled: true,
   },
 ];
 
@@ -49,29 +49,7 @@ export default function CommandMenu(
 ) {
   const [isOpen, setIsOpen] = useState(false);
   const { theme, setTheme, themes } = useTheme();
-
-  // useEffect(() => {
-  //   const [exportToPdf] = buttons;
-  //   exportToPdf.onClick = async () => {
-  //     const blob = await (
-  //       await fetch("https://pdfgen.app/api/generate?templateId=2b18184", {
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //           api_key: process.env.NEXT_PUBLIC_PDFGEN_API_KEY || "",
-  //         },
-  //         method: "POST",
-  //         body: JSON.stringify({ data }),
-  //       })
-  //     ).blob();
-
-  //     const a = document.createElement("a");
-  //     document.body.appendChild(a);
-  //     a.style.display = "none";
-  //     a.href = URL.createObjectURL(blob);
-  //     a.download = `${data.info?.lastName}_CV.pdf`;
-  //     a.click();
-  //   };
-  // }, [data]);
+  const { data: session } = useSession();
 
   useEffect(() => {
     const keydown = (event: KeyboardEvent) => {
@@ -202,6 +180,8 @@ const Button = forwardRef<
   ) => {
     const [isLoading, setIsLoading] = useState(false);
     let onClick = undefined;
+    const search = useSearchParams();
+    const { data: session } = useSession();
 
     switch (identifier) {
       case "export-to-pdf":
@@ -229,7 +209,18 @@ const Button = forwardRef<
         break;
 
       case "sign-in":
-        onClick = async () => {};
+        onClick = () => {
+          setIsLoading(true);
+
+          if (session) {
+            signOut();
+            return;
+          }
+
+          signIn("github", {
+            callbackUrl: search.get("callbackUrl") ?? "/a/education",
+          });
+        };
         break;
 
       default:
@@ -246,6 +237,7 @@ const Button = forwardRef<
         )}
         onClick={onClick}
         disabled={disabled || isLoading}
+        ref={forwardedRef}
         {...rest}
       >
         {isLoading ? (
@@ -253,7 +245,7 @@ const Button = forwardRef<
         ) : (
           <LeftIcon className="justify-self-center" />
         )}
-        {children}
+        {identifier === "sign-in" && session ? "Sign out" : children}
         {RightIcon ? (
           <RightIcon className="justify-self-center text-[.5rem] transition-transform duration-300 ease-[cubic-bezier(0.87,_0,_0.13,_1)] group-data-[state=open]:rotate-180" />
         ) : null}
