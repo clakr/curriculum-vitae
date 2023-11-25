@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import prisma from "@/utils/prisma";
 import { Metadata } from "next";
 import "../globals.css";
+import Aside from "@/components/admin/Aside";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,7 +25,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
         className={`${inter.className} bg-neutral-200 bg-noise text-neutral-800 dark:bg-neutral-800 dark:text-neutral-200`}
       >
         <Providers>
-          <aside>qwe</aside>
+          <Aside />
           {children}
         </Providers>
       </body>
