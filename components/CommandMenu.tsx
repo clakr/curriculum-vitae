@@ -49,7 +49,6 @@ export default function CommandMenu(
 ) {
   const [isOpen, setIsOpen] = useState(false);
   const { theme, setTheme, themes } = useTheme();
-  const { data: session } = useSession();
 
   useEffect(() => {
     const keydown = (event: KeyboardEvent) => {
@@ -218,7 +217,7 @@ const Button = forwardRef<
           }
 
           signIn("github", {
-            callbackUrl: search.get("callbackUrl") ?? "/a/education",
+            callbackUrl: search.get("callbackUrl") ?? "/education",
           });
         };
         break;

@@ -1,10 +1,8 @@
 import prisma from "@/utils/prisma";
-import "./globals.css";
+import "../globals.css";
 import { Inter } from "next/font/google";
 import { Metadata } from "next";
-import { Providers as ThemeProvider } from "@/components/providers/ThemeProvider";
-import SessionProvider from "@/components/providers/SessionProvider";
-import { getServerSession } from "next-auth";
+import Providers from "../../components/providers/Providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,16 +23,12 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const session = await getServerSession();
-
   return (
     <html lang="en" suppressHydrationWarning>
       <body
         className={`${inter.className} bg-neutral-200 bg-noise text-neutral-800 dark:bg-neutral-800 dark:text-neutral-200 laptop:grid laptop:grid-cols-[65%_1fr] laptopLarge:grid-cols-[70%_1fr]`}
       >
-        <SessionProvider session={session}>
-          <ThemeProvider>{children}</ThemeProvider>
-        </SessionProvider>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
