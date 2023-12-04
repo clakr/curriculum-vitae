@@ -24,6 +24,7 @@ import { Url } from "next/dist/shared/lib/router/router";
 import getAllData from "@/utils/getCVData";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
+import { routes } from "@/utils/constants";
 
 type Button = {
   icon: IconType;
@@ -217,7 +218,7 @@ const Button = forwardRef<
           }
 
           signIn("github", {
-            callbackUrl: search.get("callbackUrl") ?? "/education",
+            callbackUrl: search.get("callbackUrl") ?? routes[0].href,
           });
         };
         break;

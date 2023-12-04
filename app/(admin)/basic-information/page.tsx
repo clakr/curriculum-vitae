@@ -28,7 +28,7 @@ export default async function Page() {
   const info = await prisma.basicInformation.findFirst();
 
   return (
-    <Main heading="Contact">
+    <Main heading="Basic Information">
       <Form action={handleSubmit} data={info} />
     </Main>
   );
