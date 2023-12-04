@@ -2,7 +2,7 @@ import { PropsWithChildren } from "react";
 
 export default function Table({ children }: PropsWithChildren) {
   return (
-    <div className="rounded-xl border border-neutral-300 bg-neutral-50/75 dark:border-neutral-600 dark:bg-neutral-950/75">
+    <div className="grid rounded-xl border border-neutral-300 bg-neutral-50/75 dark:border-neutral-600 dark:bg-neutral-950/75">
       <table>{children}</table>
     </div>
   );

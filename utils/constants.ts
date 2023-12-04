@@ -7,10 +7,7 @@ export const models = [
   "Education",
   "Experience",
   "Leadership",
-  "Technical",
-  "Tool",
-  "Language",
-  "Interest",
+  "Miscellaneous",
 ];
 
 export const routes = models.map((model) => ({

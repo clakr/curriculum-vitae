@@ -1,13 +1,7 @@
 import prisma from "@/utils/prisma";
 import Section from "./main/Section";
 import { Fragment } from "react";
-
-function formatList(list: string[]) {
-  return new Intl.ListFormat("en", {
-    style: "long",
-    type: "conjunction",
-  }).format(list);
-}
+import formatList from "@/utils/formatList";
 
 export default async function Miscellaneous() {
   const miscellaneouses = await prisma.miscellaneous.findMany();
