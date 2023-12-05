@@ -10,7 +10,7 @@ export default function Table({ children }: PropsWithChildren) {
 
 function TableHead({ children }: PropsWithChildren) {
   return (
-    <thead className="relative z-0 before:absolute before:inset-1.5 before:-z-10 before:rounded-md before:bg-neutral-200 before:dark:bg-neutral-800 [&>tr>th]:py-3">
+    <thead className="relative z-0 before:absolute before:inset-1.5 before:-z-10 before:rounded-md before:bg-neutral-200 before:dark:bg-neutral-800 [&>tr>th]:whitespace-nowrap [&>tr>th]:px-1.5 [&>tr>th]:py-3">
       <tr>{children}</tr>
     </thead>
   );
