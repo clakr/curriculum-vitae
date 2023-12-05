@@ -2,6 +2,12 @@ import Main from "@/components/admin/Main";
 import Table from "@/components/admin/Table";
 import prisma from "@/utils/prisma";
 
+/**
+ * Todo
+ * - [] add ordering sa about
+ * - [] drag n drop
+ */
+
 export default async function Page() {
   const abouts = await prisma.about.findMany();
 

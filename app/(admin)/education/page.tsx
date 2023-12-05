@@ -13,6 +13,7 @@ export default async function Page() {
         select: { name: true },
       },
     },
+    orderBy: { organization: { durationFrom: "asc" } },
   });
 
   return (

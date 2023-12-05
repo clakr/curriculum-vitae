@@ -10,7 +10,7 @@ export default async function Page() {
     },
     orderBy: {
       organization: {
-        durationFrom: "desc",
+        durationFrom: "asc",
       },
     },
   });

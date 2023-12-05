@@ -4,7 +4,9 @@ import formatDate from "@/utils/formatDate";
 import prisma from "@/utils/prisma";
 
 export default async function Page() {
-  const organizations = await prisma.organization.findMany();
+  const organizations = await prisma.organization.findMany({
+    orderBy: { durationFrom: "asc" },
+  });
 
   return (
     <Main heading="Organization">
