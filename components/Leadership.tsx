@@ -1,6 +1,7 @@
 import prisma from "@/utils/prisma";
 import Organization from "./Organization";
 import Section from "./main/Section";
+import getUniqueOrganizations from "@/utils/getUniqueOrganizations";
 
 export default async function Leadership() {
   const leaderships = await prisma.leadership.findMany({
@@ -18,12 +19,7 @@ export default async function Leadership() {
     (leadership) => leadership.organization
   );
 
-  const uniqueOrganizations = organizations.filter(
-    (filterValue, index) =>
-      organizations.findIndex(
-        (findIndexValue) => filterValue.id === findIndexValue.id
-      ) === index
-  );
+  const uniqueOrganizations = getUniqueOrganizations(organizations);
 
   return (
     <Section heading="Leadership">
