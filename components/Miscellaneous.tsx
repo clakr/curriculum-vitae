@@ -9,10 +9,10 @@ export default async function Miscellaneous() {
   return (
     <Section>
       <dl className="tablet:grid tablet:grid-cols-[25%_1fr] tablet:gap-x-4 [&>dd:not(:last-child)]:mb-4 [&>dd]:ml-4 [&>dd]:text-sm [&>dt]:font-bold">
-        {miscellaneouses.map((miscellaneous) => (
-          <Fragment key={miscellaneous.id}>
-            <dt>{miscellaneous.type}</dt>
-            <dd>{formatList(miscellaneous.list)}</dd>
+        {miscellaneouses.map(({ id, type, list }) => (
+          <Fragment key={id}>
+            <dt>{type}</dt>
+            <dd>{formatList(list)}</dd>
           </Fragment>
         ))}
       </dl>

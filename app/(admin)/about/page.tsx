@@ -12,9 +12,9 @@ export default async function Page() {
           <th>Description</th>
         </Table.Head>
         <tbody>
-          {abouts.map((about) => (
-            <Table.BodyRow key={about.id}>
-              <td>{about.desc}</td>
+          {abouts.map(({ id, desc }) => (
+            <Table.BodyRow key={id}>
+              <td>{desc}</td>
               <td>actions here</td>
             </Table.BodyRow>
           ))}
