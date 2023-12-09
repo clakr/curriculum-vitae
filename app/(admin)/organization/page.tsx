@@ -1,4 +1,4 @@
-import Main from "@/components/admin/Main";
+import Heading from "@/components/admin/Heading";
 import Table from "@/components/admin/Table";
 import formatDate from "@/utils/formatDate";
 import prisma from "@/utils/prisma";
@@ -9,7 +9,8 @@ export default async function Page() {
   });
 
   return (
-    <Main heading="Organization">
+    <>
+      <Heading>Organization</Heading>
       <Table>
         <Table.Head>
           <th>Name</th>
@@ -42,6 +43,6 @@ export default async function Page() {
           )}
         </tbody>
       </Table>
-    </Main>
+    </>
   );
 }

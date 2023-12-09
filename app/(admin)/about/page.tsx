@@ -1,4 +1,4 @@
-import Main from "@/components/admin/Main";
+import Heading from "@/components/admin/Heading";
 import Table from "@/components/admin/Table";
 import prisma from "@/utils/prisma";
 
@@ -12,7 +12,8 @@ export default async function Page() {
   const abouts = await prisma.about.findMany();
 
   return (
-    <Main heading="About">
+    <>
+      <Heading>About</Heading>
       <Table>
         <Table.Head>
           <th>Description</th>
@@ -26,6 +27,6 @@ export default async function Page() {
           ))}
         </tbody>
       </Table>
-    </Main>
+    </>
   );
 }

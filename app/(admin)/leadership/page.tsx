@@ -1,4 +1,4 @@
-import Main from "@/components/admin/Main";
+import Heading from "@/components/admin/Heading";
 import Table from "@/components/admin/Table";
 import getUniqueOrganizations from "@/utils/getUniqueOrganizations";
 import prisma from "@/utils/prisma";
@@ -26,7 +26,8 @@ export default async function Page() {
   const uniqueOrganizations = getUniqueOrganizations(organizations);
 
   return (
-    <Main heading="Leadership">
+    <>
+      <Heading>Leadership</Heading>
       <div className="space-y-6 rounded-xl border border-neutral-300 bg-neutral-50/75 p-4 dark:border-neutral-600 dark:bg-neutral-950/75">
         {uniqueOrganizations.map((organization) => (
           <article key={organization.id} className="space-y-3">
@@ -65,7 +66,7 @@ export default async function Page() {
           </article>
         ))}
       </div>
-    </Main>
+    </>
   );
 }
 

@@ -1,4 +1,4 @@
-import Main from "@/components/admin/Main";
+import Heading from "@/components/admin/Heading";
 import Table from "@/components/admin/Table";
 import prisma from "@/utils/prisma";
 
@@ -17,7 +17,8 @@ export default async function Page() {
   });
 
   return (
-    <Main heading="Education">
+    <>
+      <Heading>Education</Heading>
       <Table>
         <Table.Head>
           <th>Organization Name</th>
@@ -40,6 +41,6 @@ export default async function Page() {
           )}
         </tbody>
       </Table>
-    </Main>
+    </>
   );
 }

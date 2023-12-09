@@ -1,4 +1,4 @@
-import Main from "@/components/admin/Main";
+import Heading from "@/components/admin/Heading";
 import Table from "@/components/admin/Table";
 import formatList from "@/utils/formatList";
 import prisma from "@/utils/prisma";
@@ -7,7 +7,8 @@ export default async function Page() {
   const technicals = await prisma.miscellaneous.findMany();
 
   return (
-    <Main heading="Miscellaneous">
+    <>
+      <Heading>Miscellaneous</Heading>
       <Table>
         <Table.Head>
           <th>Type</th>
@@ -24,6 +25,6 @@ export default async function Page() {
           ))}
         </tbody>
       </Table>
-    </Main>
+    </>
   );
 }

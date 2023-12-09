@@ -1,6 +1,6 @@
-import Main from "@/components/admin/Main";
 import prisma from "@/utils/prisma";
 import Form from "./Form";
+import Heading from "@/components/admin/Heading";
 
 function formDataToObject(formData: FormData) {
   const object: { [index: string]: string } = {};
@@ -28,8 +28,9 @@ export default async function Page() {
   const info = await prisma.basicInformation.findFirst();
 
   return (
-    <Main heading="Basic Information">
+    <>
+      <Heading>Basic Information</Heading>
       <Form action={handleSubmit} data={info} />
-    </Main>
+    </>
   );
 }

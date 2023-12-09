@@ -10,7 +10,6 @@ const inter = Inter({ subsets: ["latin"] });
 
 export async function generateMetadata(): Promise<Metadata> {
   const me = await prisma.basicInformation.findFirst();
-
   if (!me) return {};
 
   return {
@@ -26,7 +25,9 @@ export default function RootLayout({ children }: PropsWithChildren) {
       >
         <Providers>
           <Aside />
-          {children}
+          <main className="ml-60 p-6 dark:after:absolute dark:after:inset-0 dark:after:-z-10 dark:after:bg-neutral-800 dark:after:opacity-90">
+            {children}
+          </main>
         </Providers>
       </body>
     </html>
