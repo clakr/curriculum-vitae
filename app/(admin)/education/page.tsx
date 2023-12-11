@@ -1,5 +1,9 @@
 import Heading from "@/components/admin/Heading";
-import Table from "@/components/admin/Table";
+import Table, {
+  TableHead,
+  TableBodyRow,
+  TableFoot,
+} from "@/components/admin/Table";
 import prisma from "@/utils/prisma";
 
 export default async function Page() {
@@ -20,26 +24,27 @@ export default async function Page() {
     <>
       <Heading>Education</Heading>
       <Table>
-        <Table.Head>
+        <TableHead>
           <th>Organization Name</th>
           <th>Degree</th>
           <th>Thesis</th>
           <th>Awards</th>
           <th />
-        </Table.Head>
+        </TableHead>
         <tbody>
           {educations.map(
             ({ id, degree, thesis, awards, organization: { name } }) => (
-              <Table.BodyRow key={id}>
+              <TableBodyRow key={id}>
                 <td>{name}</td>
                 <td>{degree}</td>
                 <td>{thesis}</td>
                 <td>{awards}</td>
                 <td>actions here</td>
-              </Table.BodyRow>
+              </TableBodyRow>
             )
           )}
         </tbody>
+        <TableFoot colSpan={5} />
       </Table>
     </>
   );

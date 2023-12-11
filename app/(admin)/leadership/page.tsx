@@ -1,5 +1,9 @@
 import Heading from "@/components/admin/Heading";
-import Table from "@/components/admin/Table";
+import Table, {
+  TableHead,
+  TableBodyRow,
+  TableFoot,
+} from "@/components/admin/Table";
 import getUniqueOrganizations from "@/utils/getUniqueOrganizations";
 import prisma from "@/utils/prisma";
 
@@ -33,13 +37,13 @@ export default async function Page() {
           <article key={organization.id} className="space-y-3">
             <h2 className="text-lg font-medium">{organization.name}</h2>
             <Table>
-              <Table.Head>
+              <TableHead>
                 <th>Course</th>
                 <th>Project</th>
                 <th>Positions</th>
                 <th>Responsibilities</th>
                 <th />
-              </Table.Head>
+              </TableHead>
               <tbody>
                 {leaderships
                   .filter(
@@ -48,7 +52,7 @@ export default async function Page() {
                   )
                   .map(
                     ({ id, course, project, positions, responsibilities }) => (
-                      <Table.BodyRow key={id}>
+                      <TableBodyRow key={id}>
                         <td>{course}</td>
                         <td>{project}</td>
                         <td>
@@ -58,10 +62,11 @@ export default async function Page() {
                           <List list={responsibilities} />
                         </td>
                         <td>actions here</td>
-                      </Table.BodyRow>
+                      </TableBodyRow>
                     )
                   )}
               </tbody>
+              <TableFoot colSpan={5} />
             </Table>
           </article>
         ))}

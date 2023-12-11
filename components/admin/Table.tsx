@@ -1,4 +1,10 @@
+"use client";
+
+import slugToString from "@/utils/slugToString";
 import { cx } from "cva";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useRouter } from "next/router";
 import { HTMLAttributes, PropsWithChildren, TdHTMLAttributes } from "react";
 import { FaPlus } from "react-icons/fa6";
 import { twMerge } from "tailwind-merge";
@@ -40,24 +46,24 @@ export function TableBodyRow({
 }
 
 export function TableFoot({
-  children,
   className,
   ...props
 }: TdHTMLAttributes<HTMLElement>) {
+  const pathname = usePathname();
+
   return (
     <tfoot>
       <tr>
         <td className={twMerge(cx("p-1.5", className))} {...props}>
-          <button className="flex w-full items-center justify-center gap-x-1 rounded-md bg-neutral-200/50 py-1.5 text-xs hover:bg-neutral-200">
+          <Link
+            href={`${pathname}/create`}
+            className="flex w-full items-center justify-center gap-x-1 rounded-md bg-neutral-200/50 py-1.5 text-xs hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-800/50"
+          >
             <FaPlus />
-            {children}
-          </button>
+            Create {slugToString(pathname)}
+          </Link>
         </td>
       </tr>
     </tfoot>
   );
 }
-
-Table.Head = TableHead;
-Table.BodyRow = TableBodyRow;
-Table.Foot = TableFoot;

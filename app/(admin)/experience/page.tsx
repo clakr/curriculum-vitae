@@ -1,5 +1,9 @@
 import Heading from "@/components/admin/Heading";
-import Table from "@/components/admin/Table";
+import Table, {
+  TableHead,
+  TableBodyRow,
+  TableFoot,
+} from "@/components/admin/Table";
 import prisma from "@/utils/prisma";
 
 export default async function Page() {
@@ -24,18 +28,19 @@ export default async function Page() {
           <article key={id} className="space-y-3">
             <h2 className="text-lg font-medium">{name}</h2>
             <Table>
-              <Table.Head>
+              <TableHead>
                 <th>Responsibility</th>
                 <th />
-              </Table.Head>
+              </TableHead>
               <tbody>
                 {responsibilities.map((responsibility, index) => (
-                  <Table.BodyRow key={index}>
+                  <TableBodyRow key={index}>
                     <td>{responsibility}</td>
                     <td>actions here</td>
-                  </Table.BodyRow>
+                  </TableBodyRow>
                 ))}
               </tbody>
+              <TableFoot colSpan={2} />
             </Table>
           </article>
         ))}

@@ -1,5 +1,9 @@
 import Heading from "@/components/admin/Heading";
-import Table from "@/components/admin/Table";
+import Table, {
+  TableHead,
+  TableBodyRow,
+  TableFoot,
+} from "@/components/admin/Table";
 import formatDate from "@/utils/formatDate";
 import prisma from "@/utils/prisma";
 
@@ -12,14 +16,14 @@ export default async function Page() {
     <>
       <Heading>Organization</Heading>
       <Table>
-        <Table.Head>
+        <TableHead>
           <th>Name</th>
           <th>Location</th>
           <th>Position</th>
           <th>Mode</th>
           <th>Timeframe</th>
           <th></th>
-        </Table.Head>
+        </TableHead>
         <tbody>
           {organizations.map(
             ({
@@ -31,7 +35,7 @@ export default async function Page() {
               durationFrom,
               durationTo,
             }) => (
-              <Table.BodyRow
+              <TableBodyRow
                 key={id}
                 className="[&>td:not(:first-child)]:text-center"
               >
@@ -41,11 +45,11 @@ export default async function Page() {
                 <td>{mode}</td>
                 <td>{formatDate({ durationFrom, durationTo })}</td>
                 <td>actions here</td>
-              </Table.BodyRow>
+              </TableBodyRow>
             )
           )}
         </tbody>
-        <Table.Foot colSpan={6}>Add Organization</Table.Foot>
+        <TableFoot colSpan={6} />
       </Table>
     </>
   );
