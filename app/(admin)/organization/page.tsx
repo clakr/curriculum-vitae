@@ -31,7 +31,10 @@ export default async function Page() {
               durationFrom,
               durationTo,
             }) => (
-              <Table.BodyRow key={id}>
+              <Table.BodyRow
+                key={id}
+                className="[&>td:not(:first-child)]:text-center"
+              >
                 <td>{name}</td>
                 <td>{location}</td>
                 <td>{position}</td>
@@ -42,6 +45,7 @@ export default async function Page() {
             )
           )}
         </tbody>
+        <Table.Foot colSpan={6}>Add Organization</Table.Foot>
       </Table>
     </>
   );
