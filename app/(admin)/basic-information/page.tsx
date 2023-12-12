@@ -1,5 +1,5 @@
 import prisma from "@/utils/prisma";
-import Form from "./Form";
+import Form from "./Form.client";
 import Heading from "@/components/admin/Heading";
 
 function formDataToObject(formData: FormData) {
