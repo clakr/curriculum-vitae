@@ -2,9 +2,12 @@ import * as RadixForm from "@radix-ui/react-form";
 import { twMerge } from "tailwind-merge";
 import { cx } from "cva";
 
-type FormField = RadixForm.FormControlProps & {
+type FormField = Omit<RadixForm.FormControlProps, "className"> & {
   label: string;
   asTextarea?: boolean;
+  formFieldClassName?: string;
+  formLabelClassName?: string;
+  formControlClassName?: string;
 };
 
 const inputClassNames =
@@ -12,35 +15,72 @@ const inputClassNames =
 
 export function FormField({
   label,
-  className,
   asTextarea,
+  formFieldClassName,
+  formLabelClassName,
+  formControlClassName,
   ...props
 }: FormField) {
   const name = label
     .toLocaleLowerCase()
     .replace(/\s(\w)/g, (_, char) => char.toUpperCase());
 
-  return (
-    <RadixForm.Field name={name} className="grid gap-y-1">
-      <RadixForm.Label className="text-xs">{label}</RadixForm.Label>
+  const { type } = props;
 
-      {asTextarea ? (
+  if (asTextarea) {
+    return (
+      <RadixForm.Field
+        name={name}
+        className={twMerge(cx("grid gap-y-1", formFieldClassName))}
+      >
+        <RadixForm.Label className={twMerge(cx("text-xs", formLabelClassName))}>
+          {label}
+        </RadixForm.Label>
         <RadixForm.Control
-          className={twMerge(cx(inputClassNames, className))}
+          className={twMerge(cx(inputClassNames, formLabelClassName))}
           required
           asChild
           {...props}
         >
           <textarea rows={3} />
         </RadixForm.Control>
-      ) : (
+      </RadixForm.Field>
+    );
+  }
+
+  if (type === "checkbox" || type === "radio") {
+    return (
+      <RadixForm.Field
+        name={name}
+        className={twMerge(cx("flex items-center gap-x-2", formFieldClassName))}
+      >
         <RadixForm.Control
-          className={twMerge(cx(inputClassNames, className))}
-          type="text"
+          className={formControlClassName}
+          value={name}
           required
           {...props}
         />
-      )}
+        <RadixForm.Label className={twMerge(cx("text-xs", formLabelClassName))}>
+          {label}
+        </RadixForm.Label>
+      </RadixForm.Field>
+    );
+  }
+
+  return (
+    <RadixForm.Field
+      name={name}
+      className={twMerge(cx("grid gap-y-1", formFieldClassName))}
+    >
+      <RadixForm.Label className={twMerge(cx("text-xs", formLabelClassName))}>
+        {label}
+      </RadixForm.Label>
+      <RadixForm.Control
+        className={twMerge(cx(inputClassNames, formControlClassName))}
+        type="text"
+        required
+        {...props}
+      />
     </RadixForm.Field>
   );
 }
