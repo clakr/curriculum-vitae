@@ -1,23 +1,24 @@
 import Heading from "@/components/admin/Heading";
-import FormClient from "./Form.client";
+import FormClient from "../Form.client";
 import formDataToObject from "@/utils/formDataToObject";
+import prisma from "@/utils/prisma";
 
 async function handleSubmit(formData: FormData) {
   "use server";
 
   const data = formDataToObject(formData);
+  const { name, city, country, position, mode, started, finished } = data;
 
-  /**
-   * {
-  name: 'Adish International Corporation',
-  city: 'MKC',
-  philippines: 'philippines',
-  position: 'Fullstack Web Developer',
-  mode: 'wfh',
-  started: '2023-04-12',
-  present: 'present'
-}
-   */
+  await prisma.organization.create({
+    data: {
+      name,
+      location: "philippines" in data ? `${city}, PH` : `${city}, ${country}`,
+      position,
+      mode: mode === "n/a" ? "" : mode.toLocaleUpperCase(),
+      durationFrom: new Date(started),
+      durationTo: "present" in data ? null : new Date(finished),
+    },
+  });
 }
 
 export default function Page() {

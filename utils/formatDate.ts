@@ -12,7 +12,7 @@ export default function formatDate({
     month: "long",
   });
 
-  if (!durationTo) return formatter.format(durationFrom);
+  if (!durationTo) return `${formatter.format(durationFrom)} - Present`;
 
   return `${formatter.format(durationFrom)} - ${formatter.format(durationTo)}`;
 }

@@ -1,6 +1,6 @@
+"use client";
+
 import * as Dialog from "@radix-ui/react-dialog";
-import { title } from "process";
-import { PropsWithChildren } from "react";
 import { FaXmark } from "react-icons/fa6";
 
 export default function Modal({
@@ -8,9 +8,14 @@ export default function Modal({
   onOpenChange,
   children,
   title,
-}: Dialog.DialogProps & { title: string }) {
+  trigger,
+}: Dialog.DialogProps & {
+  title: string;
+  trigger?: React.ReactNode;
+}) {
   return (
     <Dialog.Root open={open} onOpenChange={onOpenChange}>
+      {trigger ? <Dialog.Trigger asChild>{trigger}</Dialog.Trigger> : null}
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 z-10 animate-overlay bg-white/75 dark:bg-black/75" />
         <Dialog.Content className="fixed left-1/2 top-1/2 z-20 grid w-full max-w-[85%] -translate-x-1/2 -translate-y-1/2 animate-modal grid-rows-[50px_auto] rounded-md border border-neutral-300 bg-neutral-200 text-sm dark:border-neutral-800 dark:bg-neutral-900 mobileLarge:max-w-sm">

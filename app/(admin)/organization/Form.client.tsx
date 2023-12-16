@@ -21,6 +21,7 @@ export default function FormClient({ ...props }: FormProps) {
           formFieldClassName="grow self-end mb-2.5"
           checked={isCountryDisabled}
           onChange={() => setIsCountryDisabled((b) => !b)}
+          required={false}
         />
       </div>
       <FormField
@@ -53,6 +54,7 @@ export default function FormClient({ ...props }: FormProps) {
           formFieldClassName="grow self-end mb-2.5"
           checked={isFinishedDisabled}
           onChange={() => setIsFinishedDisabled((b) => !b)}
+          required={false}
         />
       </div>
 
