@@ -22,14 +22,12 @@ import Modal from "./Modal";
 import * as NextLink from "next/link";
 import { Url } from "next/dist/shared/lib/router/router";
 import getAllData from "@/utils/getCVData";
-import { signIn, signOut, useSession } from "next-auth/react";
-import { useSearchParams } from "next/navigation";
-import { routes } from "@/utils/constants";
 
 type Button = {
   icon: IconType;
   label: string;
   identifier: string;
+  disabled?: boolean;
 };
 
 const buttons: Button[] = [
@@ -42,6 +40,7 @@ const buttons: Button[] = [
     icon: FaGithub,
     label: "Sign in with GitHub",
     identifier: "sign-in",
+    disabled: true,
   },
 ];
 
@@ -180,8 +179,6 @@ const Button = forwardRef<
   ) => {
     const [isLoading, setIsLoading] = useState(false);
     let onClick = undefined;
-    const search = useSearchParams();
-    const { data: session } = useSession();
 
     switch (identifier) {
       case "export-to-pdf":
@@ -209,18 +206,7 @@ const Button = forwardRef<
         break;
 
       case "sign-in":
-        onClick = () => {
-          setIsLoading(true);
-
-          if (session) {
-            signOut();
-            return;
-          }
-
-          signIn("github", {
-            callbackUrl: search.get("callbackUrl") ?? routes[0].href,
-          });
-        };
+        onClick = async () => {};
         break;
 
       default:
@@ -237,7 +223,6 @@ const Button = forwardRef<
         )}
         onClick={onClick}
         disabled={disabled || isLoading}
-        ref={forwardedRef}
         {...rest}
       >
         {isLoading ? (
@@ -245,7 +230,7 @@ const Button = forwardRef<
         ) : (
           <LeftIcon className="justify-self-center" />
         )}
-        {identifier === "sign-in" && session ? "Sign out" : children}
+        {children}
         {RightIcon ? (
           <RightIcon className="justify-self-center text-[.5rem] transition-transform duration-300 ease-[cubic-bezier(0.87,_0,_0.13,_1)] group-data-[state=open]:rotate-180" />
         ) : null}

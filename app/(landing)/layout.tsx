@@ -2,7 +2,7 @@ import prisma from "@/utils/prisma";
 import "../globals.css";
 import { Inter } from "next/font/google";
 import { Metadata } from "next";
-import Providers from "../../components/providers/Providers";
+import { Providers as ThemeProvider } from "@/components/ThemeProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,7 +18,7 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -28,7 +28,7 @@ export default async function RootLayout({
       <body
         className={`${inter.className} bg-neutral-200 bg-noise text-neutral-800 dark:bg-neutral-800 dark:text-neutral-200 laptop:grid laptop:grid-cols-[65%_1fr] laptopLarge:grid-cols-[70%_1fr]`}
       >
-        <Providers>{children}</Providers>
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );

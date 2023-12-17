@@ -8,7 +8,6 @@ import Miscellaneous from "@/components/Miscellaneous";
 import Author from "@/components/Author";
 import CommandMenu from "@/components/CommandMenu";
 import getAllData from "@/utils/getCVData";
-import Toast from "@/components/Toast";
 
 export const revalidate = 60;
 
@@ -35,7 +34,6 @@ export default async function Home() {
         <Miscellaneous />
       </main>
       <CommandMenu {...data} />
-      <Toast />
     </>
   );
 }

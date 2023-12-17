@@ -14,8 +14,4 @@
       font-size: 20px;
     }
   }
-
-  div[role="region"][aria-label="Notifications (F8)"] {
-    position: fixed;
-  }
 }
