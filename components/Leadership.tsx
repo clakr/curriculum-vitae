@@ -1,6 +1,6 @@
 import prisma from "@/utils/prisma";
 import Organization from "./Organization";
-import Section from "./main/Section";
+import Section from "./(landing)/Section";
 import getUniqueOrganizations from "@/utils/getUniqueOrganizations";
 
 export default async function Leadership() {
