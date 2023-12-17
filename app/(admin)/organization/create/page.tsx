@@ -1,5 +1,5 @@
 import Heading from "@/components/admin/Heading";
-import FormClient from "../Form.client";
+import Form from "../Form.client";
 import formDataToObject from "@/utils/formDataToObject";
 import prisma from "@/utils/prisma";
 
@@ -25,7 +25,7 @@ export default function Page() {
   return (
     <>
       <Heading>Create Organization</Heading>
-      <FormClient action={handleSubmit} />
+      <Form action={handleSubmit} />
     </>
   );
 }
