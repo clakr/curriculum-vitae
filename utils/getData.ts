@@ -1,8 +1,12 @@
 import prisma from "./prisma";
 
-export default async function getAllData() {
+export type GetData = Awaited<ReturnType<typeof getData>>;
+
+export default async function getData() {
   const info = await prisma.basicInformation.findFirst();
-  const educations = await prisma.education.findMany({
+  const about = await prisma.about.findMany();
+
+  const education = await prisma.education.findMany({
     include: {
       organization: true,
     },
@@ -13,7 +17,7 @@ export default async function getAllData() {
     },
   });
 
-  const experiences = await prisma.experience.findMany({
+  const experience = await prisma.experience.findMany({
     include: {
       organization: true,
     },
@@ -24,7 +28,7 @@ export default async function getAllData() {
     },
   });
 
-  const leaderships = await prisma.leadership.findMany({
+  const leadership = await prisma.leadership.findMany({
     include: {
       organization: true,
     },
@@ -35,7 +39,7 @@ export default async function getAllData() {
     },
   });
 
-  const miscellaneouses = await prisma.miscellaneous.findMany();
+  const miscellaneous = await prisma.miscellaneous.findMany();
 
-  return { info, educations, experiences, leaderships, miscellaneouses };
+  return { info, about, education, experience, leadership, miscellaneous };
 }

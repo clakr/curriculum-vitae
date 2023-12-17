@@ -1,18 +1,21 @@
 "use client";
 
-import { formatToFullName } from "@/utils/formatToFullName";
-import { About, BasicInformation } from "@prisma/client";
+import { GetData } from "@/utils/getData";
+import { formatToFullName } from "@/utils/helpers";
 import { cx } from "cva";
-import { HTMLAttributes, useState } from "react";
+import { useState } from "react";
 import { FaAngleDown } from "react-icons/fa6";
 
-type Props = HTMLAttributes<HTMLElement> & {
-  info: BasicInformation | null;
-  aboutData: About[] | null;
+type Props = {
+  data: Pick<GetData, "info" | "about">;
 };
 
-export default function Header({ info, aboutData }: Props) {
+export default function Header({ data: { info, about } }: Props) {
   const [isExpanded, setIsExpanded] = useState(false);
+
+  if (!info || !about) return null;
+
+  const { position, address, email, phoneNumber } = info;
 
   return (
     <header
@@ -24,7 +27,7 @@ export default function Header({ info, aboutData }: Props) {
         <h1 className="text-3xl font-bold leading-7">
           {formatToFullName(info)}
         </h1>
-        <h2 className="text-2xl font-semibold">{info?.position}</h2>
+        <h2 className="text-2xl font-semibold">{position}</h2>
       </article>
       <div
         className={cx(
@@ -36,14 +39,14 @@ export default function Header({ info, aboutData }: Props) {
       >
         <article className="flex flex-col gap-y-2 [&>address]:text-sm [&>address]:not-italic">
           <h3 className="mb-1 text-lg font-bold">Contact</h3>
-          <address>{info?.address}</address>
-          <address>{info?.email}</address>
-          <address>{info?.phoneNumber}</address>
+          <address>{address}</address>
+          <address>{email}</address>
+          <address>{phoneNumber}</address>
         </article>
         <article className="flex flex-col gap-y-2 [&>p]:text-sm">
           <h3 className="mb-1 text-lg font-bold">About</h3>
-          {aboutData?.map((about) => (
-            <p key={about.id}>{about.desc}</p>
+          {about.map(({ id, desc }) => (
+            <p key={id}>{desc}</p>
           ))}
         </article>
       </div>

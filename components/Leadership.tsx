@@ -1,69 +1,61 @@
-import prisma from "@/utils/prisma";
 import Organization from "./Organization";
-import Section from "./(landing)/Section";
-import getUniqueOrganizations from "@/utils/getUniqueOrganizations";
+import Section from "./Section";
+import { GetData } from "@/utils/getData";
 
-export default async function Leadership() {
-  const leaderships = await prisma.leadership.findMany({
-    include: {
-      organization: true,
-    },
-    orderBy: {
-      organization: {
-        durationFrom: "desc",
-      },
-    },
-  });
+type Props = { data: Pick<GetData, "leadership"> };
 
-  const organizations = leaderships.map(
-    (leadership) => leadership.organization
+export default async function Leadership({ data: { leadership } }: Props) {
+  const organizations = leadership.map(({ organization }) => organization);
+
+  const uniqueOrganizations = organizations.filter(
+    (filterValue, index) =>
+      organizations.findIndex(
+        (findIndexValue) => filterValue.id === findIndexValue.id
+      ) === index
   );
-
-  const uniqueOrganizations = getUniqueOrganizations(organizations);
 
   return (
     <Section heading="Leadership">
-      {uniqueOrganizations.map((organization) => (
+      {uniqueOrganizations.map(({ id: organizationId, ...rest }) => (
         <article
           className="ml-4 [&:not(:last-of-type)]:mb-12"
-          key={organization.id}
+          key={organizationId}
         >
-          <Organization {...organization} />
-          {leaderships
+          <Organization id={organizationId} {...rest} />
+          {leadership
             .filter(
-              (leadership) => leadership.organizationId === organization.id
+              ({ organizationId: leadershipOrganizationId }) =>
+                leadershipOrganizationId === organizationId
             )
-            .map((leadership) => (
+            .map(({ id, course, project, positions, responsibilities }) => (
               <article
                 className="[&:not(:last-of-type)]:mb-6 [&>*:not(h5)]:text-sm [&>dl]:mb-4 [&>figure:not(:last-of-type)]:mb-4"
-                key={leadership.id}
+                key={id}
               >
-                <h5 className="mb-1 font-bold">{leadership.course}</h5>
+                <h5 className="mb-1 font-bold">{course}</h5>
                 <dl className="[&>dd]:ml-5 [&>dd]:leading-6 [&>dt]:mb-1 [&>dt]:font-bold [&>dt]:text-neutral-950/75 dark:[&>dt]:text-neutral-200/75">
                   <dt>Research Title</dt>
-                  <dd>{leadership.project}</dd>
+                  <dd>{project}</dd>
                 </dl>
                 <figure>
                   <figcaption className="mb-1 font-bold text-neutral-950/75 dark:text-neutral-200/75">
                     Other Positions
                   </figcaption>
                   <ul className="list-inside list-disc leading-6">
-                    {leadership.positions.map((position, index) => (
+                    {positions.map((position, index) => (
                       <li key={index}>{position}</li>
                     ))}
                   </ul>
                 </figure>
-                {leadership.responsibilities.length ? (
+                {responsibilities.length ? (
                   <figure>
                     <figcaption className="mb-1 font-bold text-neutral-950/75 dark:text-neutral-200/75">
                       Responsibilities
                     </figcaption>
                     <ul className="list-inside list-disc leading-6">
-                      {leadership.responsibilities.map(
-                        (responsibility, index) => (
-                          <li key={index}>{responsibility}</li>
-                        )
-                      )}
+                      {responsibilities.map((responsibility, index) => (
+                        <li key={index}>{responsibility}</li>
+                      ))}
                     </ul>
                   </figure>
                 ) : null}

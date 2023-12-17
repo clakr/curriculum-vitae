@@ -1,4 +1,3 @@
-import prisma from "@/utils/prisma";
 import Aside from "@/components/Aside";
 import Education from "@/components/Education";
 import Experience from "@/components/Experience";
@@ -7,33 +6,27 @@ import Leadership from "@/components/Leadership";
 import Miscellaneous from "@/components/Miscellaneous";
 import Author from "@/components/Author";
 import CommandMenu from "@/components/CommandMenu";
-import getAllData from "@/utils/getCVData";
+import getAllData from "@/utils/getData";
 
 export const revalidate = 60;
 
-async function getData() {
-  const info = await prisma.basicInformation.findFirst();
-  const about = await prisma.about.findMany();
-
-  return { info, about };
-}
-
 export default async function Home() {
-  const { info, about } = await getData();
-  const { ...data } = await getAllData();
+  const data = await getAllData();
+  const { info, about, education, experience, leadership, miscellaneous } =
+    data;
 
   return (
     <>
-      <Header info={info} aboutData={about} />
-      <Aside info={info} aboutData={about} />
+      <Header data={{ info, about }} />
+      <Aside data={{ info, about }} />
       <main>
-        <Author info={info} />
-        <Education />
-        <Experience />
-        <Leadership />
-        <Miscellaneous />
+        <Author data={{ info }} />
+        <Education data={{ education }} />
+        <Experience data={{ experience }} />
+        <Leadership data={{ leadership }} />
+        <Miscellaneous data={{ miscellaneous }} />
       </main>
-      <CommandMenu {...data} />
+      <CommandMenu data={data} />
     </>
   );
 }

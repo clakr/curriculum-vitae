@@ -1,29 +1,17 @@
-import prisma from "@/utils/prisma";
-import Section from "./(landing)/Section";
+import Section from "./Section";
 import Organization from "./Organization";
+import { GetData } from "@/utils/getData";
 
-export default async function Experience() {
-  const experiences = await prisma.experience.findMany({
-    include: {
-      organization: true,
-    },
-    orderBy: {
-      organization: {
-        durationFrom: "desc",
-      },
-    },
-  });
+type Props = { data: Pick<GetData, "experience"> };
 
+export default async function Experience({ data: { experience } }: Props) {
   return (
     <Section heading="Experience">
-      {experiences.map((experience) => (
-        <article
-          className="ml-4 [&:not(:last-of-type)]:mb-8"
-          key={experience.id}
-        >
-          <Organization {...experience.organization} />
+      {experience.map(({ id, responsibilities, organization }) => (
+        <article className="ml-4 [&:not(:last-of-type)]:mb-8" key={id}>
+          <Organization {...organization} />
           <ul className="list-inside list-disc text-sm leading-6">
-            {experience.responsibilities.map((responsibility, index) => (
+            {responsibilities.map((responsibility, index) => (
               <li key={index}>{responsibility}</li>
             ))}
           </ul>
