@@ -1,0 +1,47 @@
+---
+import { getCollection } from "astro:content";
+import Organization from "./Organization.astro";
+import Section from "./Section.astro";
+
+const leadership = await getCollection('leadership')
+const organizations = leadership.map((l) => l.data.organization)
+const uniqueOrganizations = organizations.filter(({id: filterValueId}, index) => organizations.findIndex(({id: findIndexValueId}) => filterValueId === findIndexValueId) === index)
+console.log(leadership)
+console.log(organizations)
+console.log(uniqueOrganizations)
+---
+
+<Section heading="Leadership">
+    {uniqueOrganizations.map((organization) => (
+        <article class="ml-4 space-y-4 [&:not(:last-of-type)]:mb-8">
+            <Organization organization={organization} />
+            {leadership.filter(({data: {organization: leadershipOrganization}}) => organization.id === leadershipOrganization.id).map((l) => (
+                <article class="[&>*:not(h5)]:text-sm [&_figcaption]:text-neutral-950/75 dark:[&_figcaption]:text-neutral-200/75 [&_figcaption]:font-bold [&_figcaption]:mb-1 [&>*:not(h5):not(:last-child)]:mb-4 [&_ul]:list-inside [&_ul]:list-disc [&_ul]:leading-6">
+                    <h5 class="font-bold mb-1">{l.data.course}</h5>
+                    <dl>
+                        <dt class="font-bold mb-1 text-neutral-950/75 dark:text-neutral-200/75">Research Title</dt>
+                        <dd class="ml-5 leading-6">{l.data.title}</dd>
+                    </dl>
+                    <figure>
+                        <figcaption>Other Positions</figcaption>
+                        <ul>
+                            {l.data.positions.map((position) => (
+                                <li>{position}</li>
+                            ))}
+                            </ul>
+                    </figure>
+                    {l.data.responsibilities && (
+                        <figure>
+                            <figcaption>Responsibilities</figcaption>
+                            <ul>
+                                {l.data.responsibilities.map((responsibility) => (
+                                    <li>{responsibility}</li>
+                                ))}
+                                </ul>
+                        </figure>
+                    )}
+                </article>
+            ))}
+        </article>
+    ))}
+</Section>

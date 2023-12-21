@@ -1,0 +1,67 @@
+---
+import { getEntry } from "astro:content";
+import Header from "@components/Header";
+import Aside from "@components/Aside.astro";
+import Author from "@components/Author.astro";
+import Education from "@components/Education.astro";
+import Experience from "@components/Experience.astro";
+import Leadership from "@components/Leadership.astro";
+import Miscellaneous from "@components/Miscellaneous.astro";
+import "../base.css";
+import CommandMenu from "@components/CommandMenu";
+
+const about = await getEntry("about", "index");
+---
+
+<script is:inline>
+  function getTheme() {
+    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+      return localStorage.getItem("theme");
+    }
+
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      return "dark";
+    }
+
+    return "light";
+  }
+
+  const theme = getTheme();
+
+  if (theme === "dark") {
+    document.documentElement.classList.add("dark");
+  } else {
+    document.documentElement.classList.remove("dark");
+  }
+  localStorage.setItem("theme", theme);
+</script>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Astro</title>
+  </head>
+  <body
+    class="bg-neutral-200 bg-noise text-neutral-800 lg:grid lg:grid-cols-[65%_1fr] xl:grid-cols-[70%_1fr] dark:bg-neutral-800 dark:text-neutral-200"
+  >
+    <Header client:media="(max-width: 1024px)">
+      {about.data.list.map((item) => <p>{item}</p>)}
+    </Header>
+    <Aside />
+
+    <main
+      class="dark:relative dark:after:absolute dark:after:inset-0 dark:after:-z-10 dark:after:bg-neutral-800 dark:after:opacity-90"
+    >
+      <Author />
+      <Education />
+      <Experience />
+      <Leadership />
+      <Miscellaneous />
+    </main>
+
+    <CommandMenu client:load />
+  </body>
+</html>

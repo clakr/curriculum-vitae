@@ -1,0 +1,13 @@
+{
+  "extends": "astro/tsconfigs/strictest",
+  "compilerOptions": {
+    "baseUrl": "/Users/adsi2227/Desktop/projects/curriculum-vitae-v2/src",
+    "paths": {
+      "@content/*": ["./content/*"],
+      "@components/*": ["./components/*"],
+      "@utils/*": ["./utils/*"]
+    },
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
+  }
+}

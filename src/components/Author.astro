@@ -1,0 +1,9 @@
+---
+import { position } from "@content/information/index.json";
+import formatToFullName from "@utils/formatToFullName";
+---
+
+<address class="hidden lg:block [&>*]:not-italic px-6 pt-7">
+  <h1 class="text-4xl font-extrabold">{formatToFullName}</h1>
+  <h2 class="text-3xl font-bold">{position}</h2>
+</address>

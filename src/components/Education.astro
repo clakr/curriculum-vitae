@@ -1,0 +1,29 @@
+---
+import { getCollection } from "astro:content";
+import Organization from "./Organization.astro";
+import Section from "./Section.astro";
+
+const education = await getCollection('education')
+---
+
+<Section heading="Education">
+    {education.map((e) => (
+        <article class="ml-4 [&:not(:last-of-type)]:mb-8 space-y-4">
+            <Organization organization={e.data.organization} />
+            <dl class="[&>*]:text-sm [&>dt]:font-bold [&>dt]:text-neutral-950/75 [&>dd:not(:last-of-type)]:mb-2 md:grid md:grid-cols-[25%_1fr] md:gap-x-4 dark:[&>dt]:text-neutral-200/75">
+                {e.data.degree && (
+                    <dt>Degree</dt>
+                    <dd>{e.data.degree}</dd>
+                )}
+                {e.data.thesis && (
+                    <dt>Thesis/Capstone</dt>
+                    <dd>{e.data.thesis}</dd>
+                )}
+                {e.data.awards && (
+                    <dt>Awards</dt>
+                    <dd>{e.data.awards}</dd>
+                )}
+            </dl>
+            </article>
+    ))}
+</Section>

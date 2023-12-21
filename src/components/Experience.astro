@@ -1,0 +1,20 @@
+---
+import { getCollection } from "astro:content";
+import Organization from "./Organization.astro";
+import Section from "./Section.astro";
+
+const experience = await getCollection('experience')
+---
+
+<Section heading="Experience">
+    {experience.map((e) => (
+        <article class="ml-4 space-y-4 [&:not(:last-of-type)]:mb-8">
+            <Organization organization={e.data.organization} />
+            <ul class="text-sm list-inside list-disc leading-6">
+                {e.data.responsibilities.map((responsibility) => (
+                    <li>{responsibility}</li>
+                ))}
+                </ul>
+            </article>
+    ))}
+</Section>

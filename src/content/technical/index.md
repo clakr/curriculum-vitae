@@ -1,0 +1,20 @@
+---
+list:
+  [
+    "HTML",
+    "CSS",
+    "Sass",
+    "Tailwind",
+    "Bootstrap",
+    "JavaScript",
+    "jQuery",
+    "TypeScript",
+    "React",
+    "NextJS",
+    "Astro",
+    "PHP",
+    "Laravel",
+    "SQL",
+    "REST API",
+  ]
+---
