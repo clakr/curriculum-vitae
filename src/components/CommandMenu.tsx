@@ -1,9 +1,9 @@
 import * as Dialog from "@radix-ui/react-dialog";
+import exportToPdf from "@utils/exportToPdf";
 import { useEffect, useState } from "react";
-import Theme from "./Theme";
 import Button from "./Button";
 import ProjectInformation from "./ProjectInformation";
-import exportToPdf from "@utils/exportToPdf";
+import Theme from "./Theme";
 
 export default function () {
 	const [isOpen, setIsOpen] = useState(false);

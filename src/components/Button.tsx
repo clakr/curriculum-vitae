@@ -1,5 +1,5 @@
 import cn from "@utils/cn";
-import { forwardRef, type HTMLAttributes } from "react";
+import { type HTMLAttributes, forwardRef } from "react";
 
 type Props = HTMLAttributes<HTMLButtonElement>;
 

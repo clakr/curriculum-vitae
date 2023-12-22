@@ -1,8 +1,8 @@
 import { address, phone } from "@content/information/index.json";
-import formatToFullName from "./formatToFullName";
-import { getCollection, getEntry } from "astro:content";
 import formatMiscellaneousList from "./formatMiscellaneousList";
 import formatOrganizationDate from "./formatOrganizationDate";
+import formatToFullName from "./formatToFullName";
+import { getCollection, getEntry } from "astro:content";
 
 const organizations = await getCollection("organization");
 

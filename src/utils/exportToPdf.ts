@@ -1,5 +1,5 @@
-import getData from "./getData";
 import { name } from "@content/information/index.json";
+import getData from "./getData";
 
 export default async function () {
 	const data = await getData();
