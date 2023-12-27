@@ -9,8 +9,20 @@ import Leadership from "@components/Leadership.astro";
 import Miscellaneous from "@components/Miscellaneous.astro";
 import "../base.css";
 import CommandMenu from "@components/CommandMenu";
+import { name, position } from "../content/information/index.json";
 
 const about = await getEntry("about", "index");
+
+function getTitle() {
+  return `${name.first} ${name.last} - ${position}`;
+}
+
+function getDescription() {
+  return about.data.list.reduce(
+    (previous, current) => `${previous}${current}`,
+    ""
+  );
+}
 ---
 
 <script is:inline>
@@ -39,10 +51,12 @@ const about = await getEntry("about", "index");
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" type="image/x-icon" />
+
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>Astro</title>
+    <title>{getTitle}</title>
+    <meta name="description" content={getDescription()} />
   </head>
   <body
     class="bg-neutral-200 bg-noise text-neutral-800 lg:grid lg:grid-cols-[65%_1fr] xl:grid-cols-[70%_1fr] dark:bg-neutral-800 dark:text-neutral-200"
