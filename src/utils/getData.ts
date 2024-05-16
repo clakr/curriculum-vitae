@@ -1,4 +1,4 @@
-import { address, phone } from "@content/information/index.json";
+import { address, phone } from "../content/information/index.json";
 import formatMiscellaneousList from "./formatMiscellaneousList";
 import formatOrganizationDate from "./formatOrganizationDate";
 import formatToFullName from "./formatToFullName";
@@ -52,24 +52,26 @@ export default async function () {
 		};
 	});
 
-	const leadership = (await getCollection("leadership")).map(({ data }) => {
-		const organization = organizations.find(
-			({ id }) => id === data.organization.id,
-		)?.data;
-		if (!organization) return { ...data };
+	const leadership = (await getCollection("leadership"))
+		.filter(({ data: { isHidden } }) => !isHidden)
+		.map(({ data }) => {
+			const organization = organizations.find(
+				({ id }) => id === data.organization.id,
+			)?.data;
+			if (!organization) return { ...data };
 
-		const { durationFrom, durationTo, name, ...rest } = organization;
-		const duration = formatOrganizationDate({ durationFrom, durationTo });
+			const { durationFrom, durationTo, name, ...rest } = organization;
+			const duration = formatOrganizationDate({ durationFrom, durationTo });
 
-		return {
-			...data,
-			organization: {
-				...rest,
-				name: name.toLocaleUpperCase(),
-				duration,
-			},
-		};
-	});
+			return {
+				...data,
+				organization: {
+					...rest,
+					name: name.toLocaleUpperCase(),
+					duration,
+				},
+			};
+		});
 
 	const technical = formatMiscellaneousList(
 		(await getEntry("technical", "index")).data.list,

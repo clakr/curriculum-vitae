@@ -48,6 +48,7 @@ const leadership = defineCollection({
 		title: z.string(),
 		positions: z.array(z.string()),
 		responsibilities: z.array(z.string()).optional(),
+		isHidden: z.boolean().default(false),
 	}),
 });
 

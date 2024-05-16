@@ -9,7 +9,7 @@ const formatter = new Intl.DateTimeFormat("en-PH", {
 });
 
 export default function ({ durationFrom, durationTo }: Args) {
-	if (!durationTo) return formatter.format(durationFrom);
+	if (!durationTo) return `${formatter.format(durationFrom)} - Present`;
 
 	return `${formatter.format(durationFrom)} - ${formatter.format(durationTo)}`;
 }

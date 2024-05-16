@@ -1,5 +1,5 @@
 ---
-import formatOrganizationDate from "@utils/formatOrganizationDate";
+import formatOrganizationDate from "../utils/formatOrganizationDate";
 import { getEntry } from "astro:content";
 const { organization: organizationProps } = Astro.props;
 
@@ -24,7 +24,7 @@ function getLocationAndMode() {
   {position && <strong class="text-lg font-black">{position},</strong>}
   <h4 class="text-lg font-bold">{name}</h4>
   <span class="text-sm font-bold">{getLocationAndMode}</span>
-  <span class="w-full text-sm font-bold"
-    >{formatOrganizationDate({ durationFrom, durationTo })}</span
-  >
+  <span class="w-full text-sm font-bold">
+    {formatOrganizationDate({ durationFrom, durationTo })}
+  </span>
 </div>

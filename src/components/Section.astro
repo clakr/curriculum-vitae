@@ -1,12 +1,12 @@
 ---
-import cn from '@utils/cn'
+import cn from "../utils/cn";
 
 type Props = {
-    heading?: string
-    class?: string
-}
+    heading?: string;
+    class?: string;
+};
 
-const {heading, class: className} = Astro.props
+const { heading, class: className } = Astro.props;
 ---
 
 <section class={cn("px-4 py-5 md:px-5 md:py-6 lg:px-6 lg:py-7", className)}>

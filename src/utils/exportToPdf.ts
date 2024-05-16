@@ -1,8 +1,9 @@
-import { name } from "@content/information/index.json";
+import { name } from "../content/information/index.json";
 import getData from "./getData";
 
 export default async function () {
 	const data = await getData();
+	console.log(data);
 
 	const response = await fetch(
 		"https://pdfgen.app/api/generate?templateId=2b18184",

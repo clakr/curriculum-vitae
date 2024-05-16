@@ -1,7 +1,7 @@
 ---
 import { getEntry } from "astro:content";
 import Section from "./Section.astro";
-import formatMiscellaneousList from "@utils/formatMiscellaneousList";
+import formatMiscellaneousList from "../utils/formatMiscellaneousList";
 
 const technical = await getEntry("technical", "index");
 const tool = await getEntry("tool", "index");
