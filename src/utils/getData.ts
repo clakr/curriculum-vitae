@@ -76,7 +76,9 @@ export default async function () {
 	const technical = formatMiscellaneousList(
 		(await getEntry("technical", "index")).data.list,
 	);
-
+	const framework = formatMiscellaneousList(
+		(await getEntry("framework", "index")).data.list,
+	);
 	const tool = formatMiscellaneousList(
 		(await getEntry("tool", "index")).data.list,
 	);
@@ -93,6 +95,7 @@ export default async function () {
 		experience,
 		leadership,
 		technical,
+		framework,
 		tool,
 		language,
 		interest,
