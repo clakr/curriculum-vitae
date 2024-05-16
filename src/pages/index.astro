@@ -57,6 +57,8 @@ function getDescription() {
     <meta name="generator" content={Astro.generator} />
     <title>{getTitle}</title>
     <meta name="description" content={getDescription()} />
+
+    <link rel="preload" as="image" href="/noise.png" />
   </head>
   <body
     class="bg-neutral-200 bg-noise text-neutral-800 lg:grid lg:grid-cols-[65%_1fr] xl:grid-cols-[70%_1fr] dark:bg-neutral-800 dark:text-neutral-200"
