@@ -11,7 +11,8 @@
 		"sync": "astro sync",
 		"format": "biome format . --write",
 		"lint": "biome lint ./src",
-		"check": "biome check --apply ."
+		"check": "biome check --apply .",
+		"clean": "rm -rf astro dist node_modules"
 	},
 	"dependencies": {
 		"@astrojs/check": "^0.3.3",

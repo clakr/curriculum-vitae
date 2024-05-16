@@ -4,6 +4,7 @@ import Section from "./Section.astro";
 import formatMiscellaneousList from "../utils/formatMiscellaneousList";
 
 const technical = await getEntry("technical", "index");
+const framework = await getEntry("framework", "index");
 const tool = await getEntry("tool", "index");
 const language = await getEntry("language", "index");
 const interest = await getEntry("interest", "index");
@@ -15,6 +16,8 @@ const interest = await getEntry("interest", "index");
   >
     <dd>TECHNICAL</dd>
     <dt>{formatMiscellaneousList(technical.data.list)}</dt>
+    <dd>LIBRARY/FRAMEWORK</dd>
+    <dt>{formatMiscellaneousList(framework.data.list)}</dt>
     <dd>TOOL</dd>
     <dt>{formatMiscellaneousList(tool.data.list)}</dt>
     <dd>LANGUAGE</dd>

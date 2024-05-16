@@ -52,33 +52,18 @@ const leadership = defineCollection({
 	}),
 });
 
-const technical = defineCollection({
+const miscellaneousCollection = defineCollection({
 	type: "content",
 	schema: z.object({
 		list: z.array(z.string()),
 	}),
 });
 
-const tool = defineCollection({
-	type: "content",
-	schema: z.object({
-		list: z.array(z.string()),
-	}),
-});
-
-const language = defineCollection({
-	type: "content",
-	schema: z.object({
-		list: z.array(z.string()),
-	}),
-});
-
-const interest = defineCollection({
-	type: "content",
-	schema: z.object({
-		list: z.array(z.string()),
-	}),
-});
+const technical = miscellaneousCollection;
+const framework = miscellaneousCollection;
+const tool = miscellaneousCollection;
+const language = miscellaneousCollection;
+const interest = miscellaneousCollection;
 
 export const collections = {
 	about,
@@ -87,6 +72,7 @@ export const collections = {
 	experience,
 	leadership,
 	technical,
+	framework,
 	tool,
 	language,
 	interest,
