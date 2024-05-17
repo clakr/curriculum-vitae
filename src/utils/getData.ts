@@ -1,4 +1,4 @@
-import { address, phone } from "../content/information/index.json";
+import { address, phone, site } from "../content/information/index.json";
 import formatMiscellaneousList from "./formatMiscellaneousList";
 import formatOrganizationDate from "./formatOrganizationDate";
 import formatToFullName from "./formatToFullName";
@@ -12,6 +12,7 @@ export default async function () {
 		email: address.email,
 		address: address.physical,
 		phone,
+		site,
 	};
 
 	const education = (await getCollection("education")).map(({ data }) => {
