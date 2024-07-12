@@ -1,0 +1,25 @@
+---
+import type { DataEntryMap } from "astro:content";
+import { getEntry } from "astro:content";
+
+type Props = { organization: keyof DataEntryMap["organization"] };
+const { organization } = Astro.props;
+
+const {
+  data: {
+    position,
+    name,
+    location,
+    duration: { from, to },
+  },
+} = await getEntry("organization", organization);
+---
+
+<div>
+  {position && <strong>{position}</strong>}
+  <h4>{name}</h4>
+  <span>{location}</span>
+  <span>
+    {from} - {to}
+  </span>
+</div>

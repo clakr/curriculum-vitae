@@ -1,0 +1,22 @@
+---
+import { getCollection } from "astro:content";
+import Organization from "./Organization.astro";
+
+const experiences = await getCollection("experience");
+---
+
+<section>
+  <h3>Experience</h3>
+  {
+    experiences.map((e) => (
+      <article>
+        <Organization organization={e.id} />
+        <ul>
+          {e.data.responsibilities.map((r) => (
+            <li>{r}</li>
+          ))}
+        </ul>
+      </article>
+    ))
+  }
+</section>
