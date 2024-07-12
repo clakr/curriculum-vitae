@@ -1,5 +1,5 @@
 ---
-
+import Header from "../components/Header";
 ---
 
 <html lang="en">
@@ -11,6 +11,17 @@
     <title>Astro</title>
   </head>
   <body>
-    <h1 class="bg-red-400">Astro</h1>
+    <Header client:load />
+    <main>
+      <section>experience</section>
+      <section>projects</section>
+      <section>education</section>
+      <section>technical</section>
+      <section>library/framework</section>
+      <section>tool</section>
+      <section>language</section>
+      <section>interest</section>
+    </main>
+    <footer>footer</footer>
   </body>
 </html>
