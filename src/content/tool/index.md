@@ -1,9 +1,0 @@
----
-list: 
-  [
-    "Git", 
-    "Visual Studio Code",
-    "Figma", 
-    "Adobe XD"
-  ]
----
