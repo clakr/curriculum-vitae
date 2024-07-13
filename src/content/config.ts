@@ -4,7 +4,7 @@ const organization = defineCollection({
   type: "data",
   schema: z.object({
     name: z.string(),
-    position: z.string(),
+    position: z.string().optional(),
     location: z.string(),
     duration: z.object({
       from: z.string().transform((string) => new Date(string)),
@@ -23,7 +23,17 @@ const experience = defineCollection({
   }),
 });
 
+const education = defineCollection({
+  type: "data",
+  schema: z.object({
+    degree: z.string().optional(),
+    thesis: z.string().optional(),
+    awards: z.string().optional(),
+  }),
+});
+
 export const collections = {
   organization,
   experience,
+  education,
 };

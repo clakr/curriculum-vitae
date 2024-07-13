@@ -1,0 +1,37 @@
+---
+import { getCollection } from "astro:content";
+import Organization from "./Organization.astro";
+
+const educations = await getCollection("education");
+---
+
+<section>
+  <h3>Education</h3>
+  {
+    educations.map((e) => (
+      <article>
+        <Organization organization={e.id} />
+        <dl>
+          {e.data.degree ? (
+            <>
+              <dd>Degree</dd>
+              <dt>{e.data.degree}</dt>
+            </>
+          ) : null}
+          {e.data.thesis ? (
+            <>
+              <dd>Thesis</dd>
+              <dt>{e.data.thesis}</dt>
+            </>
+          ) : null}
+          {e.data.awards ? (
+            <>
+              <dd>Awards</dd>
+              <dt>{e.data.awards}</dt>
+            </>
+          ) : null}
+        </dl>
+      </article>
+    ))
+  }
+</section>

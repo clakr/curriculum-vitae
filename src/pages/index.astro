@@ -1,6 +1,7 @@
 ---
 import Experience from "#components/Experience.section.astro";
 import Header from "#components/Header.section.tsx";
+import Education from "#src/components/Education.section.astro";
 ---
 
 <html lang="en">
@@ -11,11 +12,12 @@ import Header from "#components/Header.section.tsx";
     <meta name="generator" content={Astro.generator} />
     <title>Astro</title>
   </head>
-  <body>
+  <body class="space-y-4">
     <Header client:load />
-    <main>
+    <main class="space-y-4">
       <Experience />
       <section>projects</section>
+      <Education />
       <section>education</section>
       <section>technical</section>
       <section>library/framework</section>
