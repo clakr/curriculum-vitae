@@ -3,6 +3,7 @@ import Experience from "#components/Experience.section.astro";
 import Header from "#components/Header.section.tsx";
 import Education from "#src/components/Education.section.astro";
 import Miscellaneous from "#src/components/Miscellaneous.section.astro";
+import Project from "#src/components/Project.section.astro";
 ---
 
 <html lang="en">
@@ -17,7 +18,7 @@ import Miscellaneous from "#src/components/Miscellaneous.section.astro";
     <Header client:load />
     <main class="space-y-4">
       <Experience />
-      <section>projects</section>
+      <Project />
       <Education />
       <Miscellaneous />
     </main>
