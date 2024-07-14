@@ -8,7 +8,9 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "clean": "rm -rf .astro node_modules bun.lockb"
+    "clean": "rm -rf .astro node_modules bun.lockb",
+    "lint": "eslint .",
+    "format": "prettier . --write"
   },
   "dependencies": {
     "astro": "^4.11.5",
@@ -25,6 +27,8 @@
     "@typescript-eslint/parser": "^7.16.0",
     "eslint": "^9.6.0",
     "eslint-plugin-astro": "^1.2.3",
+    "prettier": "^3.3.3",
+    "prettier-plugin-tailwindcss": "^0.6.5",
     "tailwind-merge": "^2.4.0",
     "tailwindcss": "^3.4.4",
     "typescript": "^5.5.3"
