@@ -4,9 +4,10 @@ import { list as frameworkList } from "#src/framework.json";
 import { list as toolList } from "#src/tool.json";
 import { list as languageList } from "#src/language.json";
 import { list as interestList } from "#src/interest.json";
+import Section from "./Section.astro";
 ---
 
-<section>
+<Section>
   <dt>Technical</dt>
   <dd>{technicalList}</dd>
   <dt>Framework</dt>
@@ -17,4 +18,4 @@ import { list as interestList } from "#src/interest.json";
   <dd>{languageList}</dd>
   <dt>Interest</dt>
   <dd>{interestList}</dd>
-</section>
+</Section>

@@ -1,12 +1,12 @@
 ---
 import { getCollection } from "astro:content";
 import Organization from "./Organization.astro";
+import Section from "./Section.astro";
 
 const educations = await getCollection("education");
 ---
 
-<section>
-  <h3>Education</h3>
+<Section heading="Education">
   {
     educations.map((e) => (
       <article>
@@ -34,4 +34,4 @@ const educations = await getCollection("education");
       </article>
     ))
   }
-</section>
+</Section>

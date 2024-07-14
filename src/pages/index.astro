@@ -4,6 +4,7 @@ import Header from "#components/Header.section.tsx";
 import Education from "#src/components/Education.section.astro";
 import Miscellaneous from "#src/components/Miscellaneous.section.astro";
 import Project from "#src/components/Project.section.astro";
+import "@fontsource-variable/montserrat";
 ---
 
 <html lang="en">
@@ -14,9 +15,9 @@ import Project from "#src/components/Project.section.astro";
     <meta name="generator" content={Astro.generator} />
     <title>Astro</title>
   </head>
-  <body class="space-y-4">
+  <body class="bg-gray-3">
     <Header client:load />
-    <main class="space-y-4">
+    <main>
       <Experience />
       <Project />
       <Education />
