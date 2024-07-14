@@ -1,7 +1,8 @@
 ---
 import { getCollection } from "astro:content";
-import Organization from "./Organization.astro";
-import Section from "./Section.astro";
+import Organization from "#components/Organization.astro";
+import Section from "#components/Section/index.astro";
+import Article from "#components/Article.astro";
 
 const experiences = await getCollection("experience");
 ---
@@ -9,14 +10,14 @@ const experiences = await getCollection("experience");
 <Section heading="Experience">
   {
     experiences.map((e) => (
-      <article>
+      <Article>
         <Organization organization={e.id} />
         <ul>
           {e.data.responsibilities.map((r) => (
             <li>{r}</li>
           ))}
         </ul>
-      </article>
+      </Article>
     ))
   }
 </Section>

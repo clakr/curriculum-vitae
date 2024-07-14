@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
-import Section from "./Section.astro";
+import Section from "#components/Section/index.astro";
+import Article from "#components/Article.astro";
 
 const projects = await getCollection("project");
 ---
@@ -8,12 +9,12 @@ const projects = await getCollection("project");
 <Section heading="Project">
   {
     projects.map((p) => (
-      <article>
+      <Article>
         <>
           <h4>{p.data.name}</h4>
           <p>{p.data.description}</p>
         </>
-      </article>
+      </Article>
     ))
   }
 </Section>

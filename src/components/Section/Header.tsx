@@ -16,7 +16,7 @@ export default function Header() {
   }
 
   return (
-    <header className="bg-gray-2 p-4 flex flex-col border-b border-gray-4 pb-2">
+    <header className="bg-gray-2 p-4 flex flex-col border-b border-gray-5 pb-2">
       <h1 className="text-3xl font-bold tracking-tighter">{name}</h1>
       <h2 className="text-2xl font-semibold">{occupation}</h2>
       {isOpen ? (
@@ -62,7 +62,7 @@ type SectionProps = PropsWithChildren<{
 function Section({ children, heading }: SectionProps) {
   return (
     <section className="mt-3">
-      <h3 className="text-lg font-bold">{heading}</h3>
+      <h3 className="text-md font-bold uppercase">{heading}</h3>
       {children}
     </section>
   );

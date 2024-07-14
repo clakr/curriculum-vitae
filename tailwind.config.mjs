@@ -11,6 +11,7 @@ export default {
         2: "color(display-p3 0.975 0.975 0.975)",
         3: "color(display-p3 0.939 0.939 0.939)",
         4: "color(display-p3 0.908 0.908 0.908)",
+        5: "color(display-p3 0.88 0.88 0.88)",
       },
     },
     extend: {
