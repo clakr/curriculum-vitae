@@ -3,6 +3,8 @@ import { getCollection } from "astro:content";
 import Organization from "#components/Organization.astro";
 import Section from "#components/Section/index.astro";
 import Article from "#components/Article.astro";
+import DataTerm from "#components/Education/DataTerm.astro";
+import DataDescription from "#components/Education/DataDescription.astro";
 
 const educations = await getCollection("education");
 ---
@@ -12,23 +14,23 @@ const educations = await getCollection("education");
     educations.map((e) => (
       <Article>
         <Organization organization={e.id} />
-        <dl>
+        <dl class="mt-2">
           {e.data.degree ? (
             <>
-              <dd>Degree</dd>
-              <dt>{e.data.degree}</dt>
+              <DataTerm>Degree</DataTerm>
+              <DataDescription>{e.data.degree}</DataDescription>
             </>
           ) : null}
           {e.data.thesis ? (
             <>
-              <dd>Thesis</dd>
-              <dt>{e.data.thesis}</dt>
+              <DataTerm>Thesis</DataTerm>
+              <DataDescription>{e.data.thesis}</DataDescription>
             </>
           ) : null}
           {e.data.awards ? (
             <>
-              <dd>Awards</dd>
-              <dt>{e.data.awards}</dt>
+              <DataTerm>Awards</DataTerm>
+              <DataDescription>{e.data.awards}</DataDescription>
             </>
           ) : null}
         </dl>
