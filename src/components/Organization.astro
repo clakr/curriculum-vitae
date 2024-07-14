@@ -13,13 +13,23 @@ const {
     duration: { from, to },
   },
 } = await getEntry("organization", organization);
+
+const formatter = new Intl.DateTimeFormat("en-PH", {
+  year: "numeric",
+  month: "long",
+});
+
+function formatDuration() {
+  if (!to) return `${formatter.format(from)} - Present`;
+  return `${formatter.format(from)} - ${formatter.format(to)}`;
+}
 ---
 
-<div>
-  {position && <strong>{position}</strong>}
+<div class="flex whitespace-nowrap gap-x-2 flex-wrap font-bold leading-5">
+  {position && <strong class="font-extrabold">{position},</strong>}
   <h4>{name}</h4>
   <span>{location}</span>
-  <span>
-    {from} - {to}
+  <span class="basis-full">
+    {formatDuration()}
   </span>
 </div>
