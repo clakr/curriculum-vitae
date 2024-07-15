@@ -15,14 +15,16 @@ const formatter = new Intl.ListFormat("en", {
 ---
 
 <Section>
-  <DataTerm>Technical</DataTerm>
-  <DataDescription>{formatter.format(technicalList)}</DataDescription>
-  <DataTerm>Framework</DataTerm>
-  <DataDescription>{formatter.format(frameworkList)}</DataDescription>
-  <DataTerm>Tool</DataTerm>
-  <DataDescription>{formatter.format(toolList)}</DataDescription>
-  <DataTerm>Language</DataTerm>
-  <DataDescription>{formatter.format(languageList)}</DataDescription>
-  <DataTerm>Interest</DataTerm>
-  <DataDescription>{formatter.format(interestList)}</DataDescription>
+  <dl class="md:grid md:grid-cols-[1fr_3fr]">
+    <DataTerm>Technical</DataTerm>
+    <DataDescription>{formatter.format(technicalList)}</DataDescription>
+    <DataTerm>Framework</DataTerm>
+    <DataDescription>{formatter.format(frameworkList)}</DataDescription>
+    <DataTerm>Tool</DataTerm>
+    <DataDescription>{formatter.format(toolList)}</DataDescription>
+    <DataTerm>Language</DataTerm>
+    <DataDescription>{formatter.format(languageList)}</DataDescription>
+    <DataTerm>Interest</DataTerm>
+    <DataDescription>{formatter.format(interestList)}</DataDescription>
+  </dl>
 </Section>

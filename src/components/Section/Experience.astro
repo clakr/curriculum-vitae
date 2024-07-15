@@ -12,9 +12,9 @@ const experiences = await getCollection("experience");
     experiences.map((e) => (
       <Article>
         <Organization organization={e.id} />
-        <ul class="mt-2 list-inside list-disc text-sm">
+        <ul class="mt-3 list-inside list-disc text-sm">
           {e.data.responsibilities.map((r) => (
-            <li class="mt-1">{r}</li>
+            <li class="mt-1.5">{r}</li>
           ))}
         </ul>
       </Article>
