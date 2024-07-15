@@ -25,6 +25,9 @@ export default {
       fontFamily: {
         sans: ["Montserrat Variable", ...defaultTheme.fontFamily.sans],
       },
+      backgroundImage: {
+        noise: "url(./noise.png)",
+      },
     },
   },
   plugins: [],
