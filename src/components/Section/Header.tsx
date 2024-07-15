@@ -69,9 +69,9 @@ function Section({ children, heading }: SectionProps) {
 }
 
 function Address({ children }: PropsWithChildren) {
-  return <address className="mt-1 not-italic">{children}</address>;
+  return <address className="mt-1 text-sm not-italic">{children}</address>;
 }
 
 function Paragraph({ children }: PropsWithChildren) {
-  return <p className="mt-1">{children}</p>;
+  return <p className="mt-1 text-sm">{children}</p>;
 }

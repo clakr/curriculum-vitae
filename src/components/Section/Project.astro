@@ -12,7 +12,7 @@ const projects = await getCollection("project");
       <Article>
         <>
           <h4 class="font-bold">{p.data.name}</h4>
-          <p>{p.data.description}</p>
+          <p class="text-sm">{p.data.description}</p>
         </>
       </Article>
     ))

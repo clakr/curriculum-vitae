@@ -26,10 +26,10 @@ function formatDuration() {
 ---
 
 <div class="flex whitespace-nowrap gap-x-2 flex-wrap font-bold">
-  {position && <strong class="font-extrabold">{position},</strong>}
+  {position && <strong class="font-black">{position},</strong>}
   <h4>{name}</h4>
-  <span>{location}</span>
-  <span class="basis-full">
+  <span class="text-gray-9">{location}</span>
+  <span class="basis-full text-gray-9">
     {formatDuration()}
   </span>
 </div>

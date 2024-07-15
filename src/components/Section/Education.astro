@@ -14,7 +14,7 @@ const educations = await getCollection("education");
     educations.map((e) => (
       <Article>
         <Organization organization={e.id} />
-        <dl class="mt-2">
+        <dl class="mt-2 text-sm">
           {e.data.degree ? (
             <>
               <DataTerm>Degree</DataTerm>
