@@ -1,0 +1,19 @@
+---
+import Section from "#components/Information/Section.tsx";
+import Address from "#components/Information/Address.tsx";
+import Paragraph from "#components/Information/Paragraph.tsx";
+import { address, phoneNumber, about } from "#src/information.json";
+---
+
+<aside class="hidden lg:block order-2 bg-gray-2 border-s border-gray-5">
+  <div class="fixed p-4">
+    <Section heading="Contact" className="mt-0">
+      <Address>{address.physical}</Address>
+      <Address>{address.email}</Address>
+      <Address>{phoneNumber}</Address>
+    </Section>
+    <Section heading="About">
+      {about.map((a) => <Paragraph>{a}</Paragraph>)}
+    </Section>
+  </div>
+</aside>

@@ -5,8 +5,11 @@ import {
   phoneNumber,
   about,
 } from "#src/information.json";
-import { useState, type PropsWithChildren } from "react";
+import { useState } from "react";
 import { twMerge } from "tailwind-merge";
+import Section from "#components/Information/Section.tsx";
+import Address from "#components/Information/Address.tsx";
+import Paragraph from "#components/Information/Paragraph.tsx";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,7 +19,7 @@ export default function Header() {
   }
 
   return (
-    <header className="flex flex-col border-b border-gray-5 bg-gray-2 p-4 pb-2">
+    <header className="flex flex-col border-b border-gray-5 bg-gray-2 p-4 pb-2 lg:hidden">
       <h1 className="text-3xl font-bold tracking-tighter">{name}</h1>
       <h2 className="text-2xl font-semibold">{occupation}</h2>
       {isOpen ? (
@@ -54,24 +57,4 @@ export default function Header() {
       </button>
     </header>
   );
-}
-
-type SectionProps = PropsWithChildren<{
-  heading: string;
-}>;
-function Section({ children, heading }: SectionProps) {
-  return (
-    <section className="mt-3">
-      <h3 className="font-bold uppercase">{heading}</h3>
-      {children}
-    </section>
-  );
-}
-
-function Address({ children }: PropsWithChildren) {
-  return <address className="mt-1 text-sm not-italic">{children}</address>;
-}
-
-function Paragraph({ children }: PropsWithChildren) {
-  return <p className="mt-1 text-sm">{children}</p>;
 }

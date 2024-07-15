@@ -1,4 +1,5 @@
 import defaultTheme from "tailwindcss/defaultTheme";
+import plugin from "tailwindcss/plugin";
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -26,7 +27,7 @@ export default {
         sans: ["Montserrat Variable", ...defaultTheme.fontFamily.sans],
       },
       backgroundImage: {
-        noise: "url(./noise.png)",
+        noise: "url(/noise.png)",
       },
     },
   },

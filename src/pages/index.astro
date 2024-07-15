@@ -4,6 +4,7 @@ import Header from "#src/components/Section/Header.tsx";
 import Education from "#src/components/Section/Education.astro";
 import Miscellaneous from "#src/components/Section/Miscellaneous.astro";
 import Project from "#src/components/Section/Project.astro";
+import Aside from "#src/components/Section/Aside.astro";
 import "@fontsource-variable/montserrat";
 ---
 
@@ -15,14 +16,17 @@ import "@fontsource-variable/montserrat";
     <meta name="generator" content={Astro.generator} />
     <title>Astro</title>
   </head>
-  <body class="bg-gray-3 leading-6 text-gray-12 bg-noise">
+  <body
+    class="bg-gray-3 leading-6 text-gray-12 bg-noise lg:grid lg:grid-cols-[1fr_33%]"
+  >
     <Header client:load />
-    <main>
+    <Aside />
+    <main class="lg:order-1">
       <Experience />
       <Project />
       <Education />
       <Miscellaneous />
     </main>
-    <footer>footer</footer>
+    <footer class="lg:order-3">footer</footer>
   </body>
 </html>
