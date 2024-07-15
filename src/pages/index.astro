@@ -1,11 +1,14 @@
 ---
-import Experience from "#src/components/Section/Experience.astro";
-import Header from "#src/components/Section/Header.tsx";
-import Education from "#src/components/Section/Education.astro";
-import Miscellaneous from "#src/components/Section/Miscellaneous.astro";
-import Project from "#src/components/Section/Project.astro";
-import Aside from "#src/components/Section/Aside.astro";
+import Experience from "#components/Section/Experience.astro";
+import Header from "#components/Section/Header.tsx";
+import Education from "#components/Section/Education.astro";
+import Miscellaneous from "#components/Section/Miscellaneous.astro";
+import Project from "#components/Section/Project.astro";
+import Aside from "#components/Section/Aside.astro";
 import "@fontsource-variable/montserrat";
+import Name from "#components/Information/Name.tsx";
+import Occupation from "#components/Information/Occupation.tsx";
+import { name, occupation } from "#src/information.json";
 ---
 
 <html lang="en">
@@ -17,11 +20,17 @@ import "@fontsource-variable/montserrat";
     <title>Astro</title>
   </head>
   <body
-    class="bg-gray-3 leading-6 text-gray-12 bg-noise lg:grid lg:grid-cols-[1fr_33%]"
+    class="bg-gray-3 leading-6 text-gray-12 bg-noise lg:grid lg:grid-cols-[2fr_1fr]"
   >
     <Header client:load />
     <Aside />
     <main class="lg:order-1">
+      <Name className="hidden lg:block mt-6 ms-6">
+        {name}
+      </Name>
+      <Occupation className="hidden lg:block ms-6">
+        {occupation}
+      </Occupation>
       <Experience />
       <Project />
       <Education />

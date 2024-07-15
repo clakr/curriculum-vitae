@@ -31,5 +31,13 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function ({ addBase }) {
+      addBase({
+        ":root": {
+          fontSize: "calc(14px + 0.390625vw)",
+        },
+      });
+    }),
+  ],
 };

@@ -10,6 +10,8 @@ import { twMerge } from "tailwind-merge";
 import Section from "#components/Information/Section.tsx";
 import Address from "#components/Information/Address.tsx";
 import Paragraph from "#components/Information/Paragraph.tsx";
+import Name from "#components/Information/Name.tsx";
+import Occupation from "#components/Information/Occupation.tsx";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,8 +22,8 @@ export default function Header() {
 
   return (
     <header className="flex flex-col border-b border-gray-5 bg-gray-2 p-4 pb-2 lg:hidden">
-      <h1 className="text-3xl font-bold tracking-tighter">{name}</h1>
-      <h2 className="text-2xl font-semibold">{occupation}</h2>
+      <Name>{name}</Name>
+      <Occupation>{occupation}</Occupation>
       {isOpen ? (
         <>
           <Section heading="Contact">
