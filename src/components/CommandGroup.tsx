@@ -7,7 +7,7 @@ function handleDarkModeClick() {
 export default function CommandGroup() {
   return (
     <section className="fixed bottom-4 right-4 flex flex-col lg:right-6">
-      <Button>
+      <Button disabled>
         <span className="sr-only">Project Information</span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -17,14 +17,14 @@ export default function CommandGroup() {
           <g fill="currentColor">
             <path d="M11 10.98a1 1 0 1 1 2 0v6a1 1 0 1 1-2 0zm1-4.929a1 1 0 1 0 0 2a1 1 0 0 0 0-2" />
             <path
-              fill-rule="evenodd"
+              fillRule="evenodd"
               d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10s10-4.477 10-10S17.523 2 12 2M4 12a8 8 0 1 0 16 0a8 8 0 0 0-16 0"
-              clip-rule="evenodd"
+              clipRule="evenodd"
             />
           </g>
         </svg>
       </Button>
-      <Button>
+      <Button disabled>
         <span className="sr-only">Download PDF</span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -70,7 +70,7 @@ function Button({
   return (
     <button
       type="button"
-      className="hover:bg-neutral-950/5 hover:dark:bg-neutral-50/5 self-end rounded p-2"
+      className="hover:bg-neutral-950/5 hover:dark:bg-neutral-50/5 self-end rounded p-2 disabled:pointer-events-none disabled:opacity-50"
       {...rest}
     >
       {children}
