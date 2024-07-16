@@ -21,11 +21,13 @@ import "#src/base.css";
     <title>Astro</title>
   </head>
   <body
-    class="bg-neutral-200 leading-6 text-neutral-950 bg-noise lg:grid lg:grid-cols-[2fr_1fr]"
+    class="bg-neutral-200 leading-6 text-neutral-950 bg-noise lg:grid lg:grid-cols-[2fr_1fr] dark:text-neutral-50 dark:bg-neutral-800"
   >
     <Header client:load />
     <Aside />
-    <main class="lg:order-1">
+    <main
+      class="lg:order-1 dark:relative dark:after:absolute dark:after:inset-0 dark:after:bg-neutral-800 dark:after:opacity-95 dark:after:-z-10"
+    >
       <Name className="hidden lg:block mt-6 ms-6">
         {name}
       </Name>
