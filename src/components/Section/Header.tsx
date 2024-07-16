@@ -21,7 +21,7 @@ export default function Header() {
   }
 
   return (
-    <header className="border-neutral-300 bg-neutral-50 dark:bg-neutral-950 dark:border-neutral-600 flex flex-col border-b p-4 pb-2 lg:hidden">
+    <header className="flex flex-col border-b border-neutral-300 bg-neutral-50 p-4 pb-2 lg:hidden dark:border-neutral-700 dark:bg-neutral-950">
       <Name>{name}</Name>
       <Occupation>{occupation}</Occupation>
       {isOpen ? (
