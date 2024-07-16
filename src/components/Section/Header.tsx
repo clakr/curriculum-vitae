@@ -45,7 +45,7 @@ export default function Header() {
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 256 256"
+          viewBox="0 0 24 24"
           className={twMerge(
             "h-6 w-6 transition-transform",
             isOpen && "rotate-180",
@@ -53,7 +53,7 @@ export default function Header() {
         >
           <path
             fill="currentColor"
-            d="m216.49 104.49l-80 80a12 12 0 0 1-17 0l-80-80a12 12 0 0 1 17-17L128 159l71.51-71.52a12 12 0 0 1 17 17Z"
+            d="M6.343 7.757L4.93 9.172l7.07 7.07l7.071-7.07l-1.414-1.415L12 13.414z"
           />
         </svg>
       </button>
