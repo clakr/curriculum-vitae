@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    font-size: 16px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    :root {
+      font-size: 18px;
+    }
+  }
+
+  @media screen and (min-width: 1440px) {
+    :root {
+      font-size: 18px;
+    }
+  }
+}
