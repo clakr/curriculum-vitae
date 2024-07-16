@@ -21,7 +21,7 @@ import "#src/base.css";
     <title>Astro</title>
   </head>
   <body
-    class="bg-gray-3 leading-6 text-gray-12 bg-noise lg:grid lg:grid-cols-[2fr_1fr]"
+    class="bg-neutral-200 leading-6 text-neutral-950 bg-noise lg:grid lg:grid-cols-[2fr_1fr]"
   >
     <Header client:load />
     <Aside />
@@ -39,3 +39,15 @@ import "#src/base.css";
     </main>
   </body>
 </html>
+
+<script>
+  if (
+    localStorage.theme === "dark" ||
+    (!("theme" in localStorage) &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches)
+  ) {
+    document.documentElement.classList.add("dark");
+  } else {
+    document.documentElement.classList.remove("dark");
+  }
+</script>

@@ -5,7 +5,9 @@ import Paragraph from "#components/Information/Paragraph.tsx";
 import { address, phoneNumber, about } from "#src/information.json";
 ---
 
-<aside class="hidden lg:block order-2 bg-gray-2 border-s border-gray-5">
+<aside
+  class="hidden lg:block order-2 bg-neutral-50 border-s border-neutral-300"
+>
   <div class="fixed p-4 lg:p-6">
     <Section heading="Contact" className="mt-0">
       <Address>{address.physical}</Address>
