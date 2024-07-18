@@ -7,6 +7,8 @@ import {
   View,
   Link,
   type ViewProps,
+  Svg,
+  Line,
 } from "@react-pdf/renderer";
 import { LIST_FORMATTER, PDF_FILENAME } from "#utils/constants.ts";
 import { name, phoneNumber, address, site } from "#src/information.json";
@@ -60,11 +62,12 @@ function Header() {
           textAlign: "center",
           fontWeight: "bold",
           borderBottom: 0.75,
+          paddingBottom: 6,
         }}
       >
         {name}
       </Text>
-      <Information>
+      <Information style={{ paddingTop: 6 }}>
         <Text>{phoneNumber}</Text>
         <Text>&#x2022;</Text>
         <Link>{address.email}</Link>
@@ -84,9 +87,9 @@ function Experience() {
   return (
     <Section header="Experience">
       {experience.map(({ responsibilities, organization }, i) => (
-        <View key={i}>
+        <View key={i} style={{ marginVertical: 4 }}>
           <Organization {...organization} />
-          <View style={{}}>
+          <View style={{ marginVertical: 2, marginHorizontal: 16 }}>
             {responsibilities.map((r, rIndex) => (
               <ListItem key={rIndex}>{r}</ListItem>
             ))}
@@ -102,7 +105,7 @@ function Project() {
     <Section header="Project">
       {project.map(({ name, description, link, repository }, i) => (
         <View key={i}>
-          <Text>{name}</Text>
+          <Text style={{ fontWeight: "bold" }}>{name}</Text>
           <Text>{description}</Text>
           <View style={{ display: "flex", flexDirection: "row" }}>
             <Text>{link}</Text>
@@ -172,7 +175,7 @@ function Section({
   ...rest
 }: PropsWithChildren<ViewProps & { header: string }>) {
   return (
-    <View style={{ ...style }} {...rest}>
+    <View style={{ marginTop: 20, ...style }} {...rest}>
       <Text style={{ textAlign: "center", fontWeight: "bold" }}>{header}</Text>
       {children}
     </View>
@@ -190,7 +193,7 @@ function Organization({
 
   return (
     <View>
-      <View style={{ display: "flex", flexDirection: "row" }}>
+      <View style={{ display: "flex", flexDirection: "row", columnGap: 4 }}>
         <Text style={{ fontWeight: "bold" }}>{name},</Text>
         <Text style={{ fontStyle: "italic" }}>
           {formatOrganizationDuration(from, to)},
@@ -208,6 +211,8 @@ function ListItem({ children }: PropsWithChildren) {
       style={{
         display: "flex",
         flexDirection: "row",
+        columnGap: 16,
+        marginVertical: 2,
       }}
     >
       <View
