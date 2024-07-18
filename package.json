@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro check && astro build",
+    "build": "astro check && astro build && bun src/utils/createPDF.tsx",
     "preview": "astro preview",
     "astro": "astro",
     "clean": "rm -rf .astro node_modules bun.lockb",

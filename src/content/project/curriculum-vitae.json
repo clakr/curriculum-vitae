@@ -1,0 +1,6 @@
+{
+  "name": "Curriculum Vitae",
+  "description": "Developed an interactive Curriculum Vitae using Astro, React and Markdown, showcasing professional experience, personal projects, and skills in a clean yet accessible format. This project also has features such as Dark Mode, Exporting to PDF, and Project Information",
+  "link": "https://cv.ckt.fyi/",
+  "repository": "https://github.com/clakr/curriculum-vitae"
+}

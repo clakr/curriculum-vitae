@@ -90,7 +90,13 @@ function Experience() {
       {experience.map(({ responsibilities, organization }, i) => (
         <View key={i} style={{ marginVertical: 4 }}>
           <Organization {...organization} />
-          <View style={{ marginVertical: 2, marginHorizontal: 16 }}>
+          <View
+            style={{
+              marginVertical: 2,
+              marginHorizontal: 16,
+              paddingRight: 28,
+            }}
+          >
             {responsibilities.map((r, rIndex) => (
               <ListItem key={rIndex}>{r}</ListItem>
             ))}
