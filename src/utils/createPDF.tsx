@@ -39,6 +39,7 @@ Font.register({
     { src: RubikItalic, fontStyle: "italic" },
   ],
 });
+Font.registerHyphenationCallback((word) => [word]);
 
 function PDF() {
   return (
@@ -122,11 +123,13 @@ function Education() {
   return (
     <Section header="Education">
       {education.map(({ degree, thesis, awards, organization }, i) => (
-        <View key={i}>
+        <View key={i} style={{ marginVertical: 4 }}>
           <Organization {...organization} />
-          {degree && <EducationData term="Degree" description={degree} />}
-          {thesis && <EducationData term="Thesis" description={thesis} />}
-          {awards && <EducationData term="Awards" description={awards} />}
+          <View style={{ marginVertical: 4, marginHorizontal: 16 }}>
+            {degree && <EducationData term="Degree" description={degree} />}
+            {thesis && <EducationData term="Thesis" description={thesis} />}
+            {awards && <EducationData term="Awards" description={awards} />}
+          </View>
         </View>
       ))}
     </Section>
@@ -237,9 +240,9 @@ function EducationData({
   description: string;
 }) {
   return (
-    <View style={{ display: "flex", flexDirection: "row" }}>
-      <Text>{term}</Text>
-      <Text>{description}</Text>
+    <View style={{ display: "flex", flexDirection: "row", paddingVertical: 2 }}>
+      <Text style={{ flexBasis: "25%" }}>{term}</Text>
+      <Text style={{ flexBasis: "75%" }}>{description}</Text>
     </View>
   );
 }
