@@ -1,4 +1,6 @@
 {
   "name": "Linktree Clone",
-  "description": "Developed a linktree alternative using AstroJS, with creating a minimalist yet elegant design in mind to showcase key links and contents. This project enables effectively managing and showcasing online presence through a fully-customizable, user-friendly interface."
+  "description": "Developed a linktree alternative using AstroJS, with creating a minimalist yet elegant design in mind to showcase key links and contents. This project enables effectively managing and showcasing online presence through a fully-customizable, user-friendly interface.",
+  "link": "https://ckt.fyi/",
+  "repository": "https://github.com/clakr/linktree"
 }

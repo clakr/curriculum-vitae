@@ -1,4 +1,6 @@
 {
   "name": "frontendmentor.io Projects",
-  "description": "Created a collection of frontend projects as part of the challenges on frontendmentor.io, showcasing various web development skills, practices and standards. Each project demonstrates attention to detail, adherence to best coding practices, and usage of traditional and modern web technologies such as Sass, Tailwind, Pug, Vue and React"
+  "description": "Created a collection of frontend projects as part of the challenges on frontendmentor.io, showcasing various web development skills, practices and standards. Each project demonstrates attention to detail, adherence to best coding practices, and usage of traditional and modern web technologies such as Sass, Tailwind, Pug, Vue and React",
+  "link": "https://fm.ckt.fyi/",
+  "repository": "https://github.com/clakr/fm-projects"
 }

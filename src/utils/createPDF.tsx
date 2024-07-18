@@ -44,31 +44,9 @@ function PDF() {
       <Page size="A4" style={{ padding: 40 }}>
         <Header />
         <Experience />
-        {/*<Project />
+        <Project />
         <Education />
-        <Miscellaneous /> */}
-        {/* Project */}
-        <Section header="Project">
-          {project.map((p, i) => (
-            <Text key={i}>{JSON.stringify(p)}</Text>
-          ))}
-        </Section>
-
-        {/* Education */}
-        <Section header="Education">
-          {education.map((e, i) => (
-            <Text key={i}>{JSON.stringify(e)}</Text>
-          ))}
-        </Section>
-
-        {/* Skills & Interests */}
-        <Section header="Skills & Interests">
-          <Text>TECHNICAL {LIST_FORMATTER.format(technical)}</Text>
-          <Text>FRAMEWORK {LIST_FORMATTER.format(framework)}</Text>
-          <Text>TOOL {LIST_FORMATTER.format(tool)}</Text>
-          <Text>LANGUAGE {LIST_FORMATTER.format(language)}</Text>
-          <Text>INTEREST {LIST_FORMATTER.format(interest)}</Text>
-        </Section>
+        <Miscellaneous />
       </Page>
     </Document>
   );
@@ -88,17 +66,74 @@ function Header() {
       </Text>
       <Information>
         <Text>{phoneNumber}</Text>
-        <Text>•</Text>
+        <Text>&#x2022;</Text>
         <Link>{address.email}</Link>
-        <Text>•</Text>
+        <Text>&#x2022;</Text>
         <Text>{address.physical}</Text>
       </Information>
       <Information>
         <Link>{site.linktree}</Link>
-        <Text>•</Text>
+        <Text>&#x2022;</Text>
         <Link>{site.github}</Link>
       </Information>
     </>
+  );
+}
+
+function Experience() {
+  return (
+    <Section header="Experience">
+      {experience.map(({ responsibilities, organization }, i) => (
+        <View key={i}>
+          <Organization {...organization} />
+          <View style={{}}>
+            {responsibilities.map((r, rIndex) => (
+              <ListItem key={rIndex}>{r}</ListItem>
+            ))}
+          </View>
+        </View>
+      ))}
+    </Section>
+  );
+}
+
+function Project() {
+  return (
+    <Section header="Project">
+      {project.map(({ name, description, link, repository }, i) => (
+        <View key={i}>
+          <Text>{name}</Text>
+          <Text>{description}</Text>
+          <View style={{ display: "flex", flexDirection: "row" }}>
+            <Text>{link}</Text>
+            <Text>&#x2022;</Text>
+            <Text>{repository}</Text>
+          </View>
+        </View>
+      ))}
+    </Section>
+  );
+}
+
+function Education() {
+  return (
+    <Section header="Education">
+      {education.map((e, i) => (
+        <Text key={i}>{JSON.stringify(e)}</Text>
+      ))}
+    </Section>
+  );
+}
+
+function Miscellaneous() {
+  return (
+    <Section header="Skills & Interests">
+      <Text>TECHNICAL {LIST_FORMATTER.format(technical)}</Text>
+      <Text>FRAMEWORK {LIST_FORMATTER.format(framework)}</Text>
+      <Text>TOOL {LIST_FORMATTER.format(tool)}</Text>
+      <Text>LANGUAGE {LIST_FORMATTER.format(language)}</Text>
+      <Text>INTEREST {LIST_FORMATTER.format(interest)}</Text>
+    </Section>
   );
 }
 
@@ -122,23 +157,6 @@ function Information({
     >
       {children}
     </View>
-  );
-}
-
-function Experience() {
-  return (
-    <Section header="Experience">
-      {experience.map(({ responsibilities, organization }, i) => (
-        <View key={i}>
-          <Organization {...organization} />
-          <View style={{}}>
-            {responsibilities.map((r, rIndex) => (
-              <ListItem key={rIndex}>{r}</ListItem>
-            ))}
-          </View>
-        </View>
-      ))}
-    </Section>
   );
 }
 
