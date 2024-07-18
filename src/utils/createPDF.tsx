@@ -118,8 +118,13 @@ function Project() {
 function Education() {
   return (
     <Section header="Education">
-      {education.map((e, i) => (
-        <Text key={i}>{JSON.stringify(e)}</Text>
+      {education.map(({ degree, thesis, awards, organization }, i) => (
+        <View key={i}>
+          <Organization {...organization} />
+          {degree && <EducationData term="Degree" description={degree} />}
+          {thesis && <EducationData term="Thesis" description={thesis} />}
+          {awards && <EducationData term="Awards" description={awards} />}
+        </View>
       ))}
     </Section>
   );
@@ -128,11 +133,11 @@ function Education() {
 function Miscellaneous() {
   return (
     <Section header="Skills & Interests">
-      <Text>TECHNICAL {LIST_FORMATTER.format(technical)}</Text>
-      <Text>FRAMEWORK {LIST_FORMATTER.format(framework)}</Text>
-      <Text>TOOL {LIST_FORMATTER.format(tool)}</Text>
-      <Text>LANGUAGE {LIST_FORMATTER.format(language)}</Text>
-      <Text>INTEREST {LIST_FORMATTER.format(interest)}</Text>
+      <MiscellaneousData term="Technical" description={technical} />
+      <MiscellaneousData term="Framework" description={framework} />
+      <MiscellaneousData term="Tool" description={tool} />
+      <MiscellaneousData term="Language" description={language} />
+      <MiscellaneousData term="Interest" description={interest} />
     </Section>
   );
 }
@@ -184,7 +189,7 @@ function Organization({
   const to = duration.to ? new Date(duration.to) : undefined;
 
   return (
-    <>
+    <View>
       <View style={{ display: "flex", flexDirection: "row" }}>
         <Text style={{ fontWeight: "bold" }}>{name},</Text>
         <Text style={{ fontStyle: "italic" }}>
@@ -192,8 +197,8 @@ function Organization({
         </Text>
         <Text style={{ fontStyle: "italic" }}>{location}</Text>
       </View>
-      {position ? <Text style={{ fontWeight: "bold" }}>{position}</Text> : null}
-    </>
+      {position && <Text style={{ fontWeight: "bold" }}>{position}</Text>}
+    </View>
   );
 }
 
@@ -215,6 +220,33 @@ function ListItem({ children }: PropsWithChildren) {
         }}
       />
       <Text>{children}</Text>
+    </View>
+  );
+}
+
+function EducationData({
+  term,
+  description,
+}: {
+  term: string;
+  description: string;
+}) {
+  return (
+    <View style={{ display: "flex", flexDirection: "row" }}>
+      <Text>{term}</Text>
+      <Text>{description}</Text>
+    </View>
+  );
+}
+
+function MiscellaneousData(props: { term: string; description: string[] }) {
+  const term = props.term.toLocaleUpperCase();
+  const description = LIST_FORMATTER.format(props.description);
+
+  return (
+    <View style={{ display: "flex", flexDirection: "row" }}>
+      <Text>{term}</Text>
+      <Text>{description}</Text>
     </View>
   );
 }
