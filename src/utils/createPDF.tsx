@@ -104,13 +104,13 @@ function Project() {
   return (
     <Section header="Project">
       {project.map(({ name, description, link, repository }, i) => (
-        <View key={i}>
+        <View key={i} style={{ marginVertical: 4 }}>
           <Text style={{ fontWeight: "bold" }}>{name}</Text>
-          <Text>{description}</Text>
-          <View style={{ display: "flex", flexDirection: "row" }}>
-            <Text>{link}</Text>
+          <Text style={{ marginVertical: 2 }}>{description}</Text>
+          <View style={{ display: "flex", flexDirection: "row", columnGap: 4 }}>
+            <Link>{link}</Link>
             <Text>&#x2022;</Text>
-            <Text>{repository}</Text>
+            <Link>{repository}</Link>
           </View>
         </View>
       ))}
