@@ -1,5 +1,5 @@
 import {
-  Page,
+  Page as PDFPage,
   Text,
   Document,
   render,
@@ -7,8 +7,6 @@ import {
   View,
   Link,
   type ViewProps,
-  Svg,
-  Line,
 } from "@react-pdf/renderer";
 import { LIST_FORMATTER, PDF_FILENAME } from "#utils/constants.ts";
 import { name, phoneNumber, address, site } from "#src/information.json";
@@ -44,10 +42,12 @@ Font.registerHyphenationCallback((word) => [word]);
 function PDF() {
   return (
     <Document style={{ fontSize: 10, fontFamily: "Rubik" }}>
-      <Page size="A4" style={{ padding: 40 }}>
+      <Page>
         <Header />
         <Experience />
         <Project />
+      </Page>
+      <Page>
         <Education />
         <Miscellaneous />
       </Page>
@@ -139,11 +139,13 @@ function Education() {
 function Miscellaneous() {
   return (
     <Section header="Skills & Interests">
-      <MiscellaneousData term="Technical" description={technical} />
-      <MiscellaneousData term="Framework" description={framework} />
-      <MiscellaneousData term="Tool" description={tool} />
-      <MiscellaneousData term="Language" description={language} />
-      <MiscellaneousData term="Interest" description={interest} />
+      <View style={{ marginVertical: 4 }}>
+        <MiscellaneousData term="Technical" description={technical} />
+        <MiscellaneousData term="Library/Framework" description={framework} />
+        <MiscellaneousData term="Tool" description={tool} />
+        <MiscellaneousData term="Language" description={language} />
+        <MiscellaneousData term="Interest" description={interest} />
+      </View>
     </Section>
   );
 }
@@ -252,10 +254,18 @@ function MiscellaneousData(props: { term: string; description: string[] }) {
   const description = LIST_FORMATTER.format(props.description);
 
   return (
-    <View style={{ display: "flex", flexDirection: "row" }}>
-      <Text>{term}</Text>
-      <Text>{description}</Text>
+    <View style={{ display: "flex", flexDirection: "row", paddingVertical: 4 }}>
+      <Text style={{ flexBasis: "25%", fontWeight: "bold" }}>{term}</Text>
+      <Text style={{ flexBasis: "75%" }}>{description}</Text>
     </View>
+  );
+}
+
+function Page({ children }: PropsWithChildren) {
+  return (
+    <PDFPage size="A4" style={{ padding: 40 }}>
+      {children}
+    </PDFPage>
   );
 }
 
