@@ -1,9 +1,12 @@
 import { Button } from "#components/CommandGroup.tsx";
-import { handleDarkModeClick } from "#src/utils/index.js";
 
 export default function DarkMode() {
+  function handleClick() {
+    document.documentElement.classList.toggle("dark");
+  }
+
   return (
-    <Button onClick={handleDarkModeClick}>
+    <Button onClick={handleClick}>
       <span className="sr-only">Toggle Color Scheme</span>
       <svg
         xmlns="http://www.w3.org/2000/svg"

@@ -1,8 +1,16 @@
 import { Button } from "#components/CommandGroup.tsx";
+import { PDF_FILENAME } from "#src/utils/constants.js";
 
 export default function PDF() {
+  function handleClick() {
+    const anchorElement = document.createElement("a");
+    anchorElement.download = PDF_FILENAME;
+    anchorElement.href = `/${PDF_FILENAME}`;
+    anchorElement.click();
+  }
+
   return (
-    <Button disabled>
+    <Button onClick={handleClick}>
       <span className="sr-only">Download PDF</span>
       <svg
         xmlns="http://www.w3.org/2000/svg"

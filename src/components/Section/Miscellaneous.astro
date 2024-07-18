@@ -7,24 +7,20 @@ import { list as interestList } from "#src/interest.json";
 import Section from "#components/Section/index.astro";
 import DataTerm from "#components/Miscellaneous/DataTerm.astro";
 import DataDescription from "#components/Miscellaneous/DataDescription.astro";
-
-const formatter = new Intl.ListFormat("en", {
-  style: "long",
-  type: "conjunction",
-});
+import { LIST_FORMATTER } from "#src/utils/constants.js";
 ---
 
 <Section>
   <dl class="md:grid md:grid-cols-[1fr_3fr]">
     <DataTerm>Technical</DataTerm>
-    <DataDescription>{formatter.format(technicalList)}</DataDescription>
+    <DataDescription>{LIST_FORMATTER.format(technicalList)}</DataDescription>
     <DataTerm>Framework</DataTerm>
-    <DataDescription>{formatter.format(frameworkList)}</DataDescription>
+    <DataDescription>{LIST_FORMATTER.format(frameworkList)}</DataDescription>
     <DataTerm>Tool</DataTerm>
-    <DataDescription>{formatter.format(toolList)}</DataDescription>
+    <DataDescription>{LIST_FORMATTER.format(toolList)}</DataDescription>
     <DataTerm>Language</DataTerm>
-    <DataDescription>{formatter.format(languageList)}</DataDescription>
+    <DataDescription>{LIST_FORMATTER.format(languageList)}</DataDescription>
     <DataTerm>Interest</DataTerm>
-    <DataDescription>{formatter.format(interestList)}</DataDescription>
+    <DataDescription>{LIST_FORMATTER.format(interestList)}</DataDescription>
   </dl>
 </Section>

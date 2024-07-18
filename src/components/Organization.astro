@@ -1,6 +1,7 @@
 ---
 import type { DataEntryMap } from "astro:content";
 import { getEntry } from "astro:content";
+import formatOrganizationDuration from "#utils/formatOrganizationDuration.ts";
 
 type Props = { organization: keyof DataEntryMap["organization"] };
 const { organization } = Astro.props;
@@ -13,16 +14,6 @@ const {
     duration: { from, to },
   },
 } = await getEntry("organization", organization);
-
-const formatter = new Intl.DateTimeFormat("en-PH", {
-  year: "numeric",
-  month: "long",
-});
-
-function formatDuration() {
-  if (!to) return `${formatter.format(from)} - Present`;
-  return `${formatter.format(from)} - ${formatter.format(to)}`;
-}
 ---
 
 <div class="flex whitespace-nowrap gap-x-2 flex-wrap font-bold">
@@ -30,6 +21,6 @@ function formatDuration() {
   <h4>{name}</h4>
   <span class="text-neutral-950/50 dark:text-neutral-50/50">{location}</span>
   <span class="basis-full text-neutral-950/50 dark:text-neutral-50/50">
-    {formatDuration()}
+    {formatOrganizationDuration(from, to)}
   </span>
 </div>

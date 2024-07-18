@@ -23,6 +23,8 @@
     "@astrojs/tailwind": "^5.1.0",
     "@fontsource-variable/montserrat": "^5.0.19",
     "@radix-ui/react-dialog": "^1.1.1",
+    "@react-pdf/renderer": "^3.4.4",
+    "@types/bun": "^1.1.6",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@typescript-eslint/parser": "^7.16.0",
@@ -38,6 +40,7 @@
   "imports": {
     "#src/*": "./src/*",
     "#components/*": "./src/components/*",
-    "#utils/*": "./src/utils/*"
+    "#utils/*": "./src/utils/*",
+    "#public/*": "./public/*"
   }
 }
