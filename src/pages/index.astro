@@ -1,24 +1,36 @@
 ---
+import "@fontsource-variable/montserrat";
+import "#src/base.css";
+import { name, occupation, about } from "#src/information.json";
 import Experience from "#components/Section/Experience.astro";
 import Header from "#components/Section/Header.tsx";
 import Education from "#components/Section/Education.astro";
 import Miscellaneous from "#components/Section/Miscellaneous.astro";
 import Project from "#components/Section/Project.astro";
 import Aside from "#components/Section/Aside.astro";
-import "@fontsource-variable/montserrat";
 import Name from "#components/Information/Name.tsx";
 import Occupation from "#components/Information/Occupation.tsx";
-import { name, occupation } from "#src/information.json";
-import "#src/base.css";
+
+function generateDescription() {
+  return about.reduce((previous, current) => `${previous}${current}`, "");
+}
 ---
 
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" type="image/x-icon" />
+
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>Astro</title>
+
+    <title>{name} - {occupation}</title>
+    <meta name="description" content={generateDescription()} />
+    <meta name="author" content={name} />
+    <meta
+      name="keywords"
+      content="Web Developer, Curriculum Vitae, Resume, HTML, CSS, JavaScript, TypeScript, React, PHP, Laravel"
+    />
   </head>
   <body
     class="bg-neutral-200 leading-6 text-neutral-950 bg-noise lg:grid lg:grid-cols-[2fr_1fr] dark:text-neutral-50 dark:bg-neutral-800"
