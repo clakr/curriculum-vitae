@@ -7,10 +7,10 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Montserrat Variable", ...defaultTheme.fontFamily.sans],
+        sans: ["Montserrat", ...defaultTheme.fontFamily.sans],
       },
       backgroundImage: {
-        noise: "url(/noise.png)",
+        noise: "url(/noise.webp)",
       },
     },
   },

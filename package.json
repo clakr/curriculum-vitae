@@ -21,7 +21,6 @@
     "@astrojs/check": "^0.8.1",
     "@astrojs/react": "^3.6.0",
     "@astrojs/tailwind": "^5.1.0",
-    "@fontsource-variable/montserrat": "^5.0.19",
     "@radix-ui/react-dialog": "^1.1.1",
     "@react-pdf/renderer": "^3.4.4",
     "@types/bun": "^1.1.6",

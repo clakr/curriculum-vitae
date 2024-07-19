@@ -1,5 +1,4 @@
 ---
-import "@fontsource-variable/montserrat";
 import "#src/base.css";
 import { name, occupation, about } from "#src/information.json";
 import Experience from "#components/Section/Experience.astro";
@@ -11,7 +10,7 @@ import Aside from "#components/Section/Aside.astro";
 import Name from "#components/Information/Name.tsx";
 import Occupation from "#components/Information/Occupation.tsx";
 
-function generateDescription() {
+function formatDescription() {
   return about.reduce((previous, current) => `${previous}${current}`, "");
 }
 ---
@@ -25,11 +24,19 @@ function generateDescription() {
     <meta name="generator" content={Astro.generator} />
 
     <title>{name} - {occupation}</title>
-    <meta name="description" content={generateDescription()} />
+    <meta name="description" content={formatDescription()} />
     <meta name="author" content={name} />
     <meta
       name="keywords"
       content="Web Developer, Curriculum Vitae, Resume, HTML, CSS, JavaScript, TypeScript, React, PHP, Laravel"
+    />
+
+    <link rel="preload" as="image" href="/noise.webp" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
     />
   </head>
   <body
