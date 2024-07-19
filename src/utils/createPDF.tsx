@@ -9,7 +9,13 @@ import {
   type ViewProps,
 } from "@react-pdf/renderer";
 import { LIST_FORMATTER, PDF_FILENAME } from "#utils/constants.ts";
-import { name, phoneNumber, address, site } from "#src/information.json";
+import {
+  name,
+  phoneNumber,
+  address,
+  site,
+  occupation,
+} from "#src/information.json";
 import getPDFData from "./getPDFData";
 import RubikRegular from "#public/Rubik-Regular.ttf";
 import RubikItalic from "#public/Rubik-Italic.ttf";
@@ -41,7 +47,14 @@ Font.registerHyphenationCallback((word) => [word]);
 
 function PDF() {
   return (
-    <Document style={{ fontSize: 10, fontFamily: "Rubik" }}>
+    <Document
+      style={{ fontSize: 10, fontFamily: "Rubik" }}
+      title={`${name} - ${occupation}`}
+      author={name}
+      subject="Curriculum Vitae Exported to PDF"
+      keywords="Web Developer, Curriculum Vitae, Resume"
+      language="English"
+    >
       <Page>
         <Header />
         <Experience />
