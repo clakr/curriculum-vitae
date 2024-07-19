@@ -43,6 +43,11 @@ export default function Header() {
         className="grid place-content-center py-1.5"
         onClick={handleOpen}
       >
+        {isOpen ? (
+          <span className="sr-only">Expand</span>
+        ) : (
+          <span className="sr-only">Collapse</span>
+        )}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
