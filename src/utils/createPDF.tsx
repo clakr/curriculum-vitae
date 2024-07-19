@@ -89,7 +89,7 @@ function Header() {
         <Text>{address.physical}</Text>
       </Information>
       <Information>
-        <Link>{site.linktree}</Link>
+        <Link>{site.personal}</Link>
         <Text>&#x2022;</Text>
         <Link>{site.github}</Link>
       </Information>
