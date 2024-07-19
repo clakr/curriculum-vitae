@@ -32,17 +32,18 @@ function formatDescription() {
     />
 
     <link rel="preload" as="image" href="/noise.webp" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      as="font"
+      href="/fonts/Montserrat.ttf"
+      type="font/ttf"
+      crossorigin="anonymous"
     />
   </head>
   <body
     class="bg-neutral-200 leading-6 text-neutral-950 bg-noise lg:grid lg:grid-cols-[2fr_1fr] dark:text-neutral-50 dark:bg-neutral-800"
   >
-    <Header client:load />
+    <Header client:media="(max-width: 1023px)" />
     <Aside />
     <main
       class="lg:order-1 dark:relative dark:after:absolute dark:after:inset-0 dark:after:bg-neutral-800 dark:after:opacity-95 dark:after:-z-10"
