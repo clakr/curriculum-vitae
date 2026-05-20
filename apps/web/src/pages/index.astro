@@ -1,26 +1,25 @@
 ---
-import { client } from '@/lib/strapi'
-import '../styles/global.css'
-import { Button } from '@/components/ui/button'
+import { client } from "@/lib/strapi";
+import "../styles/global.css";
+import { Button } from "@/components/ui/button";
 
-const {data: infos} = await client.single('info').find({
-      populate: '*'
-})
-
+const { data: infos } = await client.single("info").find({
+  populate: "*",
+});
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Astro</title>
+  </head>
+  <body>
+    <h1>Astro</h1>
     <Button>hello world!</Button>
     <pre>{JSON.stringify(infos,null,2)}</pre>
-	</body>
+  </body>
 </html>
