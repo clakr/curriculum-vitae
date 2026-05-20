@@ -1,10 +1,18 @@
 ---
 import { client } from "@/lib/strapi";
 import "../styles/global.css";
-import { Button } from "@/components/ui/button";
 
-const { data: infos } = await client.single("info").find({
-  populate: "*",
+const { data: infos } = await client.single("info").find();
+
+const { data: companies } = await client.collection("companies").find({
+  populate: {
+    organization: {
+      populate: "*",
+    },
+    experiences: {
+      populate: "*",
+    },
+  },
 });
 ---
 
@@ -17,9 +25,54 @@ const { data: infos } = await client.single("info").find({
     <meta name="generator" content={Astro.generator} />
     <title>Astro</title>
   </head>
-  <body>
-    <h1>Astro</h1>
-    <Button>hello world!</Button>
-    <pre>{JSON.stringify(infos,null,2)}</pre>
+  <body class="grid min-h-svh grid-cols-[minmax(0,1fr)_minmax(0,350px)]">
+    <main class="bg-mist-100 *:p-8">
+      <header>
+        <h1>{infos.full_name}</h1>
+        <h2>{infos.position}</h2>
+      </header>
+      <!-- <pre>{JSON.stringify(companies,null,2 )}</pre> -->
+      <section>
+        <h2>EXPERIENCE</h2>
+        {
+          companies.map((company) => (
+            <article class="py-4">
+              <div>
+                <h3>{company.organization.name}</h3>
+                <span> - {company.organization.location}</span>
+                <span>
+                  {company.organization.from} - {company.organization.to}
+                </span>
+              </div>
+              {company.experiences.map((experience) => (
+                <div>
+                  <h3>{experience.position}</h3>
+                  <ul>
+                    {experience.responsibilities.map(
+                      ({ item: responsibility }) => (
+                        <li>{responsibility}</li>
+                      ),
+                    )}
+                  </ul>
+                </div>
+              ))}
+            </article>
+          ))
+        }
+      </section>
+    </main>
+    <aside class="border-s border-mist-300 bg-mist-50">
+      <div class="sticky top-0 p-4">
+        <section>
+          <h2>INFORMATION</h2>
+          <span>{infos.phone_number} | {infos.email}</span>
+          <span>{infos.address} | {infos.nationality} | {infos.visa}</span>
+        </section>
+        <section>
+          <h2>SUMMARY</h2>
+          <p>{infos.summary}</p>
+        </section>
+      </div>
+    </aside>
   </body>
 </html>

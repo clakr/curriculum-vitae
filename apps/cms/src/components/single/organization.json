@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_single_organizations",
+  "info": {
+    "displayName": "Organization"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "location": {
+      "type": "string",
+      "required": true
+    },
+    "from": {
+      "type": "date",
+      "required": true
+    },
+    "to": {
+      "type": "date"
+    }
+  },
+  "config": {}
+}

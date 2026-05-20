@@ -46,6 +46,8 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+
+  --default-border-width: 0.5px;
 }
 
 :root {
@@ -121,10 +123,16 @@
   * {
     @apply border-border outline-ring/50;
   }
-  body {
-    @apply bg-background text-foreground;
-  }
   html {
-    @apply font-sans;
+    @apply bg-background text-foreground antialiased font-sans;
+  }
+  p {
+    @apply text-pretty;
+  }
+}
+
+@layer utilities {
+  .debug {
+    @apply outline outline-red-400;
   }
 }

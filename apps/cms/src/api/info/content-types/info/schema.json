@@ -4,7 +4,7 @@
   "info": {
     "singularName": "info",
     "pluralName": "infos",
-    "displayName": "info"
+    "displayName": "Info"
   },
   "options": {
     "draftAndPublish": true
@@ -12,19 +12,41 @@
   "pluginOptions": {},
   "attributes": {
     "full_name": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "position": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "phone_number": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "email": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "address": {
-      "type": "text"
+      "type": "text",
+      "required": true
+    },
+    "nationality": {
+      "type": "string",
+      "required": true
+    },
+    "visa": {
+      "type": "string",
+      "required": true
+    },
+    "summary": {
+      "type": "text",
+      "required": true
+    },
+    "links": {
+      "type": "component",
+      "component": "array.link",
+      "repeatable": true
     }
   }
 }

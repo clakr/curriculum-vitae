@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_array_lists",
+  "info": {
+    "displayName": "List"
+  },
+  "options": {},
+  "attributes": {
+    "item": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "config": {}
+}
