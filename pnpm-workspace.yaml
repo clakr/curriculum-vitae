@@ -1,2 +1,9 @@
 packages:
   - "apps/*"
+allowBuilds:
+  '@swc/core': false
+  better-sqlite3: true
+  core-js-pure: false
+  esbuild: false
+  msw: false
+  sharp: false
