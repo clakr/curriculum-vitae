@@ -1,6 +1,12 @@
 ---
+import { client } from '@/lib/strapi'
 import '../styles/global.css'
 import { Button } from '@/components/ui/button'
+
+const {data: infos} = await client.single('info').find({
+      populate: '*'
+})
+
 ---
 
 <html lang="en">
@@ -15,5 +21,6 @@ import { Button } from '@/components/ui/button'
 	<body>
 		<h1>Astro</h1>
     <Button>hello world!</Button>
+    <pre>{JSON.stringify(infos,null,2)}</pre>
 	</body>
 </html>
