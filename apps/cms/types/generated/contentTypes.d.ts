@@ -572,6 +572,36 @@ export interface ApiInfoInfo extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiTechnicalSkillTechnicalSkill
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'technical_skills';
+  info: {
+    displayName: 'Technical Skill';
+    pluralName: 'technical-skills';
+    singularName: 'technical-skill';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    category: Schema.Attribute.String & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::technical-skill.technical-skill'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    skills: Schema.Attribute.Component<'array.list', true>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface PluginContentReleasesRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
@@ -1087,6 +1117,7 @@ declare module '@strapi/strapi' {
       'api::company.company': ApiCompanyCompany;
       'api::experience.experience': ApiExperienceExperience;
       'api::info.info': ApiInfoInfo;
+      'api::technical-skill.technical-skill': ApiTechnicalSkillTechnicalSkill;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

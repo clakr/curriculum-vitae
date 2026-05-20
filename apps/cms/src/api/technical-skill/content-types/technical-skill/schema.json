@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "technical_skills",
+  "info": {
+    "singularName": "technical-skill",
+    "pluralName": "technical-skills",
+    "displayName": "Technical Skill"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "category": {
+      "type": "string",
+      "required": true
+    },
+    "skills": {
+      "type": "component",
+      "component": "array.list",
+      "repeatable": true
+    }
+  }
+}
