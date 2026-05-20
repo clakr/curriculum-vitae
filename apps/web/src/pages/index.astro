@@ -18,8 +18,16 @@ const { data: companies } = await client.collection("companies").find({
 const { data: technicalSkills } = await client
   .collection("technical-skills")
   .find({
-    populate: "skills",
+    populate: "*",
   });
+
+const { data: educations } = await client.collection("educations").find({
+  populate: {
+    school: {
+      populate: "*",
+    },
+  },
+});
 ---
 
 <html lang="en">
@@ -37,8 +45,6 @@ const { data: technicalSkills } = await client
         <h1>{infos.full_name}</h1>
         <h2>{infos.position}</h2>
       </header>
-      <!-- <pre>{JSON.stringify(companies,null,2 )}</pre> -->
-      <!-- <pre>{JSON.stringify(technicalSkills,null,2 )}</pre> -->
       <section>
         <h2>EXPERIENCE</h2>
         {
@@ -78,6 +84,22 @@ const { data: technicalSkills } = await client
                   <li>{skill}</li>
                 ))}
               </ul>
+            </article>
+          ))
+        }
+      </section>
+      <section>
+        <h2>EDUCATION</h2>
+        {
+          educations.map((education) => (
+            <article>
+              <h3>{education.course}</h3>
+              <span>
+                {education.school.organization.from} -{" "}
+                {education.school.organization.to}
+              </span>
+              <span>{education.school.organization.name}</span>
+              <span>{education.school.organization.location}</span>
             </article>
           ))
         }
