@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "projects",
+  "info": {
+    "singularName": "project",
+    "pluralName": "projects",
+    "displayName": "Project"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "tech_stack": {
+      "type": "component",
+      "component": "array.list",
+      "repeatable": true
+    },
+    "links": {
+      "type": "component",
+      "component": "array.link",
+      "repeatable": true
+    }
+  }
+}

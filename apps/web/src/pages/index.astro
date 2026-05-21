@@ -28,6 +28,10 @@ const { data: educations } = await client.collection("educations").find({
     },
   },
 });
+
+const { data: projects } = await client.collection("projects").find({
+  populate: "*",
+});
 ---
 
 <html lang="en">
@@ -92,7 +96,7 @@ const { data: educations } = await client.collection("educations").find({
         <h2>EDUCATION</h2>
         {
           educations.map((education) => (
-            <article>
+            <article class="py-4">
               <h3>{education.course}</h3>
               <span>
                 {education.school.organization.from} -{" "}
@@ -100,6 +104,30 @@ const { data: educations } = await client.collection("educations").find({
               </span>
               <span>{education.school.organization.name}</span>
               <span>{education.school.organization.location}</span>
+            </article>
+          ))
+        }
+      </section>
+      <section>
+        <h2>PROJECTS</h2>
+        {
+          projects.map((project) => (
+            <article class="py-4">
+              <div>
+                <h3>{project.name}</h3>
+                {project.links.map((link) => (
+                  <a href={link.href}>{link.label}</a>
+                ))}
+              </div>
+              <p>{project.description}</p>
+              <div>
+                <span>Tech Stack:</span>
+                <ul>
+                  {project.tech_stack.map((technology) => (
+                    <li>{technology.item}</li>
+                  ))}
+                </ul>
+              </div>
             </article>
           ))
         }

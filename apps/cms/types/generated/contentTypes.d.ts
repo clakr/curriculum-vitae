@@ -601,6 +601,37 @@ export interface ApiInfoInfo extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiProjectProject extends Struct.CollectionTypeSchema {
+  collectionName: 'projects';
+  info: {
+    displayName: 'Project';
+    pluralName: 'projects';
+    singularName: 'project';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    links: Schema.Attribute.Component<'array.link', true>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::project.project'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    tech_stack: Schema.Attribute.Component<'array.list', true>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiSchoolSchool extends Struct.CollectionTypeSchema {
   collectionName: 'schools';
   info: {
@@ -1179,6 +1210,7 @@ declare module '@strapi/strapi' {
       'api::education.education': ApiEducationEducation;
       'api::experience.experience': ApiExperienceExperience;
       'api::info.info': ApiInfoInfo;
+      'api::project.project': ApiProjectProject;
       'api::school.school': ApiSchoolSchool;
       'api::technical-skill.technical-skill': ApiTechnicalSkillTechnicalSkill;
       'plugin::content-releases.release': PluginContentReleasesRelease;
