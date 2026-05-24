@@ -1,0 +1,30 @@
+---
+import { getProjects } from "@/lib/loaders";
+
+const { data: projects } = await getProjects();
+---
+
+<section>
+  <h2>PROJECTS</h2>
+  {
+    projects.map((project) => (
+      <article class="py-4">
+        <div>
+          <h3>{project.name}</h3>
+          {project.links.map((link) => (
+            <a href={link.href}>{link.label}</a>
+          ))}
+        </div>
+        <p>{project.description}</p>
+        <div>
+          <span>Tech Stack:</span>
+          <ul>
+            {project.tech_stack.map((technology) => (
+              <li>{technology.item}</li>
+            ))}
+          </ul>
+        </div>
+      </article>
+    ))
+  }
+</section>

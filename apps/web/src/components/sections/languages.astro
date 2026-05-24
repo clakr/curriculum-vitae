@@ -1,0 +1,17 @@
+---
+import { getLanguages } from "@/lib/loaders";
+
+const { data: languages } = await getLanguages();
+---
+
+<section>
+  <h2>LANGUAGES</h2>
+  {
+    languages.map((language) => (
+      <article class="py-4">
+        <span>{language.language}</span>
+        <span>{language.level}</span>
+      </article>
+    ))
+  }
+</section>

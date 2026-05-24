@@ -1,0 +1,32 @@
+---
+import { getCompanies } from "@/lib/loaders";
+
+const { data: companies } = await getCompanies();
+---
+
+<section>
+  <h2>EXPERIENCE</h2>
+  {
+    companies.map((company) => (
+      <article class="py-4">
+        <div>
+          <h3>{company.organization.name}</h3>
+          <span> - {company.organization.location}</span>
+          <span>
+            {company.organization.from} - {company.organization.to}
+          </span>
+        </div>
+        {company.experiences.map((experience) => (
+          <div>
+            <h3>{experience.position}</h3>
+            <ul>
+              {experience.responsibilities.map(({ item: responsibility }) => (
+                <li>{responsibility}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </article>
+    ))
+  }
+</section>

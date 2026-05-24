@@ -1,0 +1,22 @@
+---
+import { getEducations } from "@/lib/loaders";
+
+const { data: educations } = await getEducations();
+---
+
+<section>
+  <h2>EDUCATION</h2>
+  {
+    educations.map((education) => (
+      <article class="py-4">
+        <h3>{education.course}</h3>
+        <span>
+          {education.school.organization.from} -{" "}
+          {education.school.organization.to}
+        </span>
+        <span>{education.school.organization.name}</span>
+        <span>{education.school.organization.location}</span>
+      </article>
+    ))
+  }
+</section>

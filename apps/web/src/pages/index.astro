@@ -1,31 +1,16 @@
 ---
 import "../styles/global.css";
-import {
-  getInfos,
-  getCompanies,
-  getTechnicalSkills,
-  getEducations,
-  getProjects,
-  getCertifications,
-  getLanguages,
-  getReferences,
-} from "@/lib/loaders";
+import { getInfos } from "@/lib/loaders";
+import Header from "@/components/header.astro";
+import Aside from "@/components/aside.astro";
+import ExperienceSection from "@/components/sections/experience.astro";
+import TechnicalSkills from "@/components/sections/technical-skills.astro";
+import Education from "@/components/sections/education.astro";
+import Projects from "@/components/sections/projects.astro";
+import Certifications from "@/components/sections/certifications.astro";
+import Languages from "@/components/sections/languages.astro";
 
 const { data: infos } = await getInfos();
-
-const { data: companies } = await getCompanies();
-
-const { data: technicalSkills } = await getTechnicalSkills();
-
-const { data: educations } = await getEducations();
-
-const { data: projects } = await getProjects();
-
-const { data: certifications } = await getCertifications();
-
-const { data: languages } = await getLanguages();
-
-const { data: references } = await getReferences();
 ---
 
 <html lang="en">
@@ -39,146 +24,21 @@ const { data: references } = await getReferences();
   </head>
   <body class="grid min-h-svh grid-cols-[minmax(0,1fr)_minmax(0,350px)]">
     <main class="flex flex-col gap-y-8 bg-mist-100 p-8">
-      <header>
-        <h1 class="text-4xl font-bold">{infos.full_name}</h1>
-        <h2 class="text-3xl font-semibold">{infos.position}</h2>
-      </header>
-      <section>
-        <h2>EXPERIENCE</h2>
-        {
-          companies.map((company) => (
-            <article class="py-4">
-              <div>
-                <h3>{company.organization.name}</h3>
-                <span> - {company.organization.location}</span>
-                <span>
-                  {company.organization.from} - {company.organization.to}
-                </span>
-              </div>
-              {company.experiences.map((experience) => (
-                <div>
-                  <h3>{experience.position}</h3>
-                  <ul>
-                    {experience.responsibilities.map(
-                      ({ item: responsibility }) => (
-                        <li>{responsibility}</li>
-                      ),
-                    )}
-                  </ul>
-                </div>
-              ))}
-            </article>
-          ))
-        }
-      </section>
-      <section>
-        <h2>TECHNICAL SKILLS</h2>
-        {
-          technicalSkills.map((technicalSkill) => (
-            <article class="py-4">
-              <h3>{technicalSkill.category}</h3>
-              <ul>
-                {technicalSkill.skills.map(({ item: skill }) => (
-                  <li>{skill}</li>
-                ))}
-              </ul>
-            </article>
-          ))
-        }
-      </section>
-      <section>
-        <h2>EDUCATION</h2>
-        {
-          educations.map((education) => (
-            <article class="py-4">
-              <h3>{education.course}</h3>
-              <span>
-                {education.school.organization.from} -{" "}
-                {education.school.organization.to}
-              </span>
-              <span>{education.school.organization.name}</span>
-              <span>{education.school.organization.location}</span>
-            </article>
-          ))
-        }
-      </section>
-      <section>
-        <h2>PROJECTS</h2>
-        {
-          projects.map((project) => (
-            <article class="py-4">
-              <div>
-                <h3>{project.name}</h3>
-                {project.links.map((link) => (
-                  <a href={link.href}>{link.label}</a>
-                ))}
-              </div>
-              <p>{project.description}</p>
-              <div>
-                <span>Tech Stack:</span>
-                <ul>
-                  {project.tech_stack.map((technology) => (
-                    <li>{technology.item}</li>
-                  ))}
-                </ul>
-              </div>
-            </article>
-          ))
-        }
-      </section>
-      <section>
-        <h2>CERTIFICATIONS</h2>
-        {
-          certifications.map((certification) => (
-            <article class="py-4">
-              <h3>{certification.name}</h3>
-              <span>{certification.attained}</span>
-              <span>{certification.issued_by}</span>
-            </article>
-          ))
-        }
-      </section>
-      <section>
-        <h2>LANGUAGES</h2>
-        {
-          languages.map((language) => (
-            <article class="py-4">
-              <span>{language.language}</span>
-              <span>{language.level}</span>
-            </article>
-          ))
-        }
-      </section>
-      <section>
-        <h2>REFERENCE</h2>
-        {
-          references.map((reference) => (
-            <article class="py-4">
-              <span>{reference.name}</span>
-              <span>{reference.position}</span>
-              <span>{reference.company}</span>
-              <span>{reference.email}</span>
-              <span>{reference.phone_number}</span>
-              <span>
-                Relationship: {reference.relationship} — {reference.company}
-              </span>
-            </article>
-          ))
-        }
-      </section>
+      <Header fullName={infos.full_name} position={infos.position} />
+      <ExperienceSection />
+      <TechnicalSkills />
+      <Education />
+      <Projects />
+      <Certifications />
+      <Languages />
     </main>
-    <aside class="border-s border-mist-300 bg-mist-50">
-      <div class="sticky top-0 p-4">
-        <section>
-          <h2>INFORMATION</h2>
-          <span>{infos.phone_number} | {infos.email}</span>
-          <span>{infos.address} | {infos.nationality} | {infos.visa}</span>
-        </section>
-        <section>
-          <h2>SUMMARY</h2>
-          <p>{infos.summary}</p>
-        </section>
-      </div>
-    </aside>
+    <Aside
+      phoneNumber={infos.phone_number}
+      email={infos.email}
+      address={infos.address}
+      nationality={infos.nationality}
+      visa={infos.visa}
+      summary={infos.summary}
+    />
   </body>
 </html>

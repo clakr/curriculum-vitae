@@ -1,0 +1,13 @@
+---
+type Props = {
+  fullName: string;
+  position: string;
+};
+
+const { fullName, position } = Astro.props;
+---
+
+<header>
+  <h1 class="text-4xl font-bold">{fullName}</h1>
+  <h2 class="text-3xl font-semibold">{position}</h2>
+</header>

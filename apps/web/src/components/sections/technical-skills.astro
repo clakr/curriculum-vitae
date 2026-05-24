@@ -1,0 +1,21 @@
+---
+import { getTechnicalSkills } from "@/lib/loaders";
+
+const { data: technicalSkills } = await getTechnicalSkills();
+---
+
+<section>
+  <h2>TECHNICAL SKILLS</h2>
+  {
+    technicalSkills.map((technicalSkill) => (
+      <article class="py-4">
+        <h3>{technicalSkill.category}</h3>
+        <ul>
+          {technicalSkill.skills.map(({ item: skill }) => (
+            <li>{skill}</li>
+          ))}
+        </ul>
+      </article>
+    ))
+  }
+</section>

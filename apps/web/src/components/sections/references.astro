@@ -1,0 +1,23 @@
+---
+import { getReferences } from "@/lib/loaders";
+
+const { data: references } = await getReferences();
+---
+
+<section>
+  <h2>REFERENCES</h2>
+  {
+    references.map((reference) => (
+      <article class="py-4">
+        <span>{reference.name}</span>
+        <span>{reference.position}</span>
+        <span>{reference.company}</span>
+        <span>{reference.email}</span>
+        <span>{reference.phone_number}</span>
+        <span>
+          Relationship: {reference.relationship} — {reference.company}
+        </span>
+      </article>
+    ))
+  }
+</section>
