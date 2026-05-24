@@ -1,51 +1,31 @@
 ---
-import { client } from "@/lib/strapi";
 import "../styles/global.css";
+import {
+  getInfos,
+  getCompanies,
+  getTechnicalSkills,
+  getEducations,
+  getProjects,
+  getCertifications,
+  getLanguages,
+  getReferences,
+} from "@/lib/loaders";
 
-const { data: infos } = await client.single("info").find();
+const { data: infos } = await getInfos();
 
-const { data: companies } = await client.collection("companies").find({
-  populate: {
-    organization: {
-      populate: "*",
-    },
-    experiences: {
-      populate: "*",
-    },
-  },
-});
+const { data: companies } = await getCompanies();
 
-const { data: technicalSkills } = await client
-  .collection("technical-skills")
-  .find({
-    populate: "*",
-  });
+const { data: technicalSkills } = await getTechnicalSkills();
 
-const { data: educations } = await client.collection("educations").find({
-  populate: {
-    school: {
-      populate: "*",
-    },
-  },
-});
+const { data: educations } = await getEducations();
 
-const { data: projects } = await client.collection("projects").find({
-  populate: "*",
-});
+const { data: projects } = await getProjects();
 
-const { data: certifications } = await client
-  .collection("certifications")
-  .find({
-    populate: "*",
-  });
+const { data: certifications } = await getCertifications();
 
-const { data: languages } = await client.collection("languages").find({
-  populate: "*",
-});
+const { data: languages } = await getLanguages();
 
-const { data: references } = await client.collection("references").find({
-  populate: "*",
-});
+const { data: references } = await getReferences();
 ---
 
 <html lang="en">
@@ -58,10 +38,10 @@ const { data: references } = await client.collection("references").find({
     <title>Astro</title>
   </head>
   <body class="grid min-h-svh grid-cols-[minmax(0,1fr)_minmax(0,350px)]">
-    <main class="bg-mist-100 *:p-8">
+    <main class="flex flex-col gap-y-8 bg-mist-100 p-8">
       <header>
-        <h1>{infos.full_name}</h1>
-        <h2>{infos.position}</h2>
+        <h1 class="text-4xl font-bold">{infos.full_name}</h1>
+        <h2 class="text-3xl font-semibold">{infos.position}</h2>
       </header>
       <section>
         <h2>EXPERIENCE</h2>
