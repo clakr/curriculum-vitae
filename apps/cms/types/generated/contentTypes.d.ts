@@ -632,6 +632,35 @@ export interface ApiInfoInfo extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiLanguageLanguage extends Struct.CollectionTypeSchema {
+  collectionName: 'languages';
+  info: {
+    displayName: 'Language';
+    pluralName: 'languages';
+    singularName: 'language';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    language: Schema.Attribute.String & Schema.Attribute.Required;
+    level: Schema.Attribute.String & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::language.language'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiProjectProject extends Struct.CollectionTypeSchema {
   collectionName: 'projects';
   info: {
@@ -1242,6 +1271,7 @@ declare module '@strapi/strapi' {
       'api::education.education': ApiEducationEducation;
       'api::experience.experience': ApiExperienceExperience;
       'api::info.info': ApiInfoInfo;
+      'api::language.language': ApiLanguageLanguage;
       'api::project.project': ApiProjectProject;
       'api::school.school': ApiSchoolSchool;
       'api::technical-skill.technical-skill': ApiTechnicalSkillTechnicalSkill;
