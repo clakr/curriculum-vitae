@@ -42,6 +42,10 @@ const { data: certifications } = await client
 const { data: languages } = await client.collection("languages").find({
   populate: "*",
 });
+
+const { data: references } = await client.collection("references").find({
+  populate: "*",
+});
 ---
 
 <html lang="en">
@@ -161,6 +165,23 @@ const { data: languages } = await client.collection("languages").find({
             <article class="py-4">
               <span>{language.language}</span>
               <span>{language.level}</span>
+            </article>
+          ))
+        }
+      </section>
+      <section>
+        <h2>REFERENCE</h2>
+        {
+          references.map((reference) => (
+            <article class="py-4">
+              <span>{reference.name}</span>
+              <span>{reference.position}</span>
+              <span>{reference.company}</span>
+              <span>{reference.email}</span>
+              <span>{reference.phone_number}</span>
+              <span>
+                Relationship: {reference.relationship} — {reference.company}
+              </span>
             </article>
           ))
         }
