@@ -3,25 +3,43 @@ import { getCompanies } from "@/lib/loaders";
 import Section from "@/components/section.astro";
 
 const { data: companies } = await getCompanies();
+
+const dateFormatter = new Intl.DateTimeFormat("en", {
+  month: "long",
+  year: "numeric",
+});
+
+function formatDate(from: string, to: string | null) {
+  const foo = [from, to].map((date) => {
+    if (date === null) return "Present";
+
+    return dateFormatter.format(new Date(date));
+  });
+
+  return foo.join(" - ");
+}
 ---
 
 <Section label="Experience">
   {
     companies.map((company) => (
-      <article>
-        <div>
-          <h3>{company.organization.name}</h3>
-          <span> - {company.organization.location}</span>
+      <article class="flex flex-col gap-y-4">
+        <div class="flex flex-col">
+          <div class="flex gap-x-1">
+            <h3 class="font-extrabold">{company.organization.name}</h3>
+            <span>–</span>
+            <span>{company.organization.location}</span>
+          </div>
           <span>
-            {company.organization.from} - {company.organization.to}
+            {formatDate(company.organization.from, company.organization.to)}
           </span>
         </div>
         {company.experiences.map((experience) => (
-          <div>
-            <h3>{experience.position}</h3>
-            <ul>
+          <div class="flex flex-col gap-y-1">
+            <h4 class="font-bold">{experience.position}</h4>
+            <ul class="flex list-inside list-disc flex-col gap-y-1 text-sm">
               {experience.responsibilities.map(({ item: responsibility }) => (
-                <li>{responsibility}</li>
+                <li class="text-pretty">{responsibility}</li>
               ))}
             </ul>
           </div>
