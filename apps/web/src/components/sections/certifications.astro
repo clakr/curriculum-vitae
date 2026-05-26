@@ -1,18 +1,18 @@
 ---
 import { getCertifications } from "@/lib/loaders";
+import Section from "../section.astro";
 
 const { data: certifications } = await getCertifications();
 ---
 
-<section>
-  <h2>CERTIFICATIONS</h2>
+<Section label="Certifications">
   {
     certifications.map((certification) => (
-      <article class="py-4">
+      <article>
         <h3>{certification.name}</h3>
         <span>{certification.attained}</span>
         <span>{certification.issued_by}</span>
       </article>
     ))
   }
-</section>
+</Section>

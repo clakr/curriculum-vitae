@@ -1,4 +1,6 @@
 ---
+import Section from "./section.astro";
+
 type Props = {
   phoneNumber: string;
   email: string;
@@ -13,14 +15,12 @@ const { phoneNumber, email, address, nationality, visa, summary } = Astro.props;
 
 <aside class="border-s border-mist-300 bg-mist-50">
   <div class="sticky top-0 p-4">
-    <section>
-      <h2>INFORMATION</h2>
+    <Section label="Information">
       <span>{phoneNumber} | {email}</span>
       <span>{address} | {nationality} | {visa}</span>
-    </section>
-    <section>
-      <h2>SUMMARY</h2>
+    </Section>
+    <Section label="Summary">
       <p>{summary}</p>
-    </section>
+    </Section>
   </div>
 </aside>

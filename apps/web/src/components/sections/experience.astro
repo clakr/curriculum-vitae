@@ -1,14 +1,14 @@
 ---
 import { getCompanies } from "@/lib/loaders";
+import Section from "@/components/section.astro";
 
 const { data: companies } = await getCompanies();
 ---
 
-<section>
-  <h2>EXPERIENCE</h2>
+<Section label="Experience">
   {
     companies.map((company) => (
-      <article class="py-4">
+      <article>
         <div>
           <h3>{company.organization.name}</h3>
           <span> - {company.organization.location}</span>
@@ -29,4 +29,4 @@ const { data: companies } = await getCompanies();
       </article>
     ))
   }
-</section>
+</Section>

@@ -1,17 +1,17 @@
 ---
 import { getLanguages } from "@/lib/loaders";
+import Section from "../section.astro";
 
 const { data: languages } = await getLanguages();
 ---
 
-<section>
-  <h2>LANGUAGES</h2>
+<Section label="Languages">
   {
     languages.map((language) => (
-      <article class="py-4">
+      <article>
         <span>{language.language}</span>
         <span>{language.level}</span>
       </article>
     ))
   }
-</section>
+</Section>

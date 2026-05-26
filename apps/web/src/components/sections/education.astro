@@ -1,14 +1,14 @@
 ---
 import { getEducations } from "@/lib/loaders";
+import Section from "../section.astro";
 
 const { data: educations } = await getEducations();
 ---
 
-<section>
-  <h2>EDUCATION</h2>
+<Section label="Education">
   {
     educations.map((education) => (
-      <article class="py-4">
+      <article>
         <h3>{education.course}</h3>
         <span>
           {education.school.organization.from} -{" "}
@@ -19,4 +19,4 @@ const { data: educations } = await getEducations();
       </article>
     ))
   }
-</section>
+</Section>

@@ -1,14 +1,14 @@
 ---
 import { getProjects } from "@/lib/loaders";
+import Section from "../section.astro";
 
 const { data: projects } = await getProjects();
 ---
 
-<section>
-  <h2>PROJECTS</h2>
+<Section label="Projects">
   {
     projects.map((project) => (
-      <article class="py-4">
+      <article>
         <div>
           <h3>{project.name}</h3>
           {project.links.map((link) => (
@@ -27,4 +27,4 @@ const { data: projects } = await getProjects();
       </article>
     ))
   }
-</section>
+</Section>

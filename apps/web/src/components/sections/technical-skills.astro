@@ -1,14 +1,14 @@
 ---
 import { getTechnicalSkills } from "@/lib/loaders";
+import Section from "../section.astro";
 
 const { data: technicalSkills } = await getTechnicalSkills();
 ---
 
-<section>
-  <h2>TECHNICAL SKILLS</h2>
+<Section label="Technical Skills">
   {
     technicalSkills.map((technicalSkill) => (
-      <article class="py-4">
+      <article>
         <h3>{technicalSkill.category}</h3>
         <ul>
           {technicalSkill.skills.map(({ item: skill }) => (
@@ -18,4 +18,4 @@ const { data: technicalSkills } = await getTechnicalSkills();
       </article>
     ))
   }
-</section>
+</Section>
