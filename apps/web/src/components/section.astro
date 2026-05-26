@@ -1,12 +1,15 @@
 ---
+import type { HTMLAttributes } from "astro/types";
+import { cn } from "@/lib/utils";
+
 type Props = {
   label: string;
-};
+} & HTMLAttributes<"section">;
 
-const { label } = Astro.props;
+const { label, class: className, ...rest } = Astro.props;
 ---
 
-<section>
-  <h2 class="font-bold uppercase">{label}</h2>
+<section class={cn("flex flex-col gap-y-2", className)} {...rest}>
+  <h2 class="text-lg font-bold uppercase">{label}</h2>
   <slot />
 </section>
