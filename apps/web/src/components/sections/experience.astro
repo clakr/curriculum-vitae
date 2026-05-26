@@ -4,19 +4,19 @@ import Section from "@/components/section.astro";
 
 const { data: companies } = await getCompanies();
 
-const dateFormatter = new Intl.DateTimeFormat("en", {
+const dateFormatter = new Intl.DateTimeFormat(undefined, {
   month: "long",
   year: "numeric",
 });
 
 function formatDate(from: string, to: string | null) {
-  const foo = [from, to].map((date) => {
-    if (date === null) return "Present";
+  return [from, to]
+    .map((date) => {
+      if (date === null) return "Present";
 
-    return dateFormatter.format(new Date(date));
-  });
-
-  return foo.join(" - ");
+      return dateFormatter.format(new Date(date));
+    })
+    .join(" - ");
 }
 ---
 
@@ -39,7 +39,7 @@ function formatDate(from: string, to: string | null) {
             <h4 class="font-bold">{experience.position}</h4>
             <ul class="flex list-inside list-disc flex-col gap-y-1 text-sm">
               {experience.responsibilities.map(({ item: responsibility }) => (
-                <li class="text-pretty">{responsibility}</li>
+                <li>{responsibility}</li>
               ))}
             </ul>
           </div>

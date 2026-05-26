@@ -3,16 +3,32 @@ import { getEducations } from "@/lib/loaders";
 import Section from "../section.astro";
 
 const { data: educations } = await getEducations();
+
+const dateFormatter = new Intl.DateTimeFormat(undefined, {
+  year: "numeric",
+});
+
+function formatDate(from: string, to: string | null) {
+  return [from, to]
+    .map((date) => {
+      if (date === null) return "Present";
+
+      return dateFormatter.format(new Date(date));
+    })
+    .join(" - ");
+}
 ---
 
 <Section label="Education">
   {
     educations.map((education) => (
-      <article>
-        <h3>{education.course}</h3>
+      <article class="grid grid-cols-[minmax(0,1fr)_auto]">
+        <h3 class="font-bold">{education.course}</h3>
         <span>
-          {education.school.organization.from} -{" "}
-          {education.school.organization.to}
+          {formatDate(
+            education.school.organization.from,
+            education.school.organization.to,
+          )}
         </span>
         <span>{education.school.organization.name}</span>
         <span>{education.school.organization.location}</span>

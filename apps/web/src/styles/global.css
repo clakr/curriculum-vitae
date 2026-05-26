@@ -124,10 +124,7 @@
     @apply border-border outline-ring/50;
   }
   html {
-    @apply bg-background text-foreground antialiased font-sans;
-  }
-  p {
-    @apply text-pretty;
+    @apply bg-background text-foreground antialiased font-sans text-pretty;
   }
 }
 
