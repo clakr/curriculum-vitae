@@ -3,18 +3,26 @@ import { getTechnicalSkills } from "@/lib/loaders";
 import Section from "../section.astro";
 
 const { data: technicalSkills } = await getTechnicalSkills();
+
+const listFormatter = new Intl.ListFormat(undefined, {
+  style: "long",
+  type: "conjunction",
+});
+
+function formatSkills(skills: Array<{ id: string; item: string }>) {
+  return listFormatter.format(skills.map((skill) => skill.item));
+}
 ---
 
-<Section label="Technical Skills">
+<Section
+  label="Technical Skills"
+  class="grid grid-cols-[auto_minmax(0,1fr)] gap-x-12 [&>h2]:col-span-full"
+>
   {
     technicalSkills.map((technicalSkill) => (
-      <article>
-        <h3>{technicalSkill.category}</h3>
-        <ul>
-          {technicalSkill.skills.map(({ item: skill }) => (
-            <li>{skill}</li>
-          ))}
-        </ul>
+      <article class="col-span-full grid grid-cols-subgrid">
+        <h3 class="font-extrabold uppercase">{technicalSkill.category}</h3>
+        <span>{formatSkills(technicalSkill.skills)}</span>
       </article>
     ))
   }
