@@ -3,14 +3,21 @@ import { getCertifications } from "@/lib/loaders";
 import Section from "../section.astro";
 
 const { data: certifications } = await getCertifications();
+
+const dateFormatter = new Intl.DateTimeFormat(undefined, {
+  year: "numeric",
+});
 ---
 
 <Section label="Certifications">
   {
     certifications.map((certification) => (
-      <article>
-        <h3>{certification.name}</h3>
-        <span>{certification.attained}</span>
+      <article class="flex flex-col">
+        <div class="flex gap-x-1">
+          <h3 class="font-extrabold">{certification.name}</h3>
+          <span>–</span>
+          <span>{dateFormatter.format(new Date(certification.attained))}</span>
+        </div>
         <span>{certification.issued_by}</span>
       </article>
     ))
