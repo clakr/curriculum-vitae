@@ -1,23 +1,26 @@
 ---
 import { getReferences } from "@/lib/loaders";
+import Section from "../section.astro";
 
 const { data: references } = await getReferences();
 ---
 
-<section>
-  <h2>REFERENCES</h2>
+<Section label="References">
   {
     references.map((reference) => (
-      <article class="py-4">
-        <span>{reference.name}</span>
-        <span>{reference.position}</span>
+      <article class="mt-4 flex flex-col text-sm">
+        <h3 class="font-bold">
+          {reference.name} — {reference.position}
+        </h3>
         <span>{reference.company}</span>
-        <span>{reference.email}</span>
-        <span>{reference.phone_number}</span>
+        {reference.email ? (
+          <a href={`mailto:${reference.email}`}>{reference.email}</a>
+        ) : null}
+        <a href={`tel:${reference.phone_number}`}>{reference.phone_number}</a>
         <span>
           Relationship: {reference.relationship} — {reference.company}
         </span>
       </article>
     ))
   }
-</section>
+</Section>
