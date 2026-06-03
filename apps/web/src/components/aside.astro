@@ -12,15 +12,18 @@ type Props = {
 
 const { phoneNumber, email, address, nationality, visa, summary } = Astro.props;
 
-const firstList = [phoneNumber, email].join(" | ");
-const secondList = [address, nationality, visa].join(" | ");
+const list = [address, nationality, visa].join(" | ");
 ---
 
 <aside class="border-s border-mist-300 bg-mist-50">
-  <div class="sticky top-0 flex flex-col gap-y-6 p-6">
-    <Section label="Information" class="">
-      <span>{firstList}</span>
-      <span>{secondList}</span>
+  <div class="sticky top-0 flex flex-col gap-y-6 p-6 text-sm">
+    <Section label="Information" class="flex flex-col gap-y-1">
+      <span>
+        <a href={`tel:${phoneNumber}`}>{phoneNumber}</a>
+        |
+        <a href={`mailto:${email}`}>{email}</a>
+      </span>
+      <span>{list}</span>
     </Section>
     <Section label="Summary">
       <p>{summary}</p>
