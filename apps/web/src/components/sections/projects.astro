@@ -1,28 +1,61 @@
 ---
 import { getProjects } from "@/lib/loaders";
 import Section from "../section.astro";
+import { SquareArrowOutUpRightIcon } from "lucide-react";
+import { IconBrandGithub } from "@tabler/icons-react";
+import { listFormatter } from "@/lib/utils";
 
 const { data: projects } = await getProjects();
+
+type Link = {
+  id: number;
+  label: string;
+  href: string;
+};
+
+function getLiveSiteLink(links: Array<Link>) {
+  return links.find((link) => link.label === "Live Site");
+}
+
+function getGitHubLink(links: Array<Link>) {
+  return links.find((link) => link.label === "GitHub");
+}
+
+function formatTechnicalStack(techStack: Array<{ id: string; item: string }>) {
+  return listFormatter.format(techStack.map((skill) => skill.item));
+}
 ---
 
 <Section label="Projects">
   {
     projects.map((project) => (
       <article>
-        <div>
-          <h3>{project.name}</h3>
-          {project.links.map((link) => (
-            <a href={link.href}>{link.label}</a>
-          ))}
+        <div class="flex gap-x-2">
+          <h3 class="flex items-center gap-x-2 font-bold">
+            {getLiveSiteLink(project.links) ? (
+              <a
+                target="_blank"
+                href={getLiveSiteLink(project.links)?.href}
+                class="flex gap-x-1"
+              >
+                {project.name}
+                <SquareArrowOutUpRightIcon className="size-3 translate-y-[37.5%]" />
+              </a>
+            ) : (
+              <span>{project.name}</span>
+            )}
+
+            {getGitHubLink(project.links) ? (
+              <a target="_blank" href={getGitHubLink(project.links)?.href}>
+                <IconBrandGithub className="size-4" />
+              </a>
+            ) : null}
+          </h3>
         </div>
         <p>{project.description}</p>
         <div>
-          <span>Tech Stack:</span>
-          <ul>
-            {project.tech_stack.map((technology) => (
-              <li>{technology.item}</li>
-            ))}
-          </ul>
+          <span class="font-semibold">Tech Stack:</span>
+          <span>{formatTechnicalStack(project.tech_stack)}</span>
         </div>
       </article>
     ))

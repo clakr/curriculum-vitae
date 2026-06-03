@@ -1,13 +1,9 @@
 ---
 import { getTechnicalSkills } from "@/lib/loaders";
 import Section from "../section.astro";
+import { listFormatter } from "@/lib/utils";
 
 const { data: technicalSkills } = await getTechnicalSkills();
-
-const listFormatter = new Intl.ListFormat(undefined, {
-  style: "long",
-  type: "conjunction",
-});
 
 function formatSkills(skills: Array<{ id: string; item: string }>) {
   return listFormatter.format(skills.map((skill) => skill.item));

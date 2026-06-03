@@ -126,6 +126,9 @@
   html {
     @apply bg-background text-foreground antialiased font-sans text-pretty;
   }
+  a {
+    @apply hover:text-mist-500 transition-colors hover:transition-none;
+  }
 }
 
 @layer utilities {
