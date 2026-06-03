@@ -23,11 +23,11 @@ function formatDate(from: string, to: string | null) {
 <Section label="Experience" class="">
   {
     companies.map((company) => (
-      <article class="mt-8 flex flex-col gap-y-4">
+      <article class="@container mt-8 flex flex-col gap-y-4">
         <div class="flex flex-col">
-          <div class="flex gap-x-1">
+          <div class="flex flex-col gap-x-1 @md:flex-row">
             <h3 class="font-extrabold">{company.organization.name}</h3>
-            <span>–</span>
+            <span class="hidden @md:block">–</span>
             <span>{company.organization.location}</span>
           </div>
           <span>

@@ -12,10 +12,10 @@ const dateFormatter = new Intl.DateTimeFormat(undefined, {
 <Section label="Certifications">
   {
     certifications.map((certification) => (
-      <article class="mt-4 flex flex-col">
-        <div class="flex gap-x-1">
+      <article class="@container mt-4 flex flex-col">
+        <div class="flex flex-col gap-x-1 @md:flex-row">
           <h3 class="font-bold">{certification.name}</h3>
-          <span>–</span>
+          <span class="hidden @md:block">–</span>
           <span>{dateFormatter.format(new Date(certification.attained))}</span>
         </div>
         <span>{certification.issued_by}</span>

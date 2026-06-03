@@ -12,11 +12,11 @@ function formatSkills(skills: Array<{ id: string; item: string }>) {
 
 <Section
   label="Technical Skills"
-  class="grid grid-cols-[auto_minmax(0,1fr)] gap-x-12 [&>h2]:col-span-full"
+  class="grid gap-x-12 lg:grid-cols-[auto_minmax(0,1fr)] [&>h2]:col-span-full"
 >
   {
     technicalSkills.map((technicalSkill) => (
-      <article class="col-span-full mt-1 grid grid-cols-subgrid items-center">
+      <article class="col-span-full mt-6 grid grid-cols-subgrid items-center lg:mt-2">
         <h3 class="font-bold uppercase">{technicalSkill.category}</h3>
         <span class="text-sm">{formatSkills(technicalSkill.skills)}</span>
       </article>

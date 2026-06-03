@@ -7,6 +7,7 @@ import {
   IconBrandGithub,
   IconBrandLinkedin,
 } from "@tabler/icons-react";
+import { SummaryParagraph } from "./summary-paragraph";
 
 const { data: infos } = await getInfos();
 
@@ -17,8 +18,12 @@ function formatLinkLabel(label: string) {
 }
 ---
 
-<aside class="border-s border-mist-300 bg-mist-50">
-  <div class="sticky top-0 flex flex-col gap-y-6 p-6 text-sm">
+<aside class="order-0 border-s border-mist-300 bg-mist-50 md:order-[unset]">
+  <div class="@container sticky top-0 flex flex-col gap-y-6 p-6 text-sm">
+    <header class="md:hidden">
+      <h1 class="text-3xl font-bold">{infos.full_name}</h1>
+      <h2 class="text-xl font-semibold">{infos.position}</h2>
+    </header>
     <Section label="Information" class="flex flex-col gap-y-1">
       <span>
         <a href={`tel:${infos.phone_number}`}>{infos.phone_number}</a>
@@ -28,10 +33,12 @@ function formatLinkLabel(label: string) {
       <span>{list}</span>
     </Section>
     <Section label="Summary">
-      <p>{infos.summary}</p>
+      <SummaryParagraph client:idle text={infos.summary} />
     </Section>
     <Separator />
-    <div class="flex items-center justify-between text-xs">
+    <div
+      class="flex flex-col items-center justify-between gap-y-2 text-xs @2xs:flex-row"
+    >
       <span>
         @ {new Date().getFullYear()}
         {infos.full_name}
