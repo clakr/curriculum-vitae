@@ -47,6 +47,7 @@ function formatTechnicalStack(techStack: Array<{ id: string; item: string }>) {
 
             {getGitHubLink(project.links) ? (
               <a target="_blank" href={getGitHubLink(project.links)?.href}>
+                <span class="sr-only">Go to GitHub repository</span>
                 <IconBrandGithub className="size-4" />
               </a>
             ) : null}
