@@ -5,11 +5,14 @@ import Section from "../section.astro";
 const { data: languages } = await getLanguages();
 ---
 
-<Section label="Languages">
+<Section
+  label="Languages"
+  class="grid grid-cols-[auto_minmax(0,1fr)] gap-x-12 [&>h2]:col-span-full"
+>
   {
     languages.map((language) => (
-      <article>
-        <span>{language.language}</span>
+      <article class="col-span-full grid grid-cols-subgrid items-center">
+        <h3 class="font-extrabold uppercase">{language.language}</h3>
         <span>{language.level}</span>
       </article>
     ))
