@@ -9,7 +9,10 @@ type Props = {
 const { label, class: className, ...rest } = Astro.props;
 ---
 
-<section class={cn("flex flex-col", className)} {...rest}>
+<section
+  class={cn("flex flex-col [&>article:first-of-type]:mt-4", className)}
+  {...rest}
+>
   <h2 class="text-lg font-bold uppercase">{label}</h2>
   <slot />
 </section>

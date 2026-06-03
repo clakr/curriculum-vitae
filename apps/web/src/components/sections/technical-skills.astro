@@ -16,8 +16,8 @@ function formatSkills(skills: Array<{ id: string; item: string }>) {
 >
   {
     technicalSkills.map((technicalSkill) => (
-      <article class="col-span-full grid grid-cols-subgrid items-center">
-        <h3 class="font-extrabold uppercase">{technicalSkill.category}</h3>
+      <article class="col-span-full mt-1 grid grid-cols-subgrid items-center">
+        <h3 class="font-semibold uppercase">{technicalSkill.category}</h3>
         <span class="text-sm">{formatSkills(technicalSkill.skills)}</span>
       </article>
     ))
