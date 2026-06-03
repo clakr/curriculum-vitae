@@ -29,9 +29,9 @@ function formatTechnicalStack(techStack: Array<{ id: string; item: string }>) {
 <Section label="Projects">
   {
     projects.map((project) => (
-      <article>
+      <article class="mt-4 text-sm">
         <div class="flex gap-x-2">
-          <h3 class="flex items-center gap-x-2 font-bold">
+          <h3 class="flex items-center gap-x-2 text-base font-bold">
             {getLiveSiteLink(project.links) ? (
               <a
                 target="_blank"
