@@ -21,10 +21,10 @@ import { Separator } from "@/components/ui/separator";
     <meta name="generator" content={Astro.generator} />
     <title>Astro</title>
   </head>
-  <body class="grid min-h-svh md:grid-cols-[minmax(0,1fr)_minmax(0,400px)]">
-    <main
-      class="order-1 flex flex-col gap-y-8 bg-mist-100 p-6 md:order-[unset] md:p-8"
-    >
+  <body
+    class="bg-noise grid min-h-svh bg-mist-200 md:grid-cols-[minmax(0,1fr)_minmax(0,400px)]"
+  >
+    <main class="order-1 flex flex-col gap-y-8 p-6 md:order-[unset] md:p-8">
       <Header />
       <Experience />
       <Separator />
@@ -43,3 +43,17 @@ import { Separator } from "@/components/ui/separator";
     <Aside />
   </body>
 </html>
+
+<script>
+  try {
+    const theme = localStorage.getItem("theme") || "auto";
+    const resolved =
+      theme === "auto"
+        ? matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light"
+        : theme;
+
+    document.documentElement.classList.add(resolved);
+  } catch (e) {}
+</script>

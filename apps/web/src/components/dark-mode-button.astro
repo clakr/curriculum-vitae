@@ -1,0 +1,26 @@
+---
+import { Button } from "./ui/button";
+import { IconBrightness } from "@tabler/icons-react";
+
+const label = "Change to light/dark mode";
+---
+
+<Button
+  size="icon-lg"
+  variant="ghost"
+  title={label}
+  aria-label={label}
+  className="fixed right-4 bottom-4"
+  id="dark-mode-button"
+>
+  <IconBrightness />
+  <span class="sr-only">{label}</span>
+</Button>
+
+<script>
+  const button = document.getElementById("dark-mode-button");
+
+  button?.addEventListener("click", () => {
+    document.documentElement.classList.toggle("dark");
+  });
+</script>

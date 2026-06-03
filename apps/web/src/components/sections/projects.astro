@@ -1,8 +1,7 @@
 ---
 import { getProjects } from "@/lib/loaders";
 import Section from "../section.astro";
-import { SquareArrowOutUpRightIcon } from "lucide-react";
-import { IconBrandGithub } from "@tabler/icons-react";
+import { IconBrandGithub, IconExternalLink } from "@tabler/icons-react";
 import { listFormatter } from "@/lib/utils";
 
 const { data: projects } = await getProjects();
@@ -39,7 +38,7 @@ function formatTechnicalStack(techStack: Array<{ id: string; item: string }>) {
                 class="flex gap-x-1"
               >
                 {project.name}
-                <SquareArrowOutUpRightIcon className="size-3 translate-y-[37.5%]" />
+                <IconExternalLink className="size-3 translate-y-[37.5%]" />
               </a>
             ) : (
               <span>{project.name}</span>

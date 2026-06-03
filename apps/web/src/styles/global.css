@@ -48,6 +48,8 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 
   --default-border-width: 0.5px;
+
+  --background-image-noise: url("/noise.webp");
 }
 
 :root {
