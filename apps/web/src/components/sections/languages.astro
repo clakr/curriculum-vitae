@@ -11,9 +11,9 @@ const { data: languages } = await getLanguages();
 >
   {
     languages.map((language) => (
-      <article class="col-span-full grid grid-cols-subgrid items-center">
-        <h3 class="font-extrabold uppercase">{language.language}</h3>
-        <span>{language.level}</span>
+      <article class="col-span-full mt-1 grid grid-cols-subgrid items-center">
+        <h3 class="font-bold uppercase">{language.language}</h3>
+        <span class="text-sm">{language.level}</span>
       </article>
     ))
   }
