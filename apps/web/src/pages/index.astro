@@ -10,6 +10,7 @@ import Projects from "@/components/sections/projects.astro";
 import Certifications from "@/components/sections/certifications.astro";
 import Languages from "@/components/sections/languages.astro";
 import References from "@/components/sections/references.astro";
+import { Separator } from "@/components/ui/separator";
 
 const { data: infos } = await getInfos();
 ---
@@ -27,11 +28,17 @@ const { data: infos } = await getInfos();
     <main class="flex flex-col gap-y-8 bg-mist-100 p-8">
       <Header fullName={infos.full_name} position={infos.position} />
       <ExperienceSection />
+      <Separator />
       <TechnicalSkills />
+      <Separator />
       <Education />
+      <Separator />
       <Projects />
+      <Separator />
       <Certifications />
+      <Separator />
       <Languages />
+      <Separator />
       <References />
     </main>
     <Aside
