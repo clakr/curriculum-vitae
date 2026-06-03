@@ -1,32 +1,64 @@
 ---
+import { getInfos } from "@/lib/loaders";
 import Section from "./section.astro";
+import { Separator } from "./ui/separator";
+import {
+  IconWorld,
+  IconBrandGithub,
+  IconBrandLinkedin,
+} from "@tabler/icons-react";
 
-type Props = {
-  phoneNumber: string;
-  email: string;
-  address: string;
-  nationality: string;
-  visa: string;
-  summary: string;
-};
+const { data: infos } = await getInfos();
 
-const { phoneNumber, email, address, nationality, visa, summary } = Astro.props;
+const list = [infos.address, infos.nationality, infos.visa].join(" | ");
 
-const list = [address, nationality, visa].join(" | ");
+function formatLinkLabel(label: string) {
+  return `Go to ${label}`;
+}
 ---
 
 <aside class="border-s border-mist-300 bg-mist-50">
   <div class="sticky top-0 flex flex-col gap-y-6 p-6 text-sm">
     <Section label="Information" class="flex flex-col gap-y-1">
       <span>
-        <a href={`tel:${phoneNumber}`}>{phoneNumber}</a>
+        <a href={`tel:${infos.phone_number}`}>{infos.phone_number}</a>
         |
-        <a href={`mailto:${email}`}>{email}</a>
+        <a href={`mailto:${infos.email}`}>{infos.email}</a>
       </span>
       <span>{list}</span>
     </Section>
     <Section label="Summary">
-      <p>{summary}</p>
+      <p>{infos.summary}</p>
     </Section>
+    <Separator />
+    <div class="flex items-center justify-between text-xs">
+      <span>
+        @ {new Date().getFullYear()}
+        {infos.full_name}
+      </span>
+      <ul class="flex gap-x-1">
+        {
+          infos.links.map((link) => (
+            <li>
+              <a
+                target="_blank"
+                href={link.href}
+                title={formatLinkLabel(link.label)}
+                aria-label={formatLinkLabel(link.label)}
+              >
+                {link.label === "GitHub" ? (
+                  <IconBrandGithub className="size-5" />
+                ) : link.label === "LinkedIn" ? (
+                  <IconBrandLinkedin className="size-5" />
+                ) : (
+                  <IconWorld className="size-5" />
+                )}
+                <span class="sr-only">{formatLinkLabel(link.label)}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
   </div>
 </aside>

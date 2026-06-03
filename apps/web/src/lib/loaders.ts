@@ -1,7 +1,9 @@
 import { client } from "./strapi";
 
 export async function getInfos() {
-  return client.single("info").find();
+  return client.single("info").find({
+    populate: "*",
+  });
 }
 
 export async function getCompanies() {

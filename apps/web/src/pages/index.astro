@@ -1,9 +1,8 @@
 ---
 import "../styles/global.css";
-import { getInfos } from "@/lib/loaders";
 import Header from "@/components/header.astro";
 import Aside from "@/components/aside.astro";
-import ExperienceSection from "@/components/sections/experience.astro";
+import Experience from "@/components/sections/experience.astro";
 import TechnicalSkills from "@/components/sections/technical-skills.astro";
 import Education from "@/components/sections/education.astro";
 import Projects from "@/components/sections/projects.astro";
@@ -11,8 +10,6 @@ import Certifications from "@/components/sections/certifications.astro";
 import Languages from "@/components/sections/languages.astro";
 import References from "@/components/sections/references.astro";
 import { Separator } from "@/components/ui/separator";
-
-const { data: infos } = await getInfos();
 ---
 
 <html lang="en">
@@ -26,8 +23,8 @@ const { data: infos } = await getInfos();
   </head>
   <body class="grid min-h-svh grid-cols-[minmax(0,1fr)_minmax(0,400px)]">
     <main class="flex flex-col gap-y-8 bg-mist-100 p-8">
-      <Header fullName={infos.full_name} position={infos.position} />
-      <ExperienceSection />
+      <Header />
+      <Experience />
       <Separator />
       <TechnicalSkills />
       <Separator />
@@ -41,13 +38,6 @@ const { data: infos } = await getInfos();
       <Separator />
       <References />
     </main>
-    <Aside
-      phoneNumber={infos.phone_number}
-      email={infos.email}
-      address={infos.address}
-      nationality={infos.nationality}
-      visa={infos.visa}
-      summary={infos.summary}
-    />
+    <Aside />
   </body>
 </html>
