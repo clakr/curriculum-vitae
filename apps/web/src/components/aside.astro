@@ -9,6 +9,7 @@ import {
 } from "@tabler/icons-react";
 import { SummaryParagraph } from "./summary-paragraph";
 import DarkModeButton from "./dark-mode-button.astro";
+import { cn } from "@/lib/utils";
 
 const { data: infos } = await getInfos();
 
@@ -19,7 +20,13 @@ function formatLinkLabel(label: string) {
 }
 ---
 
-<aside class="order-0 border-s border-mist-400/75 bg-mist-50 md:order-[unset]">
+<aside
+  class={cn(
+    "order-0 border-s border-mist-400/75 bg-mist-50",
+    "md:order-[unset]",
+    "dark:bg-mist-900 dark:border-mist-600/75",
+  )}
+>
   <div class="@container sticky top-0 flex flex-col gap-y-6 p-6 text-sm">
     <header class="md:hidden">
       <h1 class="text-3xl font-bold">{infos.full_name}</h1>
