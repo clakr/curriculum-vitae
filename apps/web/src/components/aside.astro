@@ -10,6 +10,7 @@ import {
 import { SummaryParagraph } from "./summary-paragraph";
 import DarkModeButton from "./dark-mode-button.astro";
 import { cn } from "@/lib/utils";
+import DownloadPDF from "./download-pdf.astro";
 
 const { data: infos } = await getInfos();
 
@@ -77,5 +78,8 @@ function formatLinkLabel(label: string) {
     </div>
   </div>
 
-  <DarkModeButton />
+  <div class="fixed right-4 bottom-4 flex flex-col-reverse gap-y-0">
+    <DarkModeButton />
+    <DownloadPDF />
+  </div>
 </aside>
