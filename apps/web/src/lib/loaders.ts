@@ -40,7 +40,7 @@ export async function getCompanies() {
         populate: "*",
       },
     },
-    sort: "createdAt",
+    sort: "organization.to:desc",
   });
 }
 
