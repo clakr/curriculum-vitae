@@ -17,9 +17,7 @@ const { data: references } = await getReferences();
           <a href={`mailto:${reference.email}`}>{reference.email}</a>
         ) : null}
         <a href={`tel:${reference.phone_number}`}>{reference.phone_number}</a>
-        <span>
-          Relationship: {reference.relationship} — {reference.company}
-        </span>
+        <span>Relationship: {reference.relationship}</span>
       </article>
     ))
   }
