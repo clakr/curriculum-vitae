@@ -6,6 +6,30 @@ export async function getInfos() {
   });
 }
 
+export async function getMetas() {
+  return client.single("meta").find({
+    populate: "*",
+  });
+}
+
+export async function getMetaTags() {
+  const { data: infos } = await getInfos();
+  const { data: metas } = await getMetas();
+
+  const title = `${infos.full_name} | ${infos.position}`;
+  const keywords = new Intl.ListFormat("en", {
+    style: "short",
+    type: "conjunction",
+  }).format(metas.keywords.map((keyword) => keyword.item));
+
+  return {
+    title,
+    description: metas.description,
+    keywords,
+    author: infos.full_name,
+  };
+}
+
 export async function getCompanies() {
   return client.collection("companies").find({
     populate: {

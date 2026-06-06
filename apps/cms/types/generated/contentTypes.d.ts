@@ -661,6 +661,32 @@ export interface ApiLanguageLanguage extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiMetaMeta extends Struct.SingleTypeSchema {
+  collectionName: 'metas';
+  info: {
+    displayName: 'Meta';
+    pluralName: 'metas';
+    singularName: 'meta';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    keywords: Schema.Attribute.Component<'array.list', true>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::meta.meta'> &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiProjectProject extends Struct.CollectionTypeSchema {
   collectionName: 'projects';
   info: {
@@ -1305,6 +1331,7 @@ declare module '@strapi/strapi' {
       'api::experience.experience': ApiExperienceExperience;
       'api::info.info': ApiInfoInfo;
       'api::language.language': ApiLanguageLanguage;
+      'api::meta.meta': ApiMetaMeta;
       'api::project.project': ApiProjectProject;
       'api::reference.reference': ApiReferenceReference;
       'api::school.school': ApiSchoolSchool;
