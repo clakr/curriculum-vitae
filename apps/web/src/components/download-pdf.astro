@@ -1,10 +1,16 @@
 ---
-import { Button } from "./ui/button";
+import { buttonVariants } from "./ui/button";
 import { IconDownload } from "@tabler/icons-react";
+import { cn } from "@/lib/utils";
 ---
 
-<a href="/TOLOSA_RESUME.pdf" download>
-  <Button size="icon-lg" variant="ghost">
-    <IconDownload />
-  </Button>
+<a
+  href="/TOLOSA_RESUME.pdf"
+  download
+  class={cn(buttonVariants({ size: "icon-lg", variant: "ghost" }))}
+  aria-label="Download as PDF"
+  title="Download as PDF"
+>
+  <IconDownload />
+  <span class="sr-only">Download as PDF</span>
 </a>
