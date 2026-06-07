@@ -2,10 +2,11 @@
 import { getTechnicalSkills } from "@/lib/loaders";
 import Section from "../section.astro";
 import { listFormatter } from "@/lib/utils";
+import type { ArrayListComponent } from "@/lib/strapi.types";
 
 const { data: technicalSkills } = await getTechnicalSkills();
 
-function formatSkills(skills: Array<{ id: string; item: string }>) {
+function formatSkills(skills: Array<ArrayListComponent>) {
   return listFormatter.format(skills.map((skill) => skill.item));
 }
 ---

@@ -14,4 +14,3 @@ export default defineConfig({
   integrations: [react(), sitemap()],
   site: "https://cv.ckt.fyi/",
 });
-

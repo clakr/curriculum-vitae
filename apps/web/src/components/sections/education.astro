@@ -21,18 +21,20 @@ function formatDate(from: string, to: string | null) {
 
 <Section label="Education" class="@container">
   {
-    educations.map((education) => (
-      <article class="grid gap-x-4 @lg:grid-cols-[minmax(0,1fr)_auto]">
-        <h3 class="font-bold">{education.course}</h3>
-        <span>
-          {formatDate(
-            education.school.organization.from,
-            education.school.organization.to,
-          )}
-        </span>
-        <span>{education.school.organization.name}</span>
-        <span>{education.school.organization.location}</span>
-      </article>
-    ))
+    educations.map((education) =>
+      education.school && education.school.organization ? (
+        <article class="grid gap-x-4 @lg:grid-cols-[minmax(0,1fr)_auto]">
+          <h3 class="font-bold">{education.course}</h3>
+          <span>
+            {formatDate(
+              education.school.organization.from,
+              education.school.organization.to,
+            )}
+          </span>
+          <span>{education.school.organization.name}</span>
+          <span>{education.school.organization.location}</span>
+        </article>
+      ) : null,
+    )
   }
 </Section>
