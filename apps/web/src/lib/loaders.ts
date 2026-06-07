@@ -16,14 +16,13 @@ export async function getMetaTags() {
   const { data: infos } = await getInfos();
   const { data: metas } = await getMetas();
 
-  const title = `${infos.full_name} | ${infos.position}`;
   const keywords = new Intl.ListFormat("en", {
     style: "short",
     type: "conjunction",
   }).format(metas.keywords.map((keyword) => keyword.item));
 
   return {
-    title,
+    title: metas.title,
     description: metas.description,
     keywords,
     author: infos.full_name,
