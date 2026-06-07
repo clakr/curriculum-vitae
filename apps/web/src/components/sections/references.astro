@@ -8,15 +8,20 @@ const { data: references } = await getReferences();
 <Section label="References">
   {
     references.map((reference) => (
-      <article class="mt-4 flex flex-col text-sm">
+      <article class="mt-4 flex flex-col items-start text-sm">
         <h3 class="font-bold">
           {reference.name} — {reference.position}
         </h3>
         <span>{reference.company}</span>
-        {reference.email ? (
-          <a href={`mailto:${reference.email}`}>{reference.email}</a>
-        ) : null}
-        <a href={`tel:${reference.phone_number}`}>{reference.phone_number}</a>
+        <div>
+          {reference.email ? (
+            <>
+              <a href={`mailto:${reference.email}`}>{reference.email}</a>
+              <span>|</span>
+            </>
+          ) : null}
+          <a href={`tel:${reference.phone_number}`}>{reference.phone_number}</a>
+        </div>
         <span>Relationship: {reference.relationship}</span>
       </article>
     ))

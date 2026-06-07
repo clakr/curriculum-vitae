@@ -129,7 +129,7 @@
     @apply bg-background text-foreground antialiased font-sans text-pretty;
   }
   a {
-    @apply hover:text-mist-500 transition-colors hover:transition-none;
+    @apply transition-colors hover:text-mist-500 hover:transition-none relative after:absolute after:left-1/2 after:min-h-6 after:opacity-50 after:top-1/2 after:-translate-x-1/2 after:min-w-6 after:size-full after:-translate-y-1/2;
   }
 }
 

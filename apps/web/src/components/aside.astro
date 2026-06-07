@@ -52,34 +52,32 @@ function formatLinkLabel(label: string) {
         @ {new Date().getFullYear()}
         {infos.full_name}
       </span>
-      <ul class="flex gap-x-1">
+      <div class="flex gap-x-2">
         {
           infos.links.map((link) => (
-            <li>
-              <a
-                target="_blank"
-                href={link.href}
-                title={formatLinkLabel(link.label)}
-                aria-label={formatLinkLabel(link.label)}
-              >
-                {link.label === "GitHub" ? (
-                  <IconBrandGithub className="size-5" />
-                ) : link.label === "LinkedIn" ? (
-                  <IconBrandLinkedin className="size-5" />
-                ) : (
-                  <IconWorld className="size-5" />
-                )}
-                <span class="sr-only">{formatLinkLabel(link.label)}</span>
-              </a>
-            </li>
+            <a
+              target="_blank"
+              href={link.href}
+              title={formatLinkLabel(link.label)}
+              aria-label={formatLinkLabel(link.label)}
+            >
+              {link.label === "GitHub" ? (
+                <IconBrandGithub className="size-5" />
+              ) : link.label === "LinkedIn" ? (
+                <IconBrandLinkedin className="size-5" />
+              ) : (
+                <IconWorld className="size-5" />
+              )}
+              <span class="sr-only">{formatLinkLabel(link.label)}</span>
+            </a>
           ))
         }
-      </ul>
+      </div>
     </div>
-  </div>
 
-  <div class="fixed right-4 bottom-4 flex flex-col-reverse gap-y-0">
-    <DarkModeButton />
-    <DownloadPDF />
+    <div class="fixed right-4 bottom-4 flex flex-col-reverse gap-y-0">
+      <DarkModeButton />
+      <DownloadPDF />
+    </div>
   </div>
 </aside>
