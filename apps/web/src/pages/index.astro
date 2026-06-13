@@ -37,6 +37,8 @@ const structuredData = await getStructuredData();
       type="application/ld+json"
       set:html={JSON.stringify(structuredData)}
     />
+
+    <link rel="sitemap" href="/sitemap-index.xml" />
   </head>
   <body
     class:list={[

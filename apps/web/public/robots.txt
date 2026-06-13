@@ -2,3 +2,5 @@ User-agent: *
 Allow: /
 
 Host: cv.ckt.fyi
+
+Sitemap: https://cv.ckt.fyi/sitemap-index.xml
