@@ -83,6 +83,7 @@ export async function getEducations() {
 export async function getProjects() {
   return client.collection("projects").find({
     populate: "*",
+    sort: "order",
   }) as Promise<CollectionResponse<Project>>;
 }
 

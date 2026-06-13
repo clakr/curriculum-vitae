@@ -28,6 +28,10 @@
       "type": "component",
       "component": "array.link",
       "repeatable": true
+    },
+    "order": {
+      "type": "integer",
+      "required": true
     }
   }
 }

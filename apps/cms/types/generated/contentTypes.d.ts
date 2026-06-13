@@ -676,6 +676,7 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     name: Schema.Attribute.String & Schema.Attribute.Required;
+    order: Schema.Attribute.Integer & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
     tech_stack: Schema.Attribute.Component<'array.list', true>;
     updatedAt: Schema.Attribute.DateTime;
