@@ -66,6 +66,7 @@ export async function getCompanies() {
 export async function getTechnicalSkills() {
   return client.collection("technical-skills").find({
     populate: "*",
+    sort: "order",
   }) as Promise<CollectionResponse<TechnicalSkill>>;
 }
 

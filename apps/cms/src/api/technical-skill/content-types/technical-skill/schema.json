@@ -19,6 +19,10 @@
       "type": "component",
       "component": "array.list",
       "repeatable": true
+    },
+    "order": {
+      "type": "integer",
+      "required": true
     }
   }
 }

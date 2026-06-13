@@ -99,6 +99,7 @@ export interface School extends StrapiDocument {
 export interface TechnicalSkill extends StrapiDocument {
   category: string;
   skills: ArrayListComponent[];
+  order: number;
 }
 
 interface ResponseMeta {

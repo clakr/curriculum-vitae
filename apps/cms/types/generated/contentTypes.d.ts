@@ -771,6 +771,7 @@ export interface ApiTechnicalSkillTechnicalSkill
       'api::technical-skill.technical-skill'
     > &
       Schema.Attribute.Private;
+    order: Schema.Attribute.Integer & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
     skills: Schema.Attribute.Component<'array.list', true>;
     updatedAt: Schema.Attribute.DateTime;
