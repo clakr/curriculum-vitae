@@ -12,12 +12,16 @@ export const listFormatter = new Intl.ListFormat(undefined, {
   type: "conjunction",
 });
 
+export function getInitials(input: string) {
+  return input.charAt(0) + ".";
+}
+
 export function buildFullName({
   first_name,
   last_name,
   middle_name,
 }: Pick<Info, "first_name" | "last_name" | "middle_name">) {
-  const middleInitials = middle_name.charAt(0) + ".";
+  const middleInitials = getInitials(middle_name);
 
   return [first_name, middleInitials, last_name].join(" ");
 }

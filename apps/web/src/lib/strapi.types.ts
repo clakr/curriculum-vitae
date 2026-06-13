@@ -51,7 +51,6 @@ export interface Experience extends StrapiDocument {
 }
 
 export interface Info extends StrapiDocument {
-  full_name: string;
   position: string;
   phone_number: string;
   email: string;
@@ -60,6 +59,9 @@ export interface Info extends StrapiDocument {
   visa: string;
   summary: string;
   links: ArrayLinkComponent[];
+  first_name: string;
+  last_name: string;
+  middle_name: string;
 }
 
 export interface Language extends StrapiDocument {
