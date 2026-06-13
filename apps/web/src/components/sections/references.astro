@@ -13,15 +13,15 @@ const { data: references } = await getReferences();
           {reference.name} — {reference.position}
         </h3>
         <span>{reference.company}</span>
-        <div>
-          {reference.email ? (
-            <>
-              <a href={`mailto:${reference.email}`}>{reference.email}</a>
-              <span>|</span>
-            </>
-          ) : null}
-          <a href={`tel:${reference.phone_number}`}>{reference.phone_number}</a>
-        </div>
+        <!-- <div> -->
+        <!--   {reference.email ? ( -->
+        <!--     <> -->
+        <!--       <a href={`mailto:${reference.email}`}>{reference.email}</a> -->
+        <!--       <span>|</span> -->
+        <!--     </> -->
+        <!--   ) : null} -->
+        <!--   <a href={`tel:${reference.phone_number}`}>{reference.phone_number}</a> -->
+        <!-- </div> -->
         <span>Relationship: {reference.relationship}</span>
       </article>
     ))
