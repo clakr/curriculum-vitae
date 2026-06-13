@@ -11,9 +11,11 @@ import Languages from "@/components/sections/languages.astro";
 import References from "@/components/sections/references.astro";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
-import { getMetaTags } from "@/lib/loaders";
+import { getMetaTags, getStructuredData } from "@/lib/loaders";
 
 const { title, description, keywords, author } = await getMetaTags();
+
+const structuredData = await getStructuredData();
 ---
 
 <html lang="en">
@@ -30,6 +32,11 @@ const { title, description, keywords, author } = await getMetaTags();
     <meta name="author" content={author} />
 
     <link rel="canonical" href="https://cv.ckt.fyi/" />
+
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(structuredData)}
+    />
   </head>
   <body
     class:list={[

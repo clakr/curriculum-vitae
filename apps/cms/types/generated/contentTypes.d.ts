@@ -578,11 +578,13 @@ export interface ApiInfoInfo extends Struct.SingleTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     email: Schema.Attribute.String & Schema.Attribute.Required;
-    full_name: Schema.Attribute.String & Schema.Attribute.Required;
+    first_name: Schema.Attribute.String & Schema.Attribute.Required;
+    last_name: Schema.Attribute.String & Schema.Attribute.Required;
     links: Schema.Attribute.Component<'array.link', true>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::info.info'> &
       Schema.Attribute.Private;
+    middle_name: Schema.Attribute.String & Schema.Attribute.Required;
     nationality: Schema.Attribute.String & Schema.Attribute.Required;
     phone_number: Schema.Attribute.String & Schema.Attribute.Required;
     position: Schema.Attribute.String & Schema.Attribute.Required;

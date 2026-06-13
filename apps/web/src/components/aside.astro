@@ -9,16 +9,22 @@ import {
 } from "@tabler/icons-react";
 import { SummaryParagraph } from "./summary-paragraph";
 import DarkModeButton from "./dark-mode-button.astro";
-import { cn } from "@/lib/utils";
+import { buildFullName, cn } from "@/lib/utils";
 import DownloadPDF from "./download-pdf.astro";
 
-const { data: infos } = await getInfos();
+const { data: info } = await getInfos();
 
-const list = [infos.address, infos.nationality, infos.visa].join(" | ");
+const list = [info.address, info.nationality, info.visa].join(" | ");
 
 function formatLinkLabel(label: string) {
   return `Go to ${label}`;
 }
+
+const fullName = buildFullName({
+  first_name: info.first_name,
+  last_name: info.last_name,
+  middle_name: info.middle_name,
+});
 ---
 
 <aside
@@ -30,19 +36,19 @@ function formatLinkLabel(label: string) {
 >
   <div class="@container sticky top-0 flex flex-col gap-y-6 p-6 text-sm">
     <header class="md:hidden">
-      <h1 class="text-3xl font-bold">{infos.full_name}</h1>
-      <h2 class="text-xl font-semibold">{infos.position}</h2>
+      <h1 class="text-3xl font-bold">{fullName}</h1>
+      <h2 class="text-xl font-semibold">{info.position}</h2>
     </header>
     <Section label="Information" class="flex flex-col gap-y-1">
       <span>
-        <a href={`tel:${infos.phone_number}`}>{infos.phone_number}</a>
+        <a href={`tel:${info.phone_number}`}>{info.phone_number}</a>
         |
-        <a href={`mailto:${infos.email}`}>{infos.email}</a>
+        <a href={`mailto:${info.email}`}>{info.email}</a>
       </span>
       <span>{list}</span>
     </Section>
     <Section label="Summary">
-      <SummaryParagraph client:idle text={infos.summary} />
+      <SummaryParagraph client:idle text={info.summary} />
     </Section>
     <Separator />
     <div
@@ -50,11 +56,11 @@ function formatLinkLabel(label: string) {
     >
       <span>
         @ {new Date().getFullYear()}
-        {infos.full_name}
+        {fullName}
       </span>
       <div class="flex gap-x-2">
         {
-          infos.links.map((link) => (
+          info.links.map((link) => (
             <a
               target="_blank"
               href={link.href}
