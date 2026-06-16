@@ -1,7 +1,7 @@
 // @ts-check
 import react from "@astrojs/react";
 import tailwindcss from "@tailwindcss/vite";
-import { defineConfig } from "astro/config";
+import { defineConfig, fontProviders } from "astro/config";
 
 import sitemap from "@astrojs/sitemap";
 
@@ -13,4 +13,14 @@ export default defineConfig({
 
   integrations: [react(), sitemap()],
   site: "https://cv.ckt.fyi/",
+
+  fonts: [
+    {
+      provider: fontProviders.fontsource(),
+      name: "Geist",
+      cssVariable: "--font-geist",
+      styles: ["normal"],
+      weights: ["100 900"],
+    },
+  ],
 });

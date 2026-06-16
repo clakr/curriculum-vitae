@@ -12,8 +12,11 @@ import References from "@/components/sections/references.astro";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 import { getMetaTags, getStructuredData } from "@/lib/loaders";
+import { Font } from "astro:assets";
 
+const url = Astro.url;
 const { title, description, keywords, author } = await getMetaTags();
+const ogImage = new URL("/og/index.png", url);
 
 const structuredData = await getStructuredData();
 ---
@@ -25,13 +28,29 @@ const structuredData = await getStructuredData();
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
 
+    <!-- Canonical URL -->
+    <link rel="canonical" href={url} />
+
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="keywords" content={keywords} />
     <meta name="author" content={author} />
 
-    <link rel="canonical" href="https://cv.ckt.fyi/" />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={url} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={url} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={ogImage} />
 
     <script
       type="application/ld+json"
@@ -39,6 +58,8 @@ const structuredData = await getStructuredData();
     />
 
     <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <Font cssVariable="--font-geist" preload />
   </head>
   <body
     class:list={[
