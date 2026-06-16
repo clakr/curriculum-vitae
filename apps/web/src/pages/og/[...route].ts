@@ -22,10 +22,6 @@ export const { getStaticPaths, GET } = await OGImageRoute({
     title: page.title,
     description: page.description,
     logo: {
-      // TODO: replace image
-      // - reduce logo size
-      // - add gap between logo and text (prompt claude what should be the sizes for the logo and font)
-      // - change color to [249, 251, 251]
       path: resolve(process.cwd(), "public/logo-with-text.png"),
       size: [200],
     },
