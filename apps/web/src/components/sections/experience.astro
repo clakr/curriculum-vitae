@@ -1,23 +1,9 @@
 ---
 import { getCompanies } from "@/lib/loaders";
 import Section from "@/components/section.astro";
+import { formatDuration } from "@/lib/utils";
 
 const { data: companies } = await getCompanies();
-
-const dateFormatter = new Intl.DateTimeFormat(undefined, {
-  month: "long",
-  year: "numeric",
-});
-
-function formatDate(from: string, to: string | null) {
-  return [from, to]
-    .map((date) => {
-      if (date === null) return "Present";
-
-      return dateFormatter.format(new Date(date));
-    })
-    .join(" - ");
-}
 ---
 
 <Section label="Experience" class="">
@@ -32,7 +18,10 @@ function formatDate(from: string, to: string | null) {
               <span>{company.organization.location}</span>
             </div>
             <span>
-              {formatDate(company.organization.from, company.organization.to)}
+              {formatDuration({
+                from: company.organization.from,
+                to: company.organization.to,
+              })}
             </span>
           </div>
         ) : null}

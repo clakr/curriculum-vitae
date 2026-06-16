@@ -2,17 +2,13 @@
 import { getProjects } from "@/lib/loaders";
 import Section from "../section.astro";
 import { IconBrandGithub, IconExternalLink } from "@tabler/icons-react";
-import { listFormatter } from "@/lib/utils";
+import { getLiveSiteLink, listFormatter } from "@/lib/utils";
 import type {
   ArrayLinkComponent,
   ArrayListComponent,
 } from "@/lib/strapi.types";
 
 const { data: projects } = await getProjects();
-
-function getLiveSiteLink(links: Array<ArrayLinkComponent>) {
-  return links.find((link) => link.label === "Live Site");
-}
 
 function getGitHubLink(links: Array<ArrayLinkComponent>) {
   return links.find((link) => link.label === "GitHub");
