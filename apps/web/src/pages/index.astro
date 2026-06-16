@@ -13,6 +13,7 @@ import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 import { getMetaTags, getStructuredData } from "@/lib/loaders";
 import { Font } from "astro:assets";
+import Analytics from "@vercel/analytics/astro";
 
 const url = Astro.url;
 const { title, description, keywords, author } = await getMetaTags();
@@ -52,14 +53,20 @@ const structuredData = await getStructuredData();
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={ogImage} />
 
+    <!-- Structured Data -->
     <script
       type="application/ld+json"
       set:html={JSON.stringify(structuredData)}
     />
 
+    <!-- Sitemap -->
     <link rel="sitemap" href="/sitemap-index.xml" />
 
+    <!-- Font -->
     <Font cssVariable="--font-geist" preload />
+
+    <!-- Analytics -->
+    <Analytics />
   </head>
   <body
     class:list={[
