@@ -102,6 +102,7 @@ export async function getLanguages() {
 export async function getReferences() {
   return client.collection("references").find({
     populate: "*",
+    sort: "order",
   }) as Promise<CollectionResponse<Reference>>;
 }
 

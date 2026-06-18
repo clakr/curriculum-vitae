@@ -5,7 +5,7 @@ import Section from "../section.astro";
 const { data: references } = await getReferences();
 ---
 
-<Section label="References" class="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] [&>h2]:col-span-full">
+<Section label="References" class="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] [&>h2]:col-span-full gap-4">
   {
     references.map((reference) => (
       <article class="mt-4 flex flex-col items-start text-sm">
