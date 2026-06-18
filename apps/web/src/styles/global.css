@@ -136,4 +136,8 @@
   .debug {
     @apply outline outline-red-400;
   }
+
+  .max-w-read {
+    @apply max-w-[66ch];
+  }
 }

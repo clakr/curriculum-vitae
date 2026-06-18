@@ -19,7 +19,9 @@ function formatSkills(skills: Array<ArrayListComponent>) {
     technicalSkills.map((technicalSkill) => (
       <ajticle class="col-span-full mt-6 grid grid-cols-subgrid items-center lg:mt-2">
         <h3 class="font-bold uppercase">{technicalSkill.category}</h3>
-        <span class="text-sm">{formatSkills(technicalSkill.skills)}</span>
+        <span class="max-w-read text-sm">
+          {formatSkills(technicalSkill.skills)}
+        </span>
       </ajticle>
     ))
   }
