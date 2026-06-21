@@ -1,9 +1,9 @@
 // @ts-check
-import react from "@astrojs/react";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig, fontProviders } from "astro/config";
-
 import sitemap from "@astrojs/sitemap";
+import vercel from "@astrojs/vercel";
+import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
@@ -23,4 +23,6 @@ export default defineConfig({
       weights: ["100 900"],
     },
   ],
+
+  adapter: vercel(),
 });

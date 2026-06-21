@@ -14,6 +14,7 @@ import { cn } from "@/lib/utils";
 import { getMetaTags, getStructuredData } from "@/lib/loaders";
 import { Font } from "astro:assets";
 import Analytics from "@vercel/analytics/astro";
+import { Toaster } from "@/components/ui/sonner";
 
 const url = Astro.url;
 const { title, description, keywords, author } = await getMetaTags();
@@ -99,6 +100,7 @@ const structuredData = await getStructuredData();
     <Aside />
 
     <Analytics />
+    <Toaster client:idle />
   </body>
 </html>
 
